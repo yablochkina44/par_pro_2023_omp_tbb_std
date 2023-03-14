@@ -35,5 +35,10 @@ uint32_t getColor(const std::vector<uint32_t> &image, uint32_t width, uint32_t h
  * @param height starts at 1
  * @param lineNumber Number of line in range [0, height - 1]
  */
-std::vector<uint32_t> processLine(const std::vector<uint32_t> &image, uint32_t width, uint32_t height, uint32_t lineNumber);
+std::vector<uint32_t> processLine(
+    const std::vector<uint32_t> &image,
+    uint32_t width,
+    uint32_t height,
+    uint32_t lineNumber
+);
 std::vector<uint32_t> process(const std::vector<uint32_t> &image, uint32_t width, uint32_t height);

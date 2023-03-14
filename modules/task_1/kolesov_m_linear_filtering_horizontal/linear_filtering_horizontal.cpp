@@ -1,7 +1,7 @@
 // Copyright 2023 Maxim Kolesov
-#include "linear_filtering_horizontal.h"
 #include <algorithm>
 #include <cstring>
+#include "../../../modules/task_1/kolesov_m_linear_filtering_horizontal/linear_filtering_horizontal.h"
 
 std::vector<float> getKernel(uint32_t n) {
   std::vector<float> kernel(n*n, 1.0f / n);
@@ -28,8 +28,13 @@ uint32_t getColor(const std::vector<uint32_t> &image, uint32_t width, uint32_t h
   return image.at(y*width + x);
 }
 
-std::vector<uint32_t> processLine(const std::vector<uint32_t> &image, uint32_t width, uint32_t height, uint32_t lineNumber) {
-  std::vector<uint32_t> line = std::vector<uint32_t>(image.begin() + width*lineNumber, image.begin() + width*lineNumber + width);
+std::vector<uint32_t> processLine(
+    const std::vector<uint32_t> &image,
+    uint32_t width,
+    uint32_t height,
+    uint32_t lineNumber) {
+  std::vector<uint32_t> line =
+      std::vector<uint32_t>(image.begin() + width*lineNumber, image.begin() + width*lineNumber + width);
   std::vector<float> kernel = getKernel(kernelSize);
 
   for (uint32_t i = 0; i < line.size(); i++) {
