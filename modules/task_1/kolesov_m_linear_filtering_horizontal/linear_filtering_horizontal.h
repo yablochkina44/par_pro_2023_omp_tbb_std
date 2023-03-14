@@ -1,3 +1,4 @@
+// Copyright 2023 Maxim Kolesov
 #pragma once
 
 #include <vector>

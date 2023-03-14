@@ -1,3 +1,4 @@
+// Copyright 2023 Maxim Kolesov
 #include <gtest/gtest.h>
 #include "linear_filtering_horizontal.h"
 
