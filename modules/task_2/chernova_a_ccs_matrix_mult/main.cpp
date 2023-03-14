@@ -31,7 +31,7 @@ TEST(Sequential, Test_Mult_3_3) {
 
   MatrixCSS matrix_1 =
       MatrixCSS(buff_1, rows, columns) * MatrixCSS(buff_2, rows, columns);
-  MatrixCSS matrix_2 = parallelCÑSMultiplication(
+  MatrixCSS matrix_2 = parallelCCSMultiplication(
       MatrixCSS(buff_1, rows, columns), MatrixCSS(buff_2, rows, columns));
   MatrixCSS matrix_3 = MatrixCSS(result, rows, columns);
 
@@ -46,7 +46,7 @@ TEST(Sequential, Test_Random_Mult_3_3) {
 
   MatrixCSS matrix_1 =
       MatrixCSS(buff_1, rows, columns) * MatrixCSS(buff_2, rows, columns);
-  MatrixCSS matrix_2 = parallelCÑSMultiplication(
+  MatrixCSS matrix_2 = parallelCCSMultiplication(
       MatrixCSS(buff_1, rows, columns), MatrixCSS(buff_2, rows, columns));
 
   ASSERT_TRUE(matrix_1 == matrix_2);
@@ -60,7 +60,7 @@ TEST(Sequential, Test_Random_Mult_4_4) {
 
   MatrixCSS matrix_1 =
       MatrixCSS(buff_1, rows, columns) * MatrixCSS(buff_2, rows, columns);
-  MatrixCSS matrix_2 = parallelCÑSMultiplication(
+  MatrixCSS matrix_2 = parallelCCSMultiplication(
       MatrixCSS(buff_1, rows, columns), MatrixCSS(buff_2, rows, columns));
 
   ASSERT_TRUE(matrix_1 == matrix_2);
@@ -74,7 +74,7 @@ TEST(Sequential, Test_Random_Mult_5_5) {
 
   MatrixCSS matrix_1 =
       MatrixCSS(buff_1, rows, columns) * MatrixCSS(buff_2, rows, columns);
-  MatrixCSS matrix_2 = parallelCÑSMultiplication(
+  MatrixCSS matrix_2 = parallelCCSMultiplication(
       MatrixCSS(buff_1, rows, columns), MatrixCSS(buff_2, rows, columns));
 
   ASSERT_TRUE(matrix_1 == matrix_2);
@@ -88,7 +88,7 @@ TEST(Sequential, Test_Random_Mult_6_6) {
 
   MatrixCSS matrix_1 =
       MatrixCSS(buff_1, rows, columns) * MatrixCSS(buff_2, rows, columns);
-  MatrixCSS matrix_2 = parallelCÑSMultiplication(
+  MatrixCSS matrix_2 = parallelCCSMultiplication(
       MatrixCSS(buff_1, rows, columns), MatrixCSS(buff_2, rows, columns));
 
   ASSERT_TRUE(matrix_1 == matrix_2);

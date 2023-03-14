@@ -124,7 +124,7 @@ bool operator==(const MatrixCSS& left, const MatrixCSS& right) {
   return false;
 }
 
-const MatrixCSS parallelCÑSMultiplication(const MatrixCSS& left,
+const MatrixCSS parallelCCSMultiplication(const MatrixCSS& left,
                                           const MatrixCSS& right) {
   int numberOfThread = omp_get_num_procs();
   MatrixCSS result(left.numberRows, right.numberColumns);
