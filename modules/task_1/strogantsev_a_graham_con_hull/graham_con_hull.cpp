@@ -37,7 +37,7 @@ std::vector<Point> constructConvexHull(const std::vector<Point>& points) {
     stack.push_back(pointsCopy[2]);
 
     for (int i = 3; i < pointsCopy.size(); i++) {
-        while (stack.size() > 1 && 
+        while (stack.size() > 1 &&
             getOrientation(stack[stack.size() - 2], stack.back(), pointsCopy[i]) != Orientation::RIGHT)
             stack.pop_back();
         stack.push_back(pointsCopy[i]);
