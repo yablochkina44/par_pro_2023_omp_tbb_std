@@ -74,13 +74,14 @@ std::vector<Point> constructConvexHull(const std::vector<Point>& points) {
         const int threadCount = omp_get_num_threads();
         const int step = (points.size() - 2) / threadCount + (((points.size() - 2) % threadCount) != 0);
         std::vector<Point> localStack;
-        for (int i = 2 + threadId * step; i < std::min(static_cast<int>(pointsCopy.size()), 2 + step * (threadId + 1)); i++) {
+        for (int i = 2 + threadId * step;
+            i < std::min(static_cast<int>(pointsCopy.size()), 2 + step * (threadId + 1)); i++) {
             while (localStack.size() > 1 &&
-                getOrientation(localStack[localStack.size() - 2], localStack.back(), pointsCopy[i]) != Orientation::RIGHT)
+                getOrientation(localStack[localStack.size() - 2], localStack.back(), pointsCopy[i]) !=
+                Orientation::RIGHT)
                 localStack.pop_back();
             localStack.push_back(pointsCopy[i]);
         }
-
 #pragma omp critical
         {
             std::copy(localStack.begin(), localStack.end(), std::back_inserter(stack));
