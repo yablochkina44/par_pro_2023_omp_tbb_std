@@ -19,7 +19,7 @@ if(result)
     message(FATAL_ERROR "CMake step for onetbb failed: ${result}")
 endif()
 execute_process(
-        COMMAND ${CMAKE_COMMAND} --build "${CMAKE_BINARY_DIR}/onetbb-build" --config ${CMAKE_BUILD_TYPE} --parallel
+        COMMAND ${CMAKE_COMMAND} --build "${CMAKE_BINARY_DIR}/onetbb-build" --config RELEASE --parallel
         RESULT_VARIABLE result)
 if(result)
     message(FATAL_ERROR "Build step for onetbb failed: ${result}")
