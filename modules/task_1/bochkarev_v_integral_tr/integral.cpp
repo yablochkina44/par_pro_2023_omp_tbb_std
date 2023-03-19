@@ -1,10 +1,10 @@
 // Copyright 2023 Bochkarev Vladimir
-#include <iostream>
 #include <functional>
+#include <iostream>
 #include "../../../modules/task_1/bochkarev_v_integral_tr/integral.h"
 
-double integral3D(double a, double b, double c, double d, double e, 
-double f, int n, const std::function<double (double, double, double)> &fun) {
+double integral3D(double a, double b, double c, double d, double e,
+double f, int n, const std::function<double(double, double, double)> &fun) {
     const double hx = (b-a)/n;
     const double hy = (d-c)/n;
     const double hz = (f-e)/n;
@@ -22,7 +22,7 @@ double f, int n, const std::function<double (double, double, double)> &fun) {
                 const double z1 = e + k*hz;
                 const double z2 = e + (k+1)*hz;
 
-                res+=0.5*(x2-x1)*(y2-y1)*(z2-z1)*(fun(x1,y1,z1)+fun(x2,y2,z2));  
+                res+=0.5*(x2-x1)*(y2-y1)*(z2-z1)*(fun(x1, y1, z1)+fun(x2, y2, z2));
             }
     return res;
 }
