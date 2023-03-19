@@ -155,7 +155,7 @@ TEST(ConvHullsBin_OpenMP, Test_5_RandomImage_40X40) {
 }
 
 /* TEST(ConvHullsBin_OpenMP, Test_6_RandomImage_500X500) {
-    // Assume that recreating images from info about connected components
+    // Note that recreating images from info about connected components
     // also takes time,
     // and this time was not counted in tests
     RunRandomImageTest(500, 500);
