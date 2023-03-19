@@ -6,16 +6,18 @@ include(cmake/configure.cmake)
 include(cmake/gtest.cmake)
 
 ################################ MPI ################################
-option(USE_MPI OFF)
-if( USE_MPI )
-    include(cmake/boost.cmake)
-    find_package( MPI )
-    if( MPI_FOUND )
-        include_directories( ${MPI_INCLUDE_PATH} )
-    else( MPI_FOUND )
-        set( USE_MPI OFF )
-    endif( MPI_FOUND )
-endif( USE_MPI )
+# option(USE_MPI OFF)
+# if( USE_MPI )
+#     include(cmake/boost.cmake)
+#     find_package( MPI )
+#     if( MPI_FOUND )
+#         include_directories( ${MPI_INCLUDE_PATH} )
+#     else( MPI_FOUND )
+#         set( USE_MPI OFF )
+#     endif( MPI_FOUND )
+# endif( USE_MPI )
+
+set(USE_MPI OFF)
 
 ############################### OpenMP ##############################
 option(USE_OMP OFF)

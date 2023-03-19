@@ -18,7 +18,7 @@ if(result)
     message(FATAL_ERROR "CMake step for googletest failed: ${result}")
 endif()
 execute_process(
-        COMMAND ${CMAKE_COMMAND} --build "${CMAKE_BINARY_DIR}/googletest-build"  --config ${CMAKE_BUILD_TYPE} --parallel
+        COMMAND ${CMAKE_COMMAND} --build "${CMAKE_BINARY_DIR}/googletest-build"  --config RELEASE --parallel
         RESULT_VARIABLE result)
 if(result)
     message(FATAL_ERROR "Build step for googletest failed: ${result}")
