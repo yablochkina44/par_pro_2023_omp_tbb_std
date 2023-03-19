@@ -1,8 +1,7 @@
 // Copyright 2023 Ilya Uvarkin
 #include <gtest/gtest.h>
 #include <vector>
-#include "../../../modules/task_1/uvarkin_i_convex_hull/Converter.h"
-#include "../../../modules/task_1/uvarkin_i_convex_hull/MinConvexHullBuilder.h"
+#include "../../../modules/task_1/uvarkin_i_convex_hull/convex_hull.h"
 
 TEST(uvarkin_min_hull_convex, test1) {
   std::vector<std::vector<int>> matrix = {{1, 0, 1}, {0, 0, 1}, {0, 1, 0}};
@@ -27,7 +26,7 @@ TEST(uvarkin_min_hull_convex, test2) {
   auto converter = Converter();
   auto points = converter.convertMatrixToSTDVector(matrix, 3, 3);
 
-  auto MinConvexHull = MinConvexHullBuilder();
+  auto MinConvexHull = convex_hull();
   auto firstPointAct = MinConvexHull.getFirstPoint(points);
 
   Vector firstPointExp = Vector{0, 0};
@@ -41,7 +40,7 @@ TEST(uvarkin_min_hull_convex, test3) {
   auto converter = Converter();
   auto points = converter.convertMatrixToSTDVector(matrix, 3, 3);
 
-  auto MinConvexHull = MinConvexHullBuilder();
+  auto MinConvexHull = convex_hull();
   auto firstPoint = MinConvexHull.getFirstPoint(points);
   auto sortPointAct = MinConvexHull.sortPointByPolarAngle(points, firstPoint);
 
@@ -61,7 +60,7 @@ TEST(uvarkin_min_hull_convex, test4) {
   auto converter = Converter();
   auto points = converter.convertMatrixToSTDVector(matrix, 5, 5);
 
-  auto MinConvexHull = MinConvexHullBuilder();
+  auto MinConvexHull = convex_hull();
   auto firstPoint = MinConvexHull.getFirstPoint(points);
   auto sortPoints = MinConvexHull.sortPointByPolarAngle(points, firstPoint);
   auto hullAct = MinConvexHull.deletePointNotIncludeToMCH(sortPoints);
@@ -87,7 +86,7 @@ TEST(uvarkin_min_hull_convex, test5) {
   auto converter = Converter();
   auto points = converter.convertMatrixToSTDVector(matrix, 5, 5);
 
-  auto MinConvexHull = MinConvexHullBuilder();
+  auto MinConvexHull = convex_hull();
   auto hullAct = MinConvexHull.getMinConvexHull(points);
 
   std::vector<std::vector<int>> matrixHull = {
