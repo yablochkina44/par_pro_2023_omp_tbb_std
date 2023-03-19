@@ -1,6 +1,6 @@
 // Copyright 2023 Bochkarev Vladimir
-#include <iostream>
 #include <gtest/gtest.h>
+#include <iostream>
 #include "./integral.h"
 
 double f1(double x, double y, double z) {
@@ -12,7 +12,7 @@ double f2(double x, double y, double z) {
 }
 
 double f3(double x, double y, double z) {
-    return pow(x, 3.0);
+    return x*x*x;
 }
 
 double f4(double x, double y, double z) {
