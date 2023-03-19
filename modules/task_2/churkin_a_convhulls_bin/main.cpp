@@ -45,7 +45,7 @@ void RunRandomImageTest(int M, int N) {
     t2Par = omp_get_wtime();
 
     t1Seq = omp_get_wtime();
-    auto componentsSeq = MarkComponentsSequential(&imageSeq[0], M, N);
+    auto componentsSeq = MarkComponents(&imageSeq[0], M, N);
     t2Seq = omp_get_wtime();
 
     tParTotal = (t2Par - t1Par);
@@ -59,11 +59,11 @@ void RunRandomImageTest(int M, int N) {
     CheckImages(&imageOrig[0], &imagePar[0], &imageSeq[0], M, N, true);
 
     t1Par = omp_get_wtime();
-    componentsPar = LeaveOnlyHulls(componentsPar, M, N);
+    componentsPar = LeaveOnlyHulls(&componentsPar, M, N);
     t2Par = omp_get_wtime();
 
     t1Seq = omp_get_wtime();
-    componentsSeq = LeaveOnlyHulls(componentsSeq, M, N);
+    componentsSeq = LeaveOnlyHulls(&componentsSeq, M, N);
     t2Seq = omp_get_wtime();
 
     tParTotal += (t2Par - t1Par);
@@ -102,7 +102,7 @@ TEST(ConvHullsBin_OpenMP, Test_1_Can_Get_Hulls_10X10) {
     });
 
     auto components = MarkComponentsParallel(&image[0], M, N);
-    components = LeaveOnlyHulls(components, M, N);
+    components = LeaveOnlyHulls(&components, M, N);
     RedrawImageFromComponents(&image[0], components, M, N);
 
     std::vector<int> rightResult({
@@ -137,7 +137,7 @@ TEST(ConvHullsBin_OpenMP, Test_2_EmptyImage_10X10) {
     });
 
     auto components = MarkComponentsParallel(&image[0], M, N);
-    components = LeaveOnlyHulls(components, M, N);
+    components = LeaveOnlyHulls(&components, M, N);
 
     EXPECT_EQ(components.size(), 0);
 }
@@ -154,11 +154,11 @@ TEST(ConvHullsBin_OpenMP, Test_5_RandomImage_40X40) {
     RunRandomImageTest(40, 40);
 }
 
-/* TEST(ConvHullsBin_OpenMP, Test_6_RandomImage_500X500) {
+/* TEST(ConvHullsBin_OpenMP, Test_6_RandomImage_1500X1500) {
     // Note that recreating images from info about connected components
     // also takes time,
     // and this time was not counted in tests
-    RunRandomImageTest(500, 500);
+    RunRandomImageTest(1500, 1500);
 } */
 
 int main(int argc, char **argv) {

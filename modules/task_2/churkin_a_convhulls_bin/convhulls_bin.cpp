@@ -49,31 +49,30 @@ double rotate(const std::pair<int, int>& p1,
            (p2.second - p1.second) * (p3.first - p2.first);
 }
 
-Points GrahamScan(
-    Points points) {
-    if (points.size() <= 2) return points;
+Points GrahamScan(Points* points) {
+    if ((*points).size() <= 2) return (*points);
 
     Points result;
 
     // Finding minimal point - point with minimum x and y (left bottom point)
-    std::pair<int, int> minPoint = points[0];
+    std::pair<int, int> minPoint = (*points)[0];
     int minPointIdx = 0;
 
-    for (size_t i = 1; i < points.size(); i++) {
-        if (points[i].first < minPoint.first ||
-            (points[i].first == minPoint.first &&
-             points[i].second < minPoint.second)) {
-            minPoint = points[i];
+    for (size_t i = 1; i < (*points).size(); i++) {
+        if ((*points)[i].first < minPoint.first ||
+            ((*points)[i].first == minPoint.first &&
+             (*points)[i].second < minPoint.second)) {
+            minPoint = (*points)[i];
             minPointIdx = i;
         }
     }
 
     // Removing minimal point from our points
-    std::swap(points[minPointIdx], points[points.size() - 1]);
-    points.pop_back();
+    std::swap((*points)[minPointIdx], (*points)[(*points).size() - 1]);
+    (*points).pop_back();
 
     // Sorting points by our custom criteria
-    std::sort(points.begin(), points.end(),
+    std::sort((*points).begin(), (*points).end(),
               [minPoint](const std::pair<int, int>& p1,
                          const std::pair<int, int>& p2) {
                   // Vector v1 coordinates
@@ -104,15 +103,15 @@ Points GrahamScan(
     // Then we do Graham scan
     // minPoint and points[0]
     // are the first points of our convex hull
-    result.push_back(minPoint), result.push_back(points[0]);
+    result.push_back(minPoint), result.push_back((*points)[0]);
 
-    for (size_t i = 1; i < points.size(); i++) {
+    for (size_t i = 1; i < (*points).size(); i++) {
         // p1
         std::pair<int, int> p1 = result[result.size() - 2];
         // p2
         std::pair<int, int> p2 = result[result.size() - 1];
         // p3
-        std::pair<int, int> p3 = points[i];
+        std::pair<int, int> p3 = (*points)[i];
 
         double rot = rotate(p1, p2, p3);
         // p1, p2, p3 on one line -> replacing p2 with p3
@@ -175,7 +174,7 @@ void BFS(int* image, int M, int N, int yStart, int xStart,
 }
 
 // 2. Marks components on image (labeling starts from 2)
-std::map<int, Points> MarkComponentsSequential(int* image, int M, int N) {
+std::map<int, Points> MarkComponents(int* image, int M, int N) {
     allComponentsSeq.clear();
 
     int label = 2;
@@ -191,15 +190,15 @@ std::map<int, Points> MarkComponentsSequential(int* image, int M, int N) {
 
 // Here we should launch Graham for every component to get its convex hull
 std::map<int, Points> LeaveOnlyHulls(
-    const std::map<int, Points>& components, int M, int N) {
+    std::map<int, Points>* components, int M, int N) {
 
     // Then, we should launch Graham for every component to get its convex hull
     std::map<int, Points> hulls;
 
-    for (auto& kv : components) {
+    for (auto& kv : (*components)) {
         int label = kv.first;
         auto& points = kv.second;
-        hulls[label] = GrahamScan(points);
+        hulls[label] = GrahamScan(&points);
     }
 
     return hulls;
@@ -381,36 +380,31 @@ std::map<int, Points> MarkComponentsParallel(int* image, int M, int N) {
     return components;
 }
 
-// Here we launch Graham for every component to get its convex hull
 std::map<int, Points> LeaveOnlyHullsParallel(
-    std::map<int, Points> components, int M, int N) {
+    std::map<int, Points>* components, int M, int N) {
     std::map<int, Points> hulls;
 
     componentsOfThreads.clear();
 
     // Collecting all keys of a map
-    std::vector<int> labels(components.size());
-    for (auto it = components.begin(); it != components.end(); it++) {
+    std::vector<int> labels((*components).size());
+    for (auto it = (*components).begin(); it != (*components).end(); it++) {
         labels.push_back(it->first);
     }
 
-    int threadNumber;
-
     // Then using paralellism by connected components
     #pragma omp parallel
-        threadNumber = omp_get_thread_num();
-
         #pragma omp single
             componentsOfThreads.resize(omp_get_num_threads());
 
         #pragma omp for
         for (int i = 0; i < labels.size(); i++) {
-            componentsOfThreads[threadNumber][labels[i]] = GrahamScan(components[labels[i]]);
+            componentsOfThreads[omp_get_thread_num()][labels[i]]
+                = GrahamScan(&(*components)[labels[i]]);
         }
 
     for (auto componentsOfSomeThread : componentsOfThreads) {
         hulls.insert(componentsOfSomeThread.begin(), componentsOfSomeThread.end());
-        componentsOfSomeThread.clear();
     }
     componentsOfThreads.clear();
 
