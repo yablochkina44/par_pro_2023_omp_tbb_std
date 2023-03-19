@@ -1,8 +1,8 @@
 // Copyright 2023 Ilya Uvarkin
-#include "Converter.h"
-#include "MinConvexHullBuilder.h"
 #include <gtest/gtest.h>
 #include <vector>
+#include "../../../modules/task_1/uvarkin_i_convex_hull/Converter.h"
+#include "../../../modules/task_1/uvarkin_i_convex_hull/MinConvexHullBuilder.h"
 
 TEST(uvarkin_min_hull_convex, test1) {
   std::vector<std::vector<int>> matrix = {{1, 0, 1}, {0, 0, 1}, {0, 1, 0}};
