@@ -17,13 +17,11 @@ void printMatrix(const std::vector<std::vector<Complex>>& Pmatrix) {
 void GetRandomMatrix(int N, int nonZero, CCSMatrix& mtx) {
     std::random_device dev;
     std::mt19937 gen(dev());
-    std::uniform_int_distribution<> disValue(-10, 10);
+    std::uniform_int_distribution<> disValue(0, 10);
     std::uniform_int_distribution<> disIndex(0, N - 1);
     std::vector<std::vector<Complex>> matrix(N, std::vector<Complex>(N));
     
     mtx.sizeMatrix = N;
-    mtx.countNZ = nonZero;
-
     int row = 0;
     int col = 0;
     for (int i = 0; i < nonZero; i++) {
@@ -40,7 +38,6 @@ void GetRandomMatrix(int N, int nonZero, CCSMatrix& mtx) {
     mtx.colIndex.push_back(0);
     for (int i = 0; i < N; ++i) {
         for (int j = 0; j < N; ++j) {
-            std::cout << matrix[i][j] << " ";
             if (matrix[j][i] == Complex(0, 0)) {
                 continue;
             }
@@ -49,9 +46,8 @@ void GetRandomMatrix(int N, int nonZero, CCSMatrix& mtx) {
             ind++;
         }
         mtx.colIndex.push_back(ind);
-        std::cout<<std::endl;
     }
-
+    mtx.countNZ = mtx.rowIndex.size();
 }
 
 
@@ -123,19 +119,23 @@ CCSMatrix Multiplicate(const CCSMatrix& A, const CCSMatrix& B) {
     CCSMatrix C;
     C.colIndex.push_back(0);
     int NonZero = 0;
-    Complex sum = 0;
     for (int i = 0; i < A.sizeMatrix; i++) {
         for (int j = 0; j < A.sizeMatrix; j++) {
-            sum = 0;
-            for (int k = A.colIndex[i]; k < A.colIndex[i + 1]; k++) {
-                for (int l = B.colIndex[j]; l < B.colIndex[j + 1]; l++) {
-                    if (A.rowIndex[k] == B.rowIndex[l]) {
-                        sum += A.value[k] * B.value[l];
-                        break;
-                    }
+            Complex sum = 0;
+            int ks = A.colIndex[i];
+            int ls = B.colIndex[j];
+            int kf = A.colIndex[i + 1] - 1;
+            int lf = B.colIndex[j + 1] - 1;
+            while ((ks <= kf) && (ls <= lf)) {
+                if (A.rowIndex[ks] < B.rowIndex[ls]) ks++;
+                else if (A.rowIndex[ks] > B.rowIndex[ls]) ls++;
+                else {
+                    sum += A.value[ks] * B.value[ls];
+                    ks++;
+                    ls++;
                 }
             }
-            if (abs(sum) > 0) {
+            if (sum.real() != 0) {
                 C.rowIndex.push_back(j);
                 C.value.push_back(sum);
                 NonZero++;
