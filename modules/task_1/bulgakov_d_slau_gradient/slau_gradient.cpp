@@ -27,7 +27,7 @@ double vec_vec(const dvec &a, const dvec &b) {
     return std::inner_product(a.begin(), a.end(), b.begin(), 0.0);
 }
 
-dvec matrix_vec(const dmat &a, const dvec b) {
+dvec matrix_vec(const dmat &a, const dvec &b) {
     dvec res(a.size());
     for (int i = 0; i < a.size(); i++) {
         res[i] =  vec_vec(a[i], b);
