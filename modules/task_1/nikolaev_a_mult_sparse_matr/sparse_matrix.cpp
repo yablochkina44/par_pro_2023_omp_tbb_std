@@ -150,4 +150,3 @@ CCSMatrix Multiplicate(const CCSMatrix& A, const CCSMatrix& B) {
     C.countNZ = NonZero;
     return C;
 }
-
