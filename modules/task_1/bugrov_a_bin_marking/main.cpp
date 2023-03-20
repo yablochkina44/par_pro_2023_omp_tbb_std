@@ -3,8 +3,7 @@
 
 #include <vector>
 
-#include "../../../modules/task_1/bin_marking.cpp"
-#include "../../../modules/task_1/bin_marking.h"
+#include "../../../modules/task_1/bugrov_a_bin_marking/bin_marking.h"
 
 bool are_matrix_eq(const vector<vector<int>>& a, const vector<vector<int>>& b,
                    int n, int m) {
@@ -31,7 +30,7 @@ bool CheckMarking(int N, const vector<vector<int>>& image,
       marks[i][j] = k_unnamed;
     }
   }
-  marking(image, N, N, marks, k_unnamed);
+  marking(image, N, N, &marks, k_unnamed);
   return are_matrix_eq(marks, etalon, N, N);
 }
 
@@ -129,3 +128,28 @@ TEST(bin_marking, can_mark_staggered_image) {
   };
   ASSERT_EQ(true, CheckMarking(n, image, etalon));
 }
+
+// TEST(bin_marking, hpc) {
+//  const int n = 3583;  // prime number
+//  const int m = 4729;  // prime number
+//  const int k_unnamed = 0;
+//  vector<vector<int>> image(n);
+//  vector<vector<int>> marks(n);
+//  vector<vector<int>> par_marks(n);
+//  for (int i = 0; i < n; i++) {
+//    image[i].reserve(m);
+//    marks[i].reserve(m);
+//    par_marks[i].reserve(m);
+//  }
+//  mt19937 engine(time(NULL));
+//  for (int i = 0; i < n; i++) {
+//    for (int j = 0; j < m; j++) {
+//      image[i][j] = engine() % 2;
+//      marks[i][j] = k_unnamed;
+//      par_marks[i][j] = k_unnamed;
+//    }
+//  }
+//  marking(image, n, m, &marks, k_unnamed);
+//  par_marking(image, n, m, &par_marks, k_unnamed);
+//  ASSERT_EQ(true, are_matrix_eq(marks, par_marks, n, m));
+//}
