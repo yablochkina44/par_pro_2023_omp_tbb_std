@@ -36,6 +36,9 @@ res2.insert(res2.begin(), av.begin(), av.end());
 res2.insert(res2.end(), bv.begin(), bv.end());
 std::sort(res2.begin(), res2.end());
 ASSERT_EQ(res1, res2);
+delete [] a;
+delete [] b;
+delete [] res;
 }
 
 TEST(HoaraBetcher, Test_3_Hoara_20_elems) {
@@ -72,6 +75,9 @@ res2.insert(res2.begin(), av.begin(), av.end());
 res2.insert(res2.end(), bv.begin(), bv.end());
 std::sort(res2.begin(), res2.end());
 ASSERT_EQ(res1, res2);
+delete [] a;
+delete [] b;
+delete [] res;
 }
 
 TEST(HoaraBetcher, Test_5_Betcher_26_plus_26_elems) {
@@ -98,6 +104,9 @@ res2.insert(res2.begin(), av.begin(), av.end());
 res2.insert(res2.end(), bv.begin(), bv.end());
 std::sort(res2.begin(), res2.end());
 ASSERT_EQ(res1, res2);
+delete [] a;
+delete [] b;
+delete [] res;
 }
 
 
