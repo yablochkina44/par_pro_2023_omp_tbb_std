@@ -17,9 +17,9 @@ struct CCSMatrix
     std::vector<int> rowIndex;
 };
 
-void printMatrix(std::vector<std::vector<Complex>>& Pmatrix);
-void GetRandomMatrix(int N, int nonZero, CCSMatrix& mtx);
-void TransposeMatrix(CCSMatrix& mtx);
+void printMatrix(const std::vector<std::vector<Complex>>& Pmatrix);
+CCSMatrix GetRandomMatrix(int N, int nonZero);
+void TransposeMatrix(CCSMatrix* mtx);
 CCSMatrix MatrixtoCCSMatrix(const std::vector<std::vector<Complex>> &matrix);
 CCSMatrix Multiplicate(const CCSMatrix& A, const CCSMatrix& B);
 

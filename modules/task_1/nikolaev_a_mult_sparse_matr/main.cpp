@@ -16,7 +16,7 @@ TEST(Sparse_Matrix_Mult, Test_Mult1) {
     std::vector<Complex> result = { 56, 10, 8, 4, 30 };
     A = MatrixtoCCSMatrix(matrixA);
     B = MatrixtoCCSMatrix(matrixB);
-    TransposeMatrix(A);
+    TransposeMatrix(&A);
     C = Multiplicate(A, B);
     ASSERT_EQ(C.value, result);
 }
@@ -27,7 +27,7 @@ TEST(Sparse_Matrix_Mult, Test_Mult2) {
     CCSMatrix C;
     std::vector<std::vector<Complex>> matrixA = { {0, 8, 0, 8},
                                                   {1, 0, 2, 0},
-                                                  {0, 0, 6, 0}, 
+                                                  {0, 0, 6, 0},
                                                   {4, 5, 0, 9} };
 
     std::vector<std::vector<Complex>> matrixB = { {0, 8, 4, 0},
@@ -37,7 +37,7 @@ TEST(Sparse_Matrix_Mult, Test_Mult2) {
     std::vector<Complex> result = { 8, 56, 120, 10, 8, 4, 30, 41, 51, 103 };
     A = MatrixtoCCSMatrix(matrixA);
     B = MatrixtoCCSMatrix(matrixB);
-    TransposeMatrix(A);
+    TransposeMatrix(&A);
     C = Multiplicate(A, B);
     ASSERT_EQ(C.value, result);
 }
@@ -59,11 +59,10 @@ TEST(Sparse_Matrix_Mult, Test_Mult3) {
                                                 {0, 2, 0, 0, 1, 7},
                                                 {0, 6, 3, 0, 0, 1},
                                                 {4, 0, 0, 1, 0, 0} };
-    std::vector<Complex> result = { 51, 28, 19, 6, 46, 6, 34, 59, 17, 42, 25,
-        7, 10, 8, 5, 33, 21, 9, 24, 7 };
+    std::vector<Complex> result = { 6, 59, 33, 51, 25, 46, 8, 21, 28, 6, 17, 7, 9, 19, 42, 10, 24, 34, 5, 7 };
     A = MatrixtoCCSMatrix(matrixA);
     B = MatrixtoCCSMatrix(matrixB);
-    TransposeMatrix(B);
+    TransposeMatrix(&A);
     C = Multiplicate(A, B);
     ASSERT_EQ(C.value, result);
 }
@@ -72,9 +71,9 @@ TEST(Sparse_Matrix_Mult, Test_Mult4) {
     CCSMatrix A;
     CCSMatrix B;
     CCSMatrix C;
-    GetRandomMatrix(10, 20, A);
-    GetRandomMatrix(10, 20, B);
-    TransposeMatrix(B);
+    A = GetRandomMatrix(10, 20);
+    B = GetRandomMatrix(10, 20);
+    TransposeMatrix(&A);
     C = Multiplicate(A, B);
 }
 
@@ -82,9 +81,9 @@ TEST(Sparse_Matrix_Mult, Test_Mult5) {
     CCSMatrix A;
     CCSMatrix B;
     CCSMatrix C;
-    GetRandomMatrix(20, 50, A);
-    GetRandomMatrix(20, 50, B);
-    TransposeMatrix(B);
+    A = GetRandomMatrix(20, 50);
+    B = GetRandomMatrix(20, 50);
+    TransposeMatrix(&A);
     C = Multiplicate(A, B);
 }
 

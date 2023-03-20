@@ -1,7 +1,7 @@
-﻿#include <random>
+﻿// Copyright 2023 Nikolaev Alexander
+#include <random>
 #include <algorithm>
 #include "../../../modules/task_1/nikolaev_a_mult_sparse_matr/sparse_matrix.h"
-
 
 void printMatrix(const std::vector<std::vector<Complex>>& Pmatrix) {
     const size_t sizeMatrix = Pmatrix.size();
@@ -14,7 +14,8 @@ void printMatrix(const std::vector<std::vector<Complex>>& Pmatrix) {
     std::cout << std::endl;
 }
 
-void GetRandomMatrix(int N, int nonZero, CCSMatrix& mtx) {
+CCSMatrix GetRandomMatrix(int N, int nonZero) {
+    CCSMatrix mtx;
     std::random_device dev;
     std::mt19937 gen(dev());
     std::uniform_int_distribution<> disValue(0, 10);
@@ -48,25 +49,26 @@ void GetRandomMatrix(int N, int nonZero, CCSMatrix& mtx) {
         mtx.colIndex.push_back(ind);
     }
     mtx.countNZ = mtx.rowIndex.size();
+    return mtx;
 }
 
 
-void TransposeMatrix(CCSMatrix& A) {
+void TransposeMatrix(CCSMatrix* A) {
     CCSMatrix AT;
 
-    AT.sizeMatrix = A.sizeMatrix;
-    AT.countNZ = A.countNZ;
-    AT.colIndex.resize(A.colIndex.size());
-    AT.rowIndex.resize(A.rowIndex.size());
-    AT.value.resize(A.value.size());
+    AT.sizeMatrix = A->sizeMatrix;
+    AT.countNZ = A->countNZ;
+    AT.colIndex.resize(A->colIndex.size());
+    AT.rowIndex.resize(A->rowIndex.size());
+    AT.value.resize(A->value.size());
 
-    for (int i = 0; i < A.countNZ; i++) {
-        AT.colIndex[A.rowIndex[i] + 1]++;
+    for (int i = 0; i < A->countNZ; i++) {
+        AT.colIndex[A->rowIndex[i] + 1]++;
     }
 
     int tmp = 0;
     int S = 0;
-    for (int i = 1; i <= A.sizeMatrix; i++) {
+    for (int i = 1; i <= A->sizeMatrix; i++) {
         tmp = AT.colIndex[i];
         AT.colIndex[i] = S;
         S = S + tmp;
@@ -76,21 +78,21 @@ void TransposeMatrix(CCSMatrix& A) {
     int Col = 0;
     Complex V = {0, 0};
     int RIndex = 0; int IIndex = 0;
-    for (int i = 0; i < A.sizeMatrix; i++) {
-        j1 = A.colIndex[i]; j2 = A.colIndex[i + 1];
+    for (int i = 0; i < A->sizeMatrix; i++) {
+        j1 = A->colIndex[i]; j2 = A->colIndex[i + 1];
         Col = i;
         for (int j = j1; j < j2; j++) {
-            V = A.value[j];
-            RIndex = A.rowIndex[j];
+            V = A->value[j];
+            RIndex = A->rowIndex[j];
             IIndex = AT.colIndex[RIndex + 1];
             AT.value[IIndex] = V;
             AT.rowIndex[IIndex] = Col;
             AT.colIndex[RIndex + 1]++;
         }
     }
-    A.value = AT.value;
-    A.colIndex = AT.colIndex;
-    A.rowIndex = AT.rowIndex;
+    A->value = AT.value;
+    A->colIndex = AT.colIndex;
+    A->rowIndex = AT.rowIndex;
 }
 
 CCSMatrix MatrixtoCCSMatrix(const std::vector<std::vector<Complex>> &matrix) {
@@ -145,3 +147,4 @@ CCSMatrix Multiplicate(const CCSMatrix& A, const CCSMatrix& B) {
     }
     return C;
 }
+
