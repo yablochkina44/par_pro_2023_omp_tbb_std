@@ -1,4 +1,4 @@
-﻿//  Copyright 2023 Nikolaev Alexander
+﻿  // Copyright 2023 Nikolaev Alexander
 #include <random>
 #include <algorithm>
 #include "../../../modules/task_1/nikolaev_a_mult_sparse_matr/sparse_matrix.h"
@@ -128,10 +128,11 @@ CCSMatrix Multiplicate(const CCSMatrix& A, const CCSMatrix& B) {
             int kf = A.colIndex[i + 1] - 1;
             int lf = B.colIndex[j + 1] - 1;
             while ((ks <= kf) && (ls <= lf)) {
-                if (A.rowIndex[ks] < B.rowIndex[ls]) ks++;
-                else if (A.rowIndex[ks] > B.rowIndex[ls]) ls++;
-                else
-                {
+                if (A.rowIndex[ks] < B.rowIndex[ls]) {
+                    ks++;
+                } else if (A.rowIndex[ks] > B.rowIndex[ls]) {
+                    ls++;
+                } else {
                     sum += A.value[ks] * B.value[ls];
                     ks++;
                     ls++;
