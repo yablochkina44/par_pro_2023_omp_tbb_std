@@ -8,12 +8,30 @@
 #include <cmath>
 #include <algorithm>
 #include <numeric>
+#include <random>
 
 const double SMOL = 1.0e-10;
 
 using dvec = std::vector<double>;
 using dmat = std::vector<dvec>;
 
+/**
+ * @brief generate random simmetric positive defined (spd) matrix
+ * 
+ * @param size size of matrix
+ * @param seed seed
+ * @return matrix (dmat, std::vector<std::vector<double>>)
+ */
+dmat generateMatrix(int size, unsigned int seed);
+
+/**
+ * @brief generate random vector
+ * 
+ * @param size vector size
+ * @param seed seed
+ * @return vector
+ */
+dvec generateVector(int size, unsigned int seed);
 /**
  * @brief scalar multiplication of vectors
  * 
@@ -26,7 +44,7 @@ double vec_vec(const dvec &a, const dvec &b);
 /**
  * @brief matrix-vector multiplication
  * 
- * @param a matrix (vector of vectors)
+ * @param a matrix (dmat, std::vector<std::vector<double>>)
  * @param b vector
  * @return result vector
  */
@@ -54,7 +72,7 @@ double vec_norm(const dvec& a);
 /**
  * @brief conjagurate gradient method solver
  * 
- * @param a matrix (vector of vectors)
+ * @param a matrix (dmat, std::vector<std::vector<double>>)
  * @param b vector
  * @return result 
  */

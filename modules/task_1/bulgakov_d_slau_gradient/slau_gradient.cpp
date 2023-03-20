@@ -2,6 +2,27 @@
 
 #include "../../../modules/task_1/bulgakov_d_slau_gradient/slau_gradient.h"
 
+dmat generateMatrix(int size, unsigned int seed) {
+    dmat res = dmat(size, std::vector<double>(size));
+    dvec v = generateVector(size, seed);
+    for (int i = 0; i < size; ++i) {
+        for (int j = 0; j < size; ++j) {
+            res[i][j] = v[i] * v[j];
+        }
+        res[i][i] += size;
+    }
+    return res;
+}
+dvec generateVector(int size, unsigned int seed) {
+    dvec res = dvec(size);
+    std::mt19937 mt(seed);
+    std::uniform_real_distribution<double> urd(-5, 5);
+    for (int i = 0; i < size; i++) {
+        res[i] = urd(mt);
+    }
+    return res;
+}
+
 double vec_vec(const dvec &a, const dvec &b) {
     return std::inner_product(a.begin(), a.end(), b.begin(), 0.0);
 }
