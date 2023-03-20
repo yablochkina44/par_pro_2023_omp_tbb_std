@@ -1,4 +1,4 @@
-﻿// Copyright 2023 Nikolaev Alexander
+﻿//  Copyright 2023 Nikolaev Alexander
 #include <random>
 #include <algorithm>
 #include "../../../modules/task_1/nikolaev_a_mult_sparse_matr/sparse_matrix.h"
@@ -21,14 +21,13 @@ CCSMatrix GetRandomMatrix(int N, int nonZero) {
     std::uniform_int_distribution<> disValue(0, 10);
     std::uniform_int_distribution<> disIndex(0, N - 1);
     std::vector<std::vector<Complex>> matrix(N, std::vector<Complex>(N));
-    
     mtx.sizeMatrix = N;
     int row = 0;
     int col = 0;
     for (int i = 0; i < nonZero; i++) {
         row = disIndex(gen);
         col = disIndex(gen);
-        while (matrix[row][col] != Complex(0,0)) {
+        while (matrix[row][col] != Complex(0, 0)) {
             row = disIndex(gen);
             col = disIndex(gen);
         }
@@ -131,7 +130,8 @@ CCSMatrix Multiplicate(const CCSMatrix& A, const CCSMatrix& B) {
             while ((ks <= kf) && (ls <= lf)) {
                 if (A.rowIndex[ks] < B.rowIndex[ls]) ks++;
                 else if (A.rowIndex[ks] > B.rowIndex[ls]) ls++;
-                else {
+                else
+                {
                     sum += A.value[ks] * B.value[ls];
                     ks++;
                     ls++;

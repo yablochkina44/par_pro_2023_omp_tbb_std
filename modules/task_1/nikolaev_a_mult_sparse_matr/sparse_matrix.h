@@ -8,8 +8,7 @@
 
 typedef std::complex<double> Complex;
 
-struct CCSMatrix
-{
+struct CCSMatrix {
     int sizeMatrix;
     int countNZ;
     std::vector<Complex> value;
@@ -23,4 +22,4 @@ void TransposeMatrix(CCSMatrix* mtx);
 CCSMatrix MatrixtoCCSMatrix(const std::vector<std::vector<Complex>> &matrix);
 CCSMatrix Multiplicate(const CCSMatrix& A, const CCSMatrix& B);
 
-#endif //MODULES_TASK_1_NIKOLAEV_A_MULT_SPARSE_MATR_SPARSE_MATRIX_H_
+#endif  // MODULES_TASK_1_NIKOLAEV_A_MULT_SPARSE_MATR_SPARSE_MATRIX_H_
