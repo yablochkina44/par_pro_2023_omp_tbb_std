@@ -48,7 +48,7 @@ double vec_vec(const dvec &a, const dvec &b);
  * @param b vector
  * @return result vector
  */
-dvec matrix_vec(const dmat &a, const dvec b);
+dvec matrix_vec(const dmat &a, const dvec &b);
 
 /**
  * @brief linear combination of vectors
