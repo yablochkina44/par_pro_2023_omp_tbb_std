@@ -118,6 +118,7 @@ CCSMatrix MatrixtoCCSMatrix(const std::vector<std::vector<Complex>> &matrix) {
 
 CCSMatrix Multiplicate(const CCSMatrix& A, const CCSMatrix& B) {
     CCSMatrix C;
+    C.sizeMatrix = A.sizeMatrix;
     C.colIndex.push_back(0);
     int NonZero = 0;
     for (int i = 0; i < A.sizeMatrix; i++) {
@@ -146,6 +147,7 @@ CCSMatrix Multiplicate(const CCSMatrix& A, const CCSMatrix& B) {
         }
         C.colIndex.push_back(NonZero);
     }
+    C.countNZ = NonZero;
     return C;
 }
 
