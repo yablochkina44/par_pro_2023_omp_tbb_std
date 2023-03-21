@@ -9,6 +9,7 @@
 #include <queue>
 #include <algorithm>
 #include <string>
+#include <limits>
 #include "../../../modules/task_3/churkin_a_convhulls_bin/convhulls_bin.h"
 
 // 1. Generates random binary image with height M and width N
@@ -309,7 +310,6 @@ std::map<int, Points> MarkComponentsParallel(int* image, int M, int N) {
         int y = ((k + 1) * piecesDefault - 1);
 
         for (int x = 0; x < N; x++) {
-            // Checking 3 points that lying under (x, y)
             if (image[y * N + x] > 0) {
                 if (isCoordinatesInImage((x - 1), (y + 1), M, N) &&
                     image[(y + 1) * N + (x - 1)] > 0) {
