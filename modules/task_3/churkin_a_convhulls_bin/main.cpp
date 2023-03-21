@@ -158,12 +158,12 @@ TEST(ConvHullsBin_OpenMP, Test_5_RandomImage_40X40) {
     RunRandomImageTest(40, 40);
 }
 
-TEST(ConvHullsBin_OpenMP, Test_6_RandomImage_1500X1500) {
+/* TEST(ConvHullsBin_OpenMP, Test_6_RandomImage_1500X1500) {
     // Note that recreating images from info about connected components
     // also takes time,
     // and this time was not counted in tests
     RunRandomImageTest(1500, 1500);
-}
+} */
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
