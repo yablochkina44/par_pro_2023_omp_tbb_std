@@ -9,7 +9,6 @@
 #include <queue>
 #include <algorithm>
 #include <string>
-#include <limits>
 #include "../../../modules/task_3/churkin_a_convhulls_bin/convhulls_bin.h"
 
 // 1. Generates random binary image with height M and width N
@@ -313,22 +312,22 @@ std::map<int, Points> MarkComponentsParallel(int* image, int M, int N) {
             if (image[y * N + x] > 0) {
                 if (isCoordinatesInImage((x - 1), (y + 1), M, N) &&
                     image[(y + 1) * N + (x - 1)] > 0) {
-                    int arg1 = std::min(image[y * N + x], image[(y + 1) * N + (x - 1)]);
-                    int arg2 = std::max(image[y * N + x], image[(y + 1) * N + (x - 1)]);
+                    int arg1 = (std::min)(image[y * N + x], image[(y + 1) * N + (x - 1)]);
+                    int arg2 = (std::max)(image[y * N + x], image[(y + 1) * N + (x - 1)]);
                     connections.insert({ arg1, arg2 });
                 }
 
                 if (isCoordinatesInImage(x, (y + 1), M, N) &&
                     image[(y + 1) * N + x] > 0) {
-                    int arg1 = std::min(image[y * N + x], image[(y + 1) * N + x]);
-                    int arg2 = std::max(image[y * N + x], image[(y + 1) * N + x]);
+                    int arg1 = (std::min)(image[y * N + x], image[(y + 1) * N + x]);
+                    int arg2 = (std::max)(image[y * N + x], image[(y + 1) * N + x]);
                     connections.insert({ arg1, arg2 });
                 }
 
                 if (isCoordinatesInImage((x + 1), (y + 1), M, N) &&
                     image[(y + 1) * N + (x + 1)] > 0) {
-                    int arg1 = std::min(image[y * N + x], image[(y + 1) * N + (x + 1)]);
-                    int arg2 = std::max(image[y * N + x], image[(y + 1) * N + (x + 1)]);
+                    int arg1 = (std::min)(image[y * N + x], image[(y + 1) * N + (x + 1)]);
+                    int arg2 = (std::max)(image[y * N + x], image[(y + 1) * N + (x + 1)]);
                     connections.insert({ arg1, arg2 });
                 }
             }
