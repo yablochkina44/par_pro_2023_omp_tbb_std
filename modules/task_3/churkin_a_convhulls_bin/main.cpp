@@ -86,8 +86,8 @@ void RunRandomImageTest(int M, int N) {
     // std::cout << "Sequential processed result:\n";
     // PrintImage(&imageSeq[0], M, N);
 
-    std::cout << "Duration parallel: " << tParTotal << "\n";
-    std::cout << "Duration sequential: " << tSeqTotal << "\n";
+    /* std::cout << "Duration parallel: " << tParTotal << "\n";
+    std::cout << "Duration sequential: " << tSeqTotal << "\n"; */
 }
 
 TEST(ConvHullsBin_OpenMP, Test_1_Can_Get_Hulls_10X10) {
