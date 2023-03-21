@@ -56,7 +56,7 @@ Points GrahamScan(Points* points) {
 
     // Finding minimal point - point with minimum x and y (left bottom point)
     std::pair<int, int> minPoint = (*points)[0];
-    int minPointIdx = 0;
+    size_t minPointIdx = 0;
 
     for (size_t i = 1; i < (*points).size(); i++) {
         if ((*points)[i].first < minPoint.first ||
@@ -239,7 +239,7 @@ struct CompFunctor {
 };
 
 void BFSParallel(int* image, int imgYStart, int imgYEnd, int N, int yStart, int xStart,
-         int label, int iterNumber) {
+         int label, size_t iterNumber) {
     std::queue<std::pair<int, int>> q;
     q.push(std::make_pair(xStart, yStart));
     while (!q.empty()) {
@@ -268,7 +268,7 @@ void BFSParallel(int* image, int imgYStart, int imgYEnd, int N, int yStart, int 
 int label;
 tbb::spin_mutex labelMutex;
 
-void MarkComponentsOfPart(int* image, int imgYStart, int imgYEnd, int N, int iterNumber) {
+void MarkComponentsOfPart(int* image, int imgYStart, int imgYEnd, int N, size_t iterNumber) {
     // i is y coordinate
     for (int i = imgYStart; i <= imgYEnd; i++)
         // j is x coordinate
@@ -313,30 +313,24 @@ std::map<int, Points> MarkComponentsParallel(int* image, int M, int N) {
             if (image[y * N + x] > 0) {
                 if (isCoordinatesInImage((x - 1), (y + 1), M, N) &&
                     image[(y + 1) * N + (x - 1)] > 0) {
-                    connections.insert(
-                        std::make_pair(std::min(image[y * N + x],
-                                       image[(y + 1) * N + (x - 1)]),
-                                       std::max(image[y * N + x],
-                                       image[(y + 1) * N + (x - 1)])));
-                    }
+                    int arg1 = std::min(image[y * N + x], image[(y + 1) * N + (x - 1)]);
+                    int arg2 = std::max(image[y * N + x], image[(y + 1) * N + (x - 1)]);
+                    connections.insert({ arg1, arg2 });
+                }
 
                 if (isCoordinatesInImage(x, (y + 1), M, N) &&
                     image[(y + 1) * N + x] > 0) {
-                    connections.insert(
-                        std::make_pair(std::min(image[y * N + x],
-                                       image[(y + 1) * N + x]),
-                                       std::max(image[y * N + x],
-                                       image[(y + 1) * N + x])));
-                    }
+                    int arg1 = std::min(image[y * N + x], image[(y + 1) * N + x]);
+                    int arg2 = std::max(image[y * N + x], image[(y + 1) * N + x]);
+                    connections.insert({ arg1, arg2 });
+                }
 
                 if (isCoordinatesInImage((x + 1), (y + 1), M, N) &&
                     image[(y + 1) * N + (x + 1)] > 0) {
-                    connections.insert(
-                        std::make_pair(std::min(image[y * N + x],
-                                       image[(y + 1) * N + (x + 1)]),
-                                       std::max(image[y * N + x],
-                                       image[(y + 1) * N + (x + 1)])));
-                    }
+                    int arg1 = std::min(image[y * N + x], image[(y + 1) * N + (x + 1)]);
+                    int arg2 = std::max(image[y * N + x], image[(y + 1) * N + (x + 1)]);
+                    connections.insert({ arg1, arg2 });
+                }
             }
         }
     }

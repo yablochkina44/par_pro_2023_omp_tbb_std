@@ -34,9 +34,9 @@ std::map<int, Points> LeaveOnlyHulls(
 bool isCoordinatesInBounds(int x, int y, int imgYStart, int imgYEnd, int N);
 
 void BFSParallel(int* image, int imgYStart, int imgYEnd, int N, int yStart, int xStart,
-         int label, int iterNumber);
+         int label, size_t iterNumber);
 
-void MarkComponentsOfPart(int* image, int imgYStart, int imgYEnd, int N, int iterNumber);
+void MarkComponentsOfPart(int* image, int imgYStart, int imgYEnd, int N, size_t iterNumber);
 std::map<int, Points> MarkComponentsParallel(int* image, int M, int N);
 
 std::map<int, Points> LeaveOnlyHullsParallel(
