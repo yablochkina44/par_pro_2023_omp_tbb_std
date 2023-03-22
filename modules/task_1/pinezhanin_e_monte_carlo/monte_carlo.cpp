@@ -3,10 +3,10 @@
 #include <random>
 #include "../../../modules/task_1/pinezhanin_e_monte_carlo/monte_carlo.h"
 
-double getIntegralMonteCarlo(const std::function<double(const std::vector<double>)>& f,
+double getIntegralMonteCarlo(const std::function<double(const std::vector<double>&)>& f,
                              std::vector<double> a, std::vector<double> b, int number_points) {
-    int dimension = (int)a.size();
-    std::mt19937 gen(time(0));
+    int dimension = static_cast<int>(a.size());
+    std::mt19937 gen;
     std::vector<std::uniform_real_distribution<double>> uniform_distribution(dimension);
     std::vector<double> point(dimension);
     double result = 0.0;
