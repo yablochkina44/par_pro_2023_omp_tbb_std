@@ -69,6 +69,7 @@ std::list<double> RadixSort(std::list<double> arr) {
     for (int i = 0; i < arr.size(); i++) {
         res.push_back(sortArr[i].d);
     }
+    delete[] sortArr;
     return res;
 }
 
