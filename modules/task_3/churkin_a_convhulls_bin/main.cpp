@@ -90,7 +90,7 @@ void RunRandomImageTest(int M, int N) {
     std::cout << "Duration sequential: " << tSeqTotal << "\n"; */
 }
 
-TEST(ConvHullsBin_OpenMP, Test_1_Can_Get_Hulls_10X10) {
+TEST(ConvHullsBin_TBB, Test_1_Can_Get_Hulls_10X10) {
     const int M = 10, N = 10;
     std::vector<int> image({
     0, 1, 0, 0, 0, 1, 1, 1, 0, 0,
@@ -125,7 +125,7 @@ TEST(ConvHullsBin_OpenMP, Test_1_Can_Get_Hulls_10X10) {
     CheckImages(&image[0], &image[0], &rightResult[0], M, N, false);
 }
 
-TEST(ConvHullsBin_OpenMP, Test_2_EmptyImage_10X10) {
+TEST(ConvHullsBin_TBB, Test_2_EmptyImage_10X10) {
     const int M = 10, N = 10;
     std::vector<int> image({
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -146,19 +146,19 @@ TEST(ConvHullsBin_OpenMP, Test_2_EmptyImage_10X10) {
     EXPECT_EQ(components.size(), 0);
 }
 
-TEST(ConvHullsBin_OpenMP, Test_3_RandomImage_10X10) {
+TEST(ConvHullsBin_TBB, Test_3_RandomImage_10X10) {
     RunRandomImageTest(10, 10);
 }
 
-TEST(ConvHullsBin_OpenMP, Test_4_RandomImage_20X10) {
+TEST(ConvHullsBin_TBB, Test_4_RandomImage_20X10) {
     RunRandomImageTest(20, 10);
 }
 
-TEST(ConvHullsBin_OpenMP, Test_5_RandomImage_40X40) {
+TEST(ConvHullsBin_TBB, Test_5_RandomImage_40X40) {
     RunRandomImageTest(40, 40);
 }
 
-/* TEST(ConvHullsBin_OpenMP, Test_6_RandomImage_1500X1500) {
+/* TEST(ConvHullsBin_TBB, Test_6_RandomImage_1500X1500) {
     // Note that recreating images from info about connected components
     // also takes time,
     // and this time was not counted in tests
