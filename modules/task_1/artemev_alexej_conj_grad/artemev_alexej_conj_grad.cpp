@@ -11,8 +11,8 @@ std::vector<double> den_vec(const std::vector<double>& vec) {
     return result;
 }
 std::vector<double> vecs_sum(const std::vector<double>& vec1,
-const std::vector<double>& vec2)
-{
+const std::vector<double>& vec2) {
+
     size_t size = vec1.size();
     std::vector<double> result(size);
 
@@ -23,8 +23,8 @@ const std::vector<double>& vec2)
 }
 
 double vecs_mult(const std::vector<double>& vec1,
-const std::vector<double>& vec2)
-{
+const std::vector<double>& vec2) {
+
     double result = 0;
     size_t size = vec1.size();
 
@@ -45,8 +45,8 @@ std::vector<double> mult_vec_by_number(const std::vector<double>& vec, double nu
 }
 
 std::vector<double> mult_matrix_by_vec(const std::vector<std::vector<double>>& M,
-const std::vector<double>& vec)
-{
+const std::vector<double>& vec) {
+
     size_t size = vec.size();
     std::vector<double> result(size);
 
@@ -57,8 +57,8 @@ const std::vector<double>& vec)
 }
 
 std::vector<double> conj_grad_method(const std::vector<std::vector<double>>& M,
-const std::vector<double>& vec)
-{
+const std::vector<double>& vec) {
+
     size_t size = vec.size();
     std::vector<double> x(size);
     std::vector<double> r(size);
