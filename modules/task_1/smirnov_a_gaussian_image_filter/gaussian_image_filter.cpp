@@ -14,7 +14,7 @@ vector<intensityType> genImage(int rows, int columns) {
 vector<intensityType> gaussianFilterSeq(const vector<intensityType>& image, int rows, int columns) {
   if (image.size() != rows * columns)
     throw std::string("Error with values rows or columns");
-  vector<intensityType> resultImage(rows * columns);
+  vector<intensityType> resultImage(rows * columns, 0);
   char radius = kernelSize / 2;
   for (int i = 0; i < rows; ++i) {
     for (int j = 0; j < columns; ++j) {
@@ -22,8 +22,8 @@ vector<intensityType> gaussianFilterSeq(const vector<intensityType>& image, int 
       char gausMatrixIndex = 0;
       for (int xKernel = -radius; xKernel <= radius; ++xKernel) {
         for (int yKernel = -radius; yKernel <= radius; ++yKernel) {
-          int neighboorPixerX = std::max(0, std::min(i + xKernel, rows - 1));
-          int neighboorPixelY = stsd::max(0, std::min(j + yKernel, columns - 1));
+          int neighboorPixelX = std::max(0, std::min(i + xKernel, rows - 1));
+          int neighboorPixelY = std::max(0, std::min(j + yKernel, columns - 1));
           curPixIntens += image[neighboorPixelX * columns + neighboorPixelY]
             * kernel[gausMatrixIndex];
           gausMatrixIndex++;
