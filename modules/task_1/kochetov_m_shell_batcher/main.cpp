@@ -76,7 +76,7 @@ TEST(ShellBatcher_Sequential, Test7_ReversedArray300Elements) {
     EXPECT_EQ(vec, rightVec);
 }
 
-/* TEST(ShellBatcher_Sequential, Test8_RandomArray999999Elements) {
+/*  TEST(ShellBatcher_Sequential, Test8_RandomArray999999Elements) {
     int size = 999999;
     std::vector<int> vec = GetRandomVec(size);
     std::vector<int> rightVec(vec);
