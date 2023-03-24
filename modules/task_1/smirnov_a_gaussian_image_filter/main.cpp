@@ -15,7 +15,7 @@ TEST(Sequential, Invalid_count_rows_or_columns) {
   const int countColumns = 5;
 
   vector<intensityType> image = { 54, 251, 169, 80, 159, 95, 251, 220 ,90 };
-  ASSERT_ANY_THROW(gaussianFilterSeq(image, countRows, countColumns));
+  ASSERT_ANY_THROW(gaussianFilterSeq(    image, countRows, countColumns));
 }
 
 TEST(Sequential, Works_with_3x3_image) {
