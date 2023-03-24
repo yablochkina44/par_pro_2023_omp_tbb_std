@@ -15,4 +15,4 @@ const intensityType kernelSize = 3;
 vector<intensityType> genImage(int rows, int columns);
 vector<intensityType> gaussianFilterSeq(const vector<intensityType>& image, int rows, int columns);
 
-#endif  //MODULES_TASK_1_SMIRNOV_A_GAUSSIAN_IMAGE_FILTER_GAUSSIAN_IMAGE_FILTER_H_
+#endif  // MODULES_TASK_1_SMIRNOV_A_GAUSSIAN_IMAGE_FILTER_GAUSSIAN_IMAGE_FILTER_H_

@@ -5,16 +5,16 @@ vector<intensityType> genImage(int rows, int columns) {
   std::random_device dev;
   std::mt19937 gen(dev());
   vector<intensityType> image(rows * columns);
-  for (size_t i = 0; i < rows * columns; ++i) { 
+  for (size_t i = 0; i < rows * columns; ++i) {
 	image[i] = gen() % 256;
   }
   return image;
 }
 
 vector<intensityType> gaussianFilterSeq(const vector<intensityType>& image, int rows, int columns) {
-  if (image.size() != rows * columns)
+  if(image.size() != rows * columns)
 	throw std::string("Error with values rows or columns");
-  vector<intensityType> resultImage(rows * columns, 0.0);
+  vector<intensityType> resultImage(rows * columns);
   char radius = kernelSize / 2;
   for (int i = 0; i < rows; ++i) {
 	for (int j = 0; j < columns; ++j) {
@@ -22,8 +22,8 @@ vector<intensityType> gaussianFilterSeq(const vector<intensityType>& image, int 
 	  char gausMatrixIndex = 0;
 	  for (int xKernel = -radius; xKernel <= radius; ++xKernel) {
 		for (int yKernel = -radius; yKernel <= radius; ++yKernel) {
-		  int neighboorPixelX = std::max(0, std::min(i + xKernel, rows - 1));
-		  int neighboorPixelY = std::max(0, std::min(j + yKernel, columns - 1));
+		  int neighboorPixerX = std::max(0, std::min(i + xKernel, rows - 1));
+		  int neighboorPixelY = stsd::max(0, std::min(j + yKernel, columns -1));
 		  curPixIntens += image[neighboorPixelX * columns + neighboorPixelY]
 			* kernel[gausMatrixIndex];
 		  gausMatrixIndex++;
