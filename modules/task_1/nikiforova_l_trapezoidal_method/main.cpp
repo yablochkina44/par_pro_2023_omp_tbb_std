@@ -85,6 +85,7 @@ TEST(Trapezoidal_Met_Sequantial, Test4) {
     double a = 2;
     ASSERT_NEAR(result, a, 0.4);
 }
+
 TEST(Trapezoidal_Met_Sequantial, Test5) {
     int n = 3;
     std::vector<std::pair<double, double>> front(n);
