@@ -6,7 +6,7 @@
 #include "../../../modules/task_1/kuleva_a_radix_double_batcher/radix_double_batcher.h"
 
 
-using ull = unsigned long long;
+using ull = uint64_t;
 
 const int preMask = (1 << 8);
 
@@ -88,13 +88,13 @@ std::vector<double> batcherMerge(const std::vector<double>& left, const std::vec
     return result;
 }
 
-std::vector<double> sort(const std::vector<double>& base) {
+std::vector<double> radixBatcherSort(const std::vector<double>& base) {
     int size = (base.size() % 2 != 0) ? base.size() + 1 : base.size();
 
     const int half = size / 2;
     std::vector<double> left(base.begin(), base.begin() + half);
     std::vector<double> right(base.begin() + half, base.end());
-    
+
     if (base.size() % 2 != 0)
         right.push_back(std::numeric_limits<double>::max());
 
