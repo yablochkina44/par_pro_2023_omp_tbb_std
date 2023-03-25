@@ -3,7 +3,7 @@
 #include "./radix_double_batcher.h"
 
 
-void test(const std::vector<double>& expected, const std::vector<double> sorted) {
+void test(const std::vector<double>& expected, const std::vector<double>& sorted) {
     ASSERT_EQ(expected.size(), sorted.size());
     for (int i = 0; i < expected.size(); i++) {
         ASSERT_DOUBLE_EQ(expected[i], sorted[i]);
