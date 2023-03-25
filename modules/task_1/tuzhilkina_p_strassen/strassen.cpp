@@ -19,9 +19,9 @@ std::vector<double> genRandomVector(int n) {
     return vec;
 }
 
-void printMatrix(const std::vector<double>& Mat, size_t n) {
-    for (size_t i = 0; i < n; i++) {
-        for (size_t j = 0; j < n; j++) {
+void printMatrix(const std::vector<double>& Mat, std::size_t n) {
+    for (std::size_t i = 0; i < n; i++) {
+        for (std::size_t j = 0; j < n; j++) {
             std::cout << Mat[i * n + j] << " ";
         }
         std::cout << '\n';
@@ -33,9 +33,9 @@ std::vector<double> usualMultiply(const std::vector<double>& A,
                                const std::vector<double>& B, int n) {
     std::vector<double> C(n * n, 0);
 
-    for (size_t i = 0; i < n; i++) {
-        for (size_t j = 0; j < n; j++) {
-            for (size_t k = 0; k < n; k++) {
+    for (std::size_t i = 0; i < n; i++) {
+        for (std::size_t j = 0; j < n; j++) {
+            for (std::size_t k = 0; k < n; k++) {
                 C[i * n + j] += A.at(i * n + k) * B.at(k * n + j);
             }
         }
@@ -57,7 +57,7 @@ std::vector<double> sub(const std::vector<double>& A, const std::vector<double>&
 
 // Matrices A and B have sizes n x n and are represented as vectors
 std::vector<double> strassenMultiply(const std::vector<double>& A,
-                                  const std::vector<double>& B, size_t n) {
+                                  const std::vector<double>& B, std::size_t n) {
     // Basic case
     if (n == 1) {
         std::vector<double> C = {A[0] * B[0]};
@@ -65,7 +65,7 @@ std::vector<double> strassenMultiply(const std::vector<double>& A,
     }
 
     // Splitting matriсes into submatrices
-    size_t m = n / 2;
+    std::size_t m = n / 2;
     std::vector<double> A11(m * m), A12(m * m), A21(m * m), A22(m * m);
     std::vector<double> B11(m * m), B12(m * m), B21(m * m), B22(m * m);
     for (int i = 0; i < m; i++) {

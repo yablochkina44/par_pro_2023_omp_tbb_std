@@ -7,7 +7,7 @@
 
 void ExpectNear(const std::vector<double>& vec1, const std::vector<double>& vec2) {
     if (vec1.size() != vec2.size()) throw "Unequal dimensions";
-    for (size_t i = 0; i < vec1.size(); i++)
+    for (std::size_t i = 0; i < vec1.size(); i++)
         EXPECT_NEAR(vec1[i], vec2[i], 0.0001);
 }
 
