@@ -64,7 +64,7 @@ std::vector<double> strassenMultiply(const std::vector<double>& A,
         return C;
     }
 
-    // Splitting matriсes into submatrices
+    // Splitting matrices into submatrices
     std::size_t m = n / 2;
     std::vector<double> A11(m * m), A12(m * m), A21(m * m), A22(m * m);
     std::vector<double> B11(m * m), B12(m * m), B21(m * m), B22(m * m);
