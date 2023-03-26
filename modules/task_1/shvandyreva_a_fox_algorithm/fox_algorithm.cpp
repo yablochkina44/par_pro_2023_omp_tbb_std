@@ -38,15 +38,12 @@ matrix generate_matrix(size_t x_size, size_t y_size) {
 
 matrix generate_identity_matrix(size_t size) {
     matrix result(size, std::vector<double>(size));
-    std::random_device device;
-    std::mt19937 mt(device());
     for (int i = 0; i < size; i++) {
         result[i][i] = 1;
     }
     return result;
 }
 
-matrix seq_multiply(const matrix& A, const matrix& B)
-{
+matrix seq_multiply(const matrix& A, const matrix& B) {
     return multiply_block(A, B);
 }

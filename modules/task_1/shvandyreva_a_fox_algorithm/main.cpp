@@ -13,9 +13,9 @@ TEST(Seq_Mult, SimpleTest) {
 TEST(Seq_Mult, Test_Long_By_Wide) {
     matrix A = { {1}, {2}, {3}, {4}, {5}, {6} };
     matrix B = { {6, 5, 4, 3, 2, 1} };
-    matrix expected = { 
+    matrix expected = {
         {6, 5, 4, 3, 2, 1},
-        {12, 10, 8,	6, 4, 2},
+        {12, 10, 8, 6, 4, 2},
         {18, 15, 12, 9, 6, 3},
         {24, 20, 16, 12, 8, 4},
         {30, 25, 20, 15, 10, 5},
