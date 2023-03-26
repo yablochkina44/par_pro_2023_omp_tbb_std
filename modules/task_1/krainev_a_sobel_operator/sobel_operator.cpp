@@ -2,8 +2,8 @@
 #include "../../../modules/task_1/krainev_a_sobel_operator/sobel_operator.h"
 
 static std::vector<std::vector<int>> sobel_kernel = {
-    { 1, 2, 1}, 
-    { 0, 0, 0}, 
+    { 1, 2, 1},
+    { 0, 0, 0},
     { -1, -2, -1}
 };
 
@@ -47,7 +47,7 @@ static Pixel sobel_pixel(const Image& image, int x, int y) {
             gx_b += neighbor.b * sobel_kernel[l + 1][k + 1];
         }
     }
-        
+
     int gy_r = 0;
     int gy_g = 0;
     int gy_b = 0;

@@ -3,37 +3,37 @@
 #include "./sobel_operator.h"
 
 TEST(Seq_Sobel, Empty_Image) {
-	const Image image = white_image(15, 15);
-	const Image excected = black_image(15, 15);
-	const Image result = sobel(image);
-	ASSERT_EQ(true, true);
+    const Image image = white_image(15, 15);
+    const Image excected = black_image(15, 15);
+    const Image result = sobel(image);
+    ASSERT_EQ(true, true);
 }
 
 TEST(Seq_Sobel, Image_3x3_Mono) {
-	Image image = {
-		{ {255, 255, 0}, {255, 255, 0}, {255, 255, 0} },
-		{ {255, 255, 0}, {255, 255, 0}, {255, 255, 0} },
-		{ {255, 255, 0}, {255, 255, 0}, {255, 255, 0} }
-	};
-	Image expected = black_image(3, 3);
+    Image image = {
+        { {255, 255, 0}, {255, 255, 0}, {255, 255, 0} },
+        { {255, 255, 0}, {255, 255, 0}, {255, 255, 0} },
+        { {255, 255, 0}, {255, 255, 0}, {255, 255, 0} }
+    };
+    Image expected = black_image(3, 3);
 
-	const Image result = sobel(image);
-	ASSERT_EQ(expected, result);
+    const Image result = sobel(image);
+    ASSERT_EQ(expected, result);
 }
 
 TEST(Seq_Sobel, Image_3x3_Duo) {
-	Image image = {
-		{ {255, 255, 0}, {255, 255, 0}, {0, 0, 255} },
-		{ {255, 255, 0}, {255, 255, 0}, {0, 0, 255} },
-		{ {0, 0, 255}, {0, 0, 255}, {0, 0, 255} }
-	};
-	Image expected = {
-		{{0, 0, 0}, {255, 255, 255}, {255, 255, 255} },
-		{ {255, 255, 255}, {255, 255, 255}, {255, 255, 255} },
-		{ {255, 255, 255}, {255, 255, 255}, {255, 255, 255}}
-	};
-	const Image result = sobel(image);
-	ASSERT_EQ(expected, result);
+    Image image = {
+        { {255, 255, 0}, {255, 255, 0}, {0, 0, 255} },
+        { {255, 255, 0}, {255, 255, 0}, {0, 0, 255} },
+        { {0, 0, 255}, {0, 0, 255}, {0, 0, 255} }
+    };
+    Image expected = {
+        {{0, 0, 0}, {255, 255, 255}, {255, 255, 255} },
+        { {255, 255, 255}, {255, 255, 255}, {255, 255, 255} },
+        { {255, 255, 255}, {255, 255, 255}, {255, 255, 255}}
+    };
+    const Image result = sobel(image);
+    ASSERT_EQ(expected, result);
 }
 
 TEST(Seq_Sobel, Image_3x3_Triple) {
