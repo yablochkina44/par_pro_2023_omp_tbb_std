@@ -1,4 +1,5 @@
 // Copyright 2023 Krainev Alexander
+#include <math.h>
 #include "../../../modules/task_1/krainev_a_sobel_operator/sobel_operator.h"
 
 static std::vector<std::vector<int>> sobel_kernel = {
