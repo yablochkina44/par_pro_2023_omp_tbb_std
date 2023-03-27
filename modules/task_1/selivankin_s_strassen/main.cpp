@@ -55,7 +55,7 @@ TEST(strassen, Test_2) {
 }
 
 TEST(strassen, Test_3) {
-    std::vector<double> matA = { 2, 2, 2,};
+    std::vector<double> matA = { 2, 2, 2};
     std::vector<double> matB = { 2,
                                  3,
                                  4};
@@ -87,9 +87,4 @@ TEST(strassen, Test_4) {
     std::vector<double> b = appendZeros(matB, 3, 2, new_size);
 
     ASSERT_EQ(getStrassenSequence(a, b), result);
-}
-
-int main(int argc, char **argv) {
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
 }
