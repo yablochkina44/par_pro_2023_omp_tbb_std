@@ -27,7 +27,7 @@ void MatrixCRS::FillRandom(int rarity) {
             bool elemIsNotZero = gen() % rarity == 0;
             if (elemIsNotZero) {
                 double value =
-                    minValue + (gen() % ((int)maxValue - (int)minValue));
+                    minValue + (gen() % (static_cast<int>(maxValue) - static_cast<int>(minValue)));
                 MatrixValue mValue(value, j);
                 values[i].push_back(mValue);
             }
@@ -113,10 +113,11 @@ double ScalarMultiple(const vector<MatrixValue> &v1,
             res += v1[p1].value * v2[p2].value;
             p1++;
             p2++;
-        } else if (v1[p1].col_number < v2[p2].col_number)
+        } else if (v1[p1].col_number < v2[p2].col_number) {
             p1++;
-        else
+        } else {
             p2++;
+        }
     }
     return res;
 }
