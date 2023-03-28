@@ -1,5 +1,3 @@
-// Copyright 2023 Zagrebin S.
-
 #ifndef MODULES_TASK_1_ZAGREBIN_S_CCS_MULT_CCS_MULT_H_
 #define MODULES_TASK_1_ZAGREBIN_S_CCS_CCS_H_
 
@@ -8,12 +6,12 @@
 #include <random>
 #include <vector>
 
-using Comp = double;//std::complex<double>;
+using Comp = double;  //std::complex<double>;
 
-struct CCS{
+struct CCS {
     struct elem{ size_t row; Comp val; };
 
-    size_t shape[2]; // rows and columns
+    size_t shape[2];  // rows and columns
     std::vector<elem> data;
     std::vector<size_t> offset;
 
@@ -33,4 +31,4 @@ inline Comp mult(it i, it a, it j, it b);
 
 CCS mult(const CCS& _l, const CCS& r);
 
-#endif // MODULES_TASK_1_ZAGREBIN_S_CCS_MULT_CCS_MULT_H_
+#endif  // MODULES_TASK_1_ZAGREBIN_S_CCS_MULT_CCS_MULT_H_

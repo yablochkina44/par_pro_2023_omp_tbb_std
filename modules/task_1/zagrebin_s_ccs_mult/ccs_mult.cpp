@@ -1,7 +1,7 @@
 // Copyright 2023 Zagrebin S.
 
 #include <random>
-#include "ccs_mult.h"
+#include "../../../modules/task_1/zagrebin_s_ccs_mult/ccs_mult.h"
 
 CCS::CCS(size_t n, size_t m): shape{n, m}, offset(m+1) {}
 
@@ -25,8 +25,8 @@ CCS::CCS(size_t n, size_t m, const Comp* arr): shape{n, m}, offset(m+1) {
 CCS CCS::T() const {
     CCS res(shape[1], shape[0], data.size());
 
-    std::vector<size_t> count(shape[0]); // count elements in row
-    for (auto const &elem: data)
+    std::vector<size_t> count(shape[0]);  // count elements in row
+    for (auto const &elem : data)
         ++count[elem.row];
 
     res.offset[0] = 0;
@@ -34,7 +34,7 @@ CCS CCS::T() const {
         res.offset[i] = res.offset[i-1] + count[i-1];
 
     for (size_t i = 0; i < shape[1]; ++i)
-        for (size_t j = offset[i]; j < offset[i+1]; ++j){
+        for (size_t j = offset[i]; j < offset[i+1]; ++j) {
             size_t row = data[j].row;
             size_t offset = res.offset[row];
 
@@ -57,32 +57,33 @@ std::ostream& operator<<(std::ostream &os, const CCS &_m) {
         for (size_t j = 0; j < _m.shape[1]; ++j) {
             if (elem_ind < m.offset[i+1] && m.data[elem_ind].row == j) {
                 os << m.data[elem_ind++].val << ' ';
-            } else
+            } else {
                 os << "0 ";
+            }
         }
         os << '\n';
     }
     return os;
 }
 
-void fill(CCS& m, double p, std::default_random_engine& eng) {
+void fill(CCS* m, double p, std::default_random_engine* eng) {
     std::uniform_real_distribution<double> coin(0, 1);
     std::uniform_int_distribution<int> cube(-5, 5);
 
-    m.offset[0] = 0;
-    for (size_t i = 0; i < m.shape[1]; ++i) {
+    m->offset[0] = 0;
+    for (size_t i = 0; i < m->shape[1]; ++i) {
         size_t n = 0;
-        for (size_t j = 0; j < m.shape[0]; ++j)
-            if (coin(eng) < p) {
-                Comp x{double(cube(eng)) };//, double(cube(eng))};
-                m.data.push_back({j, x});
+        for (size_t j = 0; j < m->shape[0]; ++j)
+            if (coin(*eng) < p) {
+                Comp x{static_cast<double>(cube(*eng)) };  //, double(cube(eng))};
+                m->data.push_back({j, x});
                 ++n;
             }
-        m.offset[i+1] = m.offset[i] + n;
+        m->offset[i+1] = m->offset[i] + n;
     }
 }
 
-inline Comp mult(it i, it a, it j, it b){
+inline Comp mult(it i, it a, it j, it b) {
     Comp res{};
     while (i != a && j != b)
         if (i->row == j->row)
@@ -100,9 +101,9 @@ CCS mult(const CCS& _l, const CCS& r) {
     CCS l(_l.T());
 
     res.offset[0] = 0;
-    for (size_t i = 0; i < res.shape[1]; ++i) { // col from right
+    for (size_t i = 0; i < res.shape[1]; ++i) {  // col from right
         size_t n = 0;
-        for (size_t j = 0; j < res.shape[0]; ++j) { // row from left
+        for (size_t j = 0; j < res.shape[0]; ++j) {  // row from left
             Comp x = mult(l.data.cbegin()+l.offset[j],
                           l.data.cbegin()+l.offset[j+1],
                           r.data.cbegin()+r.offset[i],
