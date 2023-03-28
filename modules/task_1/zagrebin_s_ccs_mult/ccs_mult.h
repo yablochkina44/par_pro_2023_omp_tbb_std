@@ -8,7 +8,7 @@
 #include <random>
 #include <vector>
 
-using Comp = double;  //std::complex<double>;
+using Comp = double;  // std::complex<double>;
 
 struct CCS {
     struct elem{ size_t row; Comp val; };
