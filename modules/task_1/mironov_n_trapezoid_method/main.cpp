@@ -41,7 +41,7 @@ TEST(trapezoid, dimensions_mistake_test) {
     EXPECT_ANY_THROW(trapezoid_method(f1, bounds, dimensions, 10));
 }
 
-TEST(trapezoid, 1d_test) {
+TEST(trapezoid, d1_test) {
     std::vector<std::pair<double, double>> bounds(3);
     bounds[0] = {3, 8};
     int dimensions = 1;
@@ -52,7 +52,7 @@ TEST(trapezoid, 1d_test) {
     ASSERT_NEAR(method_result, integration_result, tolerance);
 }
 
-TEST(trapezoid, 2d_test) {
+TEST(trapezoid, d2_test) {
     std::vector<std::pair<double, double>> bounds(3);
     bounds[0] = {3, 8};
     bounds[1] = {1, 4};
@@ -64,7 +64,7 @@ TEST(trapezoid, 2d_test) {
     ASSERT_NEAR(method_result, integration_result, tolerance);
 }
 
-TEST(trapezoid, 3d_test_1) {
+TEST(trapezoid, d3_test_1) {
     std::vector<std::pair<double, double>> bounds(3);
     bounds[0] = {3, 8};
     bounds[1] = {1, 4};
@@ -77,7 +77,7 @@ TEST(trapezoid, 3d_test_1) {
     ASSERT_NEAR(method_result, integration_result, tolerance);
 }
 
-TEST(trapezoid, 3d_test_2) {
+TEST(trapezoid, d3_test_2) {
     std::vector<std::pair<double, double>> bounds(3);
     bounds[0] = {3, 8};
     bounds[1] = {1, 4};
