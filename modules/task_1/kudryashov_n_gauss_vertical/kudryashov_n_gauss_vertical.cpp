@@ -42,7 +42,7 @@ int width, int y, int x, std::vector<std::vector<double>> kernel) {
 }
 
 std::vector<std::vector<int>> gauss_filter_sequence(
-std::vector<std::vector<int>> image, int height, int width) {
+const std::vector<std::vector<int>>& image, int height, int width) {
     std::vector<std::vector<int>> resultImage(height, std::vector<int>(width));
     std::vector<std::vector<double>> kernel = createKernel();
 
