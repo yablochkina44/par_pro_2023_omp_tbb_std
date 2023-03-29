@@ -106,7 +106,7 @@ double d3_method(
             z = bounds[2].first + h_for_z * s;
 
             result += (h_for_y/2) * (f({x, bounds[1].first, z}) +
-            f({x, bounds[1].second}, z}));
+            f({x, bounds[1].second, z}));
         }
     }
 
