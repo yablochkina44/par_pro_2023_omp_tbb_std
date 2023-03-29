@@ -30,7 +30,7 @@ TEST(trapezoid, dimensions_mistake_test) {
     std::vector<std::pair<double, double>> bounds(3);
     bounds[0] = {3, 8};
     bounds[1] = {1, 4};
-    bounds[2] = {0, 9};
+    bounds[2] = {1, 9};
     int dimensions = 2;
 
     EXPECT_ANY_THROW(trapezoid_method(f1, bounds, dimensions, 10));
