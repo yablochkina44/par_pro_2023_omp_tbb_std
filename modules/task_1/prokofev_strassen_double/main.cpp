@@ -29,6 +29,22 @@ TEST(3test, 3test) {
     EXPECT_EQ(sMult(a,b),c);
 }
 
+TEST(4test, 4test) {
+    std::vector<double> a = rndMat(4);
+    std::vector<double> b = rndMat(4);
+    //std::vector<double> c = { 36.3, 43.56, 50.82, 79.86, 98.01, 116.16, 123.42, 152.46, 181.5 };
+
+    EXPECT_EQ(sMult(a,b),mMult(a,b));
+}
+
+TEST(5test, 5test) {
+    std::vector<double> a = rndMat(3);
+    std::vector<double> b = rndMat(3);
+    //std::vector<double> c = { 36.3, 43.56, 50.82, 79.86, 98.01, 116.16, 123.42, 152.46, 181.5 };
+
+    EXPECT_EQ(sMult(a,b),mMult(a,b));
+}
+
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);

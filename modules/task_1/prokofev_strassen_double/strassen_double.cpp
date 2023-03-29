@@ -5,7 +5,7 @@
 #include <ctime>
 #include <vector>
 
-std::vector<double> getRandomMatrix(int msize) {
+std::vector<double> rndMat(int msize) {
     std::mt19937 gen;
     gen.seed(static_cast<unsigned int>(time(0)));
     std::vector<double> vec(msize * msize);

@@ -4,7 +4,7 @@
 
 #include <vector>
 
-std::vector<double> getRandomMatrix(int  msize);
+std::vector<double> rndMat(int  msize);
 std::vector<double> mMult(const std::vector<double>& a, const std::vector<double>& b, unsigned int msize);
 std::vector<double> sMult(const std::vector<double>& a, const std::vector<double>& b, unsigned int msize);
 std::vector<double> sMult_lst(const std::vector<double>& a,
