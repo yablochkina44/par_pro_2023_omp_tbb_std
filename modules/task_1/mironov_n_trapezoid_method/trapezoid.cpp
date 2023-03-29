@@ -110,7 +110,7 @@ double d3_method(
         }
     }
 
-    for (int j = 1; j < N; i++) {
+    for (int j = 1; j < N; j++) {
         y = bounds[1].first + h_for_y * j;
         for (int s = 1; s < N; s++) {
             z = bounds[2].first + h_for_z * s;
