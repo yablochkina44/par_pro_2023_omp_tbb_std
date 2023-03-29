@@ -158,7 +158,7 @@ double d3_method(
 }
 
 double trapezoid_method(
-    (*f)(std::vector<double>),
+    double (*f)(std::vector<double>),
     const std::vector<std::pair<double, double>>& bounds,
     int dimensions,
     int N) {
