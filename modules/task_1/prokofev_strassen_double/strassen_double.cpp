@@ -31,7 +31,7 @@ std::vector<double> sum(const std::vector<double>& a,
     unsigned int size = msize * msize;
     std::vector<double> res(size);
     for (unsigned int i = 0; i < size; i++) {
-        res[i] = a[i] + b[i];
+        res[i] = round((a[i] + b[i])*100)/100;
     }
     return res;
 }
