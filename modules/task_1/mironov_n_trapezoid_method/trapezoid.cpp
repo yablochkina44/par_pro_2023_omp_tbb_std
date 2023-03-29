@@ -1,9 +1,9 @@
 // Copyright 2023 Mironov Nikita
 #include "../../../modules/task_1/mironov_n_trapezoid_method/trapezoid.h"
 
-double 1d_method(
+double d1_method(
     double (*f)(std::vector<double>),
-    const std::vector<std::pair<double, double>> bounds,
+    const std::vector<std::pair<double, double>>& bounds,
     int N
 ) {
     double h = (bounds[0].second - bounds[0].first)/N;
@@ -22,9 +22,9 @@ double 1d_method(
     return result;
 }
 
-double 2d_method(
+double d2_method(
     double (*f)(std::vector<double>),
-    const std::vector<std::pair<double, double>> bounds,
+    const std::vector<std::pair<double, double>>& bounds,
     int N
 ) {
     double h_for_x = (bounds[0].second - bounds[0].first)/N;
@@ -67,9 +67,9 @@ double 2d_method(
     return result;
 }
 
-double 3d_method(
+double d3_method(
     double (*f)(std::vector<double>),
-    const std::vector<std::pair<double, double>> bounds,
+    const std::vector<std::pair<double, double>>& bounds,
     int N
 ) {
     double h_for_x = (bounds[0].second - bounds[0].first)/N;
@@ -162,7 +162,7 @@ double 3d_method(
 
 double trapezoid_method(
     double (*f)(std::vector<double>),
-    const std::vector<std::pair<double, double>> bounds,
+    const std::vector<std::pair<double, double>>& bounds,
     int dimensions,
     int N
 ) {
@@ -171,12 +171,12 @@ double trapezoid_method(
         match the number of dimensions)";
     }
     if (dimensions == 1) {
-        return 1d_method(f, bounds, N);
+        return d1_method(f, bounds, N);
     }
     if (dimensions == 2) {
-        return 2d_method(f, bounds, N);
+        return d2_method(f, bounds, N);
     }
     if (dimensions == 3) {
-        return 3d_method(f, bounds, N);
+        return d3_method(f, bounds, N);
     }
 }
