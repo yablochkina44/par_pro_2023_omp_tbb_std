@@ -9,6 +9,7 @@ TEST(first_test, first_test) {
     std::vector<double> b = { 1.0, 2.0, 3.0, 4.0 };
     std::vector<double> c = { 7.0, 10.0, 15.0, 22.0 };
 
+
     EXPECT_EQ(sMult(a,b),c);
 }
 
