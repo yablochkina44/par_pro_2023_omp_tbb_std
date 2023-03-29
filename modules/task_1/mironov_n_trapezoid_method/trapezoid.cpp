@@ -175,4 +175,5 @@ double trapezoid_method(
     if (dimensions == 3) {
         return d3_method(f, bounds, N);
     }
+    return 0;
 }
