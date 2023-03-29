@@ -4,6 +4,8 @@
 
 #include <vector>
 #include <utility>
+#include <iostream>
+#include <cmath>
 
 double trapezoid_method(
     double f(std::vector<double>),
