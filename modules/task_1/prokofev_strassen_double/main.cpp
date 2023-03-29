@@ -13,7 +13,7 @@ TEST(first_test, first_test) {
     EXPECT_EQ(sMult(a, b), c);
 }
 
-TEST(2test, 2test) {
+TEST(test2, test2) {
     std::vector<double> a = { 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0 };
     std::vector<double> b = { 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0 };
     std::vector<double> c = { 30.0, 36.0, 42.0, 66.0, 81.0,
@@ -22,7 +22,7 @@ TEST(2test, 2test) {
     EXPECT_EQ(sMult(a, b), c);
 }
 
-TEST(3test, 3test) {
+TEST(test3, test3) {
     std::vector<double> a = { 1.1, 2.2, 3.3, 4.4, 5.5, 6.6, 7.7, 8.8, 9.9 };
     std::vector<double> b = { 1.1, 2.2, 3.3, 4.4, 5.5, 6.6, 7.7, 8.8, 9.9 };
     std::vector<double> c = { 36.3, 43.56, 50.82, 79.86, 98.01,
@@ -31,7 +31,7 @@ TEST(3test, 3test) {
     EXPECT_EQ(sMult(a, b), c);
 }
 
-TEST(4test, 4test) {
+TEST(test4, test4) {
     std::vector<double> a = rndMat(4);
     std::vector<double> b = rndMat(4);
 
@@ -39,7 +39,7 @@ TEST(4test, 4test) {
     EXPECT_EQ(sMult(a, b), mMult(a, b));
 }
 
-TEST(5test, 5test) {
+TEST(test5, test5) {
     std::vector<double> a = rndMat(3);
     std::vector<double> b = rndMat(3);
 
