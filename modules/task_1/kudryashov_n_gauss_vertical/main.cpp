@@ -11,7 +11,7 @@ TEST(gauss_vertical, test_image_3x3) {
                                           {243, 83, 196} };
     std::vector<std::vector<int>> expectedImg = { {145, 169, 66},
                                               {175, 158, 175},
-                                              {209, 134, 182} };
+                                              {209, 134 , 182} };
     std::vector<std::vector<int>> resultImg = gauss_filter_sequence(
         img, height, width);
     ASSERT_EQ(expectedImg, resultImg);
