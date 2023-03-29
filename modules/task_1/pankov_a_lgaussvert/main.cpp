@@ -3,6 +3,7 @@
 #include <vector>
 #include "./lgaussvert.h"
 
+
 TEST(LGaussVertical, MatrixMN0Test) {
     int m = 0;
     int n = 0;
