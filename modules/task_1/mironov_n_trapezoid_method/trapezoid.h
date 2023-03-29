@@ -12,5 +12,23 @@ double trapezoid_method(
     int N
 );
 
+double d1_method(
+    double f(std::vector<double>),
+    const std::vector<std::pair<double, double>>& bounds,
+    int N
+);
+
+double d2_method(
+    double f(std::vector<double>),
+    const std::vector<std::pair<double, double>>& bounds,
+    int N
+);
+
+double d3_method(
+    double f(std::vector<double>),
+    const std::vector<std::pair<double, double>>& bounds,
+    int N
+);
+
 
 #endif  // MODULES_TASK_1_MIRONOV_N_TRAPEZOID_METHOD_TRAPEZOID_H_
