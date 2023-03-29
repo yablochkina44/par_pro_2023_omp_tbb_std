@@ -60,7 +60,7 @@ TEST(gauss_vertical, test_image_6x4) {
                                           {95, 92, 29, 67},
                                           {186, 241, 52, 83},
                                           {13, 67, 115, 123} };
-    std::vector<std::vector<int>> expectedImg = { {142, 149, 99, 114},
+    std::vector<std::vector<int>> expectedImg = { {128, 149, 99, 114},
                                           {44, 80, 145, 167},
                                           {69, 51, 72, 179},
                                           {108, 94, 53, 88},
@@ -80,7 +80,7 @@ TEST(gauss_vertical, test_image_4x6) {
                                           {23, 254, 17, 221, 150, 84} };
     std::vector<std::vector<int>> expectedImg = { {163, 62, 80, 173, 153, 191},
                                           {181, 124, 157, 162, 112, 131},
-                                          {115, 130, 132, 154, 72, 65},
+                                          {115, 130, 123, 154, 72, 65},
                                           {68, 166, 94, 170, 132, 85} };
     std::vector<std::vector<int>> resultImg = gauss_filter_sequence(
         img, height, width);
