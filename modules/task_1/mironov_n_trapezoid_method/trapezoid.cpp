@@ -4,8 +4,7 @@
 double d1_method(
     double (*f)(std::vector<double>),
     const std::vector<std::pair<double, double>>& bounds,
-    int N
-) {
+    int N) {
     double h = (bounds[0].second - bounds[0].first)/N;
 
     double x = bounds[0].first + h;
@@ -25,8 +24,7 @@ double d1_method(
 double d2_method(
     double (*f)(std::vector<double>),
     const std::vector<std::pair<double, double>>& bounds,
-    int N
-) {
+    int N) {
     double h_for_x = (bounds[0].second - bounds[0].first)/N;
     double h_for_y = (bounds[1].second - bounds[1].first)/N;
 
@@ -54,14 +52,14 @@ double d2_method(
         x = bounds[0].first + h_for_x * i;
 
         result += (h_for_y/2) * (f({x, bounds[1].first}) +
-        f({x, bounds[1].second}))
+        f({x, bounds[1].second}));
     }
 
     for (int j = 1; j < N; j++) {
         y = bounds[0].first + h_for_y * j;
 
         result += (h_for_x/2) * (f({bounds[0].first, y}) +
-        f({bounds[0].second, y}))
+        f({bounds[0].second, y}));
     }
 
     return result;
@@ -70,8 +68,7 @@ double d2_method(
 double d3_method(
     double (*f)(std::vector<double>),
     const std::vector<std::pair<double, double>>& bounds,
-    int N
-) {
+    int N) {
     double h_for_x = (bounds[0].second - bounds[0].first)/N;
     double h_for_y = (bounds[1].second - bounds[1].first)/N;
     double h_for_z = (bounds[2].second - bounds[2].first)/N;
@@ -109,7 +106,7 @@ double d3_method(
             z = bounds[2].first + h_for_z * s;
 
             result += (h_for_y/2) * (f({x, bounds[1].first, z}) +
-            f({x, bounds[1].second}, z))
+            f({x, bounds[1].second}, z));
         }
     }
 
@@ -119,7 +116,7 @@ double d3_method(
             z = bounds[2].first + h_for_z * s;
 
             result += (h_for_x/2) * (f({bounds[0].first, y, z}) +
-            f({bounds[0].second, y, z}))
+            f({bounds[0].second, y, z}));
         }
     }
 
@@ -129,7 +126,7 @@ double d3_method(
             y = bounds[1].first + h_for_y * j;
 
             result += (h_for_z/2) * (f({x, y, bounds[2].first}) +
-            f({x, y, bounds[2].second}))
+            f({x, y, bounds[2].second}));
         }
     }
 
@@ -138,7 +135,7 @@ double d3_method(
 
         result += (h_for_y/2) * (h_for_z/2) *
         (f({x, bounds[1].first, bounds[2].first}) +
-        f({x, bounds[1].second, bounds[2].second}))
+        f({x, bounds[1].second, bounds[2].second}));
     }
 
     for (int j = 1; j < N; j++) {
@@ -146,7 +143,7 @@ double d3_method(
 
         result += (h_for_x/2) * (h_for_z/2) *
         (f({bounds[0].first, y, bounds[2].first}) +
-        f({bounds[0].second, y, bounds[2].second}))
+        f({bounds[0].second, y, bounds[2].second}));
     }
 
     for (int s = 1; s < N; s++) {
@@ -154,7 +151,7 @@ double d3_method(
 
         result += (h_for_y/2) * (h_for_z/2) *
         (f({bounds[0].first, bounds[1].first, z}) +
-        f({bounds[0].second, bounds[1].second, z}))
+        f({bounds[0].second, bounds[1].second, z}));
     }
 
     return result;
@@ -164,8 +161,7 @@ double trapezoid_method(
     double (*f)(std::vector<double>),
     const std::vector<std::pair<double, double>>& bounds,
     int dimensions,
-    int N
-) {
+    int N) {
     if (dimensions != bounds.size()) {
         throw R"(The number of boundaries does not
         match the number of dimensions)";
