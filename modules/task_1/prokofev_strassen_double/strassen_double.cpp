@@ -137,16 +137,7 @@ std::vector<double> matrixReduce(const std::vector<double>& matr,
     return res;
 }
 
-std::vector<double> sMult(const std::vector<double>& a,
-    const std::vector<double>& b, unsigned int msize) {
-    unsigned tpow;
-    std::vector<double> a_ = toPowerOfTwoSize(a, &tpow, msize);
-    std::vector<double> b_ = toPowerOfTwoSize(b, msize);
 
-    std::vector<double> res = sMult_NoCastToPowerOfTwo(a_, b_, tpow);
-
-    return matrixReduce(res, msize);
-}
 
 std::vector<double> sMult_NoCastToPowerOfTwo(const std::vector<double>& a_,
     const std::vector<double>& b_, unsigned int msize) {
@@ -203,4 +194,15 @@ std::vector<double> sMult_NoCastToPowerOfTwo(const std::vector<double>& a_,
     mergeMatrix(&res, c11, c12, c21, c22, msize);
 
     return res;
+}
+
+std::vector<double> sMult(const std::vector<double>& a,
+    const std::vector<double>& b, unsigned int msize) {
+    unsigned tpow;
+    std::vector<double> a_ = toPowerOfTwoSize(a, &tpow, msize);
+    std::vector<double> b_ = toPowerOfTwoSize(b, msize);
+
+    std::vector<double> res = sMult_NoCastToPowerOfTwo(a_, b_, tpow);
+
+    return matrixReduce(res, msize);
 }

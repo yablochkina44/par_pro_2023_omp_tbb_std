@@ -36,14 +36,14 @@ TEST(test4, test4) {
     std::vector<double> b = rndMat(4);
 
 
-    EXPECT_EQ(sMult(a, b, 4), mMult(a, b));
+    EXPECT_EQ(sMult(a, b, 4), mMult(a, b, 4));
 }
 
 TEST(test5, test5) {
     std::vector<double> a = rndMat(3);
     std::vector<double> b = rndMat(3);
 
-    EXPECT_EQ(sMult(a, b, 3), mMult(a, b));
+    EXPECT_EQ(sMult(a, b, 3), mMult(a, b, 3));
 }
 
 
