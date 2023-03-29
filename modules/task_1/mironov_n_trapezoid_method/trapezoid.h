@@ -8,26 +8,26 @@
 #include <cmath>
 
 double trapezoid_method(
-    double f(std::vector<double>),
+    double (*f)(std::vector<double>),
     const std::vector<std::pair<double, double>> bounds,
     int dimensions,
     int N
 );
 
 double d1_method(
-    double f(std::vector<double>),
+    double (*f)(std::vector<double>),
     const std::vector<std::pair<double, double>>& bounds,
     int N
 );
 
 double d2_method(
-    double f(std::vector<double>),
+    double (*f)(std::vector<double>),
     const std::vector<std::pair<double, double>>& bounds,
     int N
 );
 
 double d3_method(
-    double f(std::vector<double>),
+    double (*f)(std::vector<double>),
     const std::vector<std::pair<double, double>>& bounds,
     int N
 );
