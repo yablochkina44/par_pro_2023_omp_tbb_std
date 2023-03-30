@@ -1,6 +1,6 @@
 // Copyright 2023 Gosteeva Ekaterina
 #ifndef MODULES_TASK_1_GOSTEEVA_E_DIJKSTRA_DIJKSTRA_H_
-#define MODULES_TASK_1_GOSTEEVA_E_DIJKSTRA_DIJKSTRA_H
+#define MODULES_TASK_1_GOSTEEVA_E_DIJKSTRA_DIJKSTRA_H_
 
 #include <climits>
 #include <vector>
