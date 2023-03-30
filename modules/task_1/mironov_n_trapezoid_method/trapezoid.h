@@ -9,23 +9,23 @@
 
 double trapezoid_method(
     double (*f)(std::vector<double>),
-    std::vector<std::pair<double, double>>& bounds,
+    const std::vector<std::pair<double, double>>& bounds,
     int dimensions,
     int N);
 
 double d1_method(
     double (*f)(std::vector<double>),
-    std::vector<std::pair<double, double>>& bounds,
+    const std::vector<std::pair<double, double>>& bounds,
     int N);
 
 double d2_method(
     double (*f)(std::vector<double>),
-    std::vector<std::pair<double, double>>& bounds,
+    const std::vector<std::pair<double, double>>& bounds,
     int N);
 
 double d3_method(
     double (*f)(std::vector<double>),
-    std::vector<std::pair<double, double>>& bounds,
+    const std::vector<std::pair<double, double>>& bounds,
     int N);
 
 
