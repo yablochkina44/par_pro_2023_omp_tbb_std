@@ -98,17 +98,20 @@ double d3_method(
         f({bounds[0].second, bounds[1].second, bounds[2].second}));
     for (int i = 1; i < N; i++) {
         x = bounds[0].first + h_for_x * i;
-        for (int j = 1; j < N; j++) {
-            y = bounds[1].first + h_for_y * j;
-            for (int s = 1; s < N; s++) {
-                z = bounds[2].first + h_for_z * s;
+        y = bounds[1].first + h_for_y * i;
+        z = bounds[2].first + h_for_z * i;
 
-                result += f({x, y, z});
-            }
-        }
-    }
+        result += 0.25 *
+        (f({x, bounds[1].first, bounds[2].first}) +
+        f({x, bounds[1].second, bounds[2].second}));
 
-    for (int i = 1; i < N; i++) {
+        result += 0.25 *
+        (f({bounds[0].first, y, bounds[2].first}) +
+        f({bounds[0].second, y, bounds[2].second}));
+
+        result += 0.25 *
+        (f({bounds[0].first, bounds[1].first, z}) +
+        f({bounds[0].second, bounds[1].second, z}));
         for (int j = 1; j < N; j++) {
             x = bounds[0].first + h_for_x * i;
             z = bounds[2].first + h_for_z * j;
@@ -125,25 +128,14 @@ double d3_method(
 
             result += 0.5 * (f({x, y, bounds[2].first}) +
             f({x, y, bounds[2].second}));
+
+            y = bounds[1].first + h_for_y * j;
+            for (int s = 1; s < N; s++) {
+                z = bounds[2].first + h_for_z * s;
+
+                result += f({x, y, z});
+            }
         }
-    }
-
-    for (int i = 1; i < N; i++) {
-        x = bounds[0].first + h_for_x * i;
-        y = bounds[1].first + h_for_y * i;
-        z = bounds[2].first + h_for_z * i;
-
-        result += 0.25 *
-        (f({x, bounds[1].first, bounds[2].first}) +
-        f({x, bounds[1].second, bounds[2].second}));
-
-        result += 0.25 *
-        (f({bounds[0].first, y, bounds[2].first}) +
-        f({bounds[0].second, y, bounds[2].second}));
-
-        result += 0.25 *
-        (f({bounds[0].first, bounds[1].first, z}) +
-        f({bounds[0].second, bounds[1].second, z}));
     }
 
     result = result * h_for_x * h_for_y * h_for_z;
