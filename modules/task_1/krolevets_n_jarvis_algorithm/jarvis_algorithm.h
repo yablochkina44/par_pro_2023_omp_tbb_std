@@ -10,7 +10,8 @@
 #include <vector>
 
 struct Point {
-  int x, y;
+  int x = 0;
+  int y = 0;
 
   Point() = default;
   Point(int x, int y) : x(x), y(y) {}
