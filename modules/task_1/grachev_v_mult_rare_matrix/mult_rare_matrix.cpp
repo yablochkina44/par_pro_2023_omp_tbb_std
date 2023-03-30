@@ -1,9 +1,9 @@
 // Copyright 2023 Grachev Valentin
 #include "../../../modules/task_1/grachev_v_mult_rare_matrix/mult_rare_matrix.h"
 
-MatrixCRS::MatrixCRS(int strs, int cols) : strQuant(strs), colQuant(cols) {
-    values = vector<vector<MatrixValue>>(strs);
-}
+MatrixCRS::MatrixCRS(int strs, int cols)
+    : strQuant(strs), colQuant(cols),
+      values(vector<vector<MatrixValue>>(strs)) {}
 
 void MatrixCRS::Fill(double *arr) {
     for (int i = 0; i < strQuant; i++) {
@@ -25,7 +25,8 @@ void MatrixCRS::FillRandom(int rarity) {
             bool elemIsNotZero = gen() % rarity == 0;
             if (elemIsNotZero) {
                 double value =
-                    minValue + (gen() % (static_cast<int>(maxValue) - static_cast<int>(minValue)));
+                    minValue + (gen() % (static_cast<int>(maxValue) -
+                                         static_cast<int>(minValue)));
                 MatrixValue mValue(value, j);
                 values[i].push_back(mValue);
             }
