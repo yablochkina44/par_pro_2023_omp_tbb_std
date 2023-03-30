@@ -10,8 +10,8 @@ SparceMatrix transport(SparceMatrix A) {
     std::vector<int> js;
     int f = 0;
 
-    for (int i = 0; i < A.n + 1; i++) {
-        for (int j = 0; j < A.col_ptr[i + 1] - A.col_ptr[i]; j++) {
+    for (int i = 1; i < A.n + 1; i++) {
+        for (int j = 0; j < A.col_ptr[i] - A.col_ptr[i-1]; j++) {
             js.push_back(f);
         }
         f++;
