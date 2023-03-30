@@ -47,11 +47,13 @@ double d2_method(
         x = bounds[0].first + h_for_x * i;
         result += 0.5 * (f({x, bounds[1].first}) +
         f({x, bounds[1].second}));
+
+        y = bounds[1].first + h_for_y * i;
+
+        result += 0.5 * (f({bounds[0].first, y}) +
+        f({bounds[0].second, y}));
         for (int j = 1; j < N; j++) {
             y = bounds[1].first + h_for_y * j;
-
-            result += 0.5 * (f({bounds[0].first, y}) +
-            f({bounds[0].second, y}));
 
             result += f({x, y});
         }
