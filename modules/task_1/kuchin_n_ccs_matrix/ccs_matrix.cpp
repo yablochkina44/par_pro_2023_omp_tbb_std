@@ -2,6 +2,49 @@
 
 #include "../../../modules/task_1/kuchin_n_ccs_matrix/ccs_matrix.h"
 
+SparceMatrix transport(SparceMatrix A) {
+    SparceMatrix AT;
+    AT.n = A.n;
+    std::vector<std::vector<int>> row;
+    std::vector<std::vector<double>> val;
+    std::vector<int> js;
+    int f = 0;
+
+    for (int i = 1; i < A.n + 1; i++) {
+        for (int j = 0; j < A.col_ptr[i + 1] - A.col_ptr[i]; j++) {
+            js.push_back(f);
+        }
+        f++;
+    }
+
+    for (int i = 0; i < js.size(); i++) {
+        row[A.row_id[i]].push_back(js[i]);
+        val[A.row_id[i]].push_back(A.data[i]);
+    }
+
+    std::vector<int> resrow;
+    std::vector<double> resval;
+    std::vector<int> ind;
+    ind.push_back(0);
+    int indic = 0;
+
+    for (int i = 0; i < A.n; i++) {
+        for (int j = 0; j < row[i].size(); j++) {
+            resrow.push_back(row[i][j]);
+        }
+        for (int k = 0; k < val[i].size(); k++) {
+            resval.push_back(val[i][k]);
+        }
+        indic += row[i].size();
+        ind.push_back(indic);
+    }
+
+    AT.data = resval;
+    AT.row_id = resrow;
+    AT.col_ptr = ind;
+    return AT;
+}
+
 SparceMatrix multiply(SparceMatrix A, SparceMatrix B) {
     SparceMatrix C;
     std::vector<double> temp(A.col_ptr.size() - 1);
