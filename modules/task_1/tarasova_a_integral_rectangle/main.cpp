@@ -46,7 +46,7 @@ double integral(const double a1, const double a2, const double a3, const double 
 
 TEST(Sequential, Test_inegral_1) {
     ASSERT_DOUBLE_EQ(24, integral(0.0, 0.0, 0.0,
-        2.0, 2.0, 2.0, 1.0, f1)); 
+        2.0, 2.0, 2.0, 1.0, f1));
 }
 
 TEST(Sequential, Test_inegral_2) {
