@@ -23,8 +23,8 @@ double f5(double x, double y, double z) {
     return x * x * x + y * y + z;
 }
 
-double integral(double a1, double a2, double a3, double b1,
-    double b2, double b3, double h, double f(double, double, double)) {
+double integral(const double a1, const double a2, const double a3, const double b1,
+    const double b2, const double b3, const double h, double f(double, double, double)) {
     double sum = 0.0, x, y, z;
     int n1, n2, n3;
     n1 = (int)((b1 - a1) / h);
