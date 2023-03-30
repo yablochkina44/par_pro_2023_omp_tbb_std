@@ -9,7 +9,7 @@
 
 double trapezoid_method(
     double (*f)(std::vector<double>),
-    std::vector<std::pair<double, double>> bounds,
+    std::vector<std::pair<double, double>>& bounds,
     int dimensions,
     int N);
 
