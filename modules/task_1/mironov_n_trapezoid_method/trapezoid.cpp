@@ -87,7 +87,7 @@ double d3_method(
 
     double result = 0;
 
-    result += (h_for_x/2.0) * (h_for_y/2.0) * (h_for_z/2.0) *
+    result += 0.125 *
         (f({bounds[0].first, bounds[1].first, bounds[2].first}) +
         f({bounds[0].first, bounds[1].second, bounds[2].first}) +
         f({bounds[0].first, bounds[1].first, bounds[2].second}) +
@@ -103,7 +103,7 @@ double d3_method(
             for (int s = 1; s < N; s++) {
                 z = bounds[2].first + h_for_z * s;
 
-                result += (h_for_x * h_for_y * h_for_z) * f({x, y, z});
+                result += f({x, y, z});
             }
         }
     }
@@ -113,7 +113,7 @@ double d3_method(
         for (int s = 1; s < N; s++) {
             z = bounds[2].first + h_for_z * s;
 
-            result += (h_for_y/2.0) * (f({x, bounds[1].first, z}) +
+            result += 0.5 * (f({x, bounds[1].first, z}) +
             f({x, bounds[1].second, z}));
         }
     }
@@ -123,7 +123,7 @@ double d3_method(
         for (int s = 1; s < N; s++) {
             z = bounds[2].first + h_for_z * s;
 
-            result += (h_for_x/2.0) * (f({bounds[0].first, y, z}) +
+            result += 0.5 * (f({bounds[0].first, y, z}) +
             f({bounds[0].second, y, z}));
         }
     }
@@ -133,7 +133,7 @@ double d3_method(
         for (int j = 1; j < N; j++) {
             y = bounds[1].first + h_for_y * j;
 
-            result += (h_for_z/2.0) * (f({x, y, bounds[2].first}) +
+            result += 0.5 * (f({x, y, bounds[2].first}) +
             f({x, y, bounds[2].second}));
         }
     }
@@ -141,7 +141,7 @@ double d3_method(
     for (int i = 1; i < N; i++) {
         x = bounds[0].first + h_for_x * i;
 
-        result += (h_for_y/2.0) * (h_for_z/2) *
+        result += 0.25 *
         (f({x, bounds[1].first, bounds[2].first}) +
         f({x, bounds[1].second, bounds[2].second}));
     }
@@ -149,7 +149,7 @@ double d3_method(
     for (int j = 1; j < N; j++) {
         y = bounds[1].first + h_for_y * j;
 
-        result += (h_for_x/2.0) * (h_for_z/2.0) *
+        result += 0.25 *
         (f({bounds[0].first, y, bounds[2].first}) +
         f({bounds[0].second, y, bounds[2].second}));
     }
@@ -157,10 +157,12 @@ double d3_method(
     for (int s = 1; s < N; s++) {
         z = bounds[2].first + h_for_z * s;
 
-        result += (h_for_y/2.0) * (h_for_z/2.0) *
+        result += 0.25 *
         (f({bounds[0].first, bounds[1].first, z}) +
         f({bounds[0].second, bounds[1].second, z}));
     }
+
+    result = result * h_for_x * h_for_y * h_for_z;
 
     return result;
 }
