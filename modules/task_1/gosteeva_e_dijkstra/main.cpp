@@ -42,7 +42,7 @@ TEST(Dijkstra, Test3) {
 }
 
 TEST(Dijkstra, Test4) {
-    td::vector<int> graph = {
+    std::vector<int> graph = {
 		0, 5, 0, 6, 0, 0, 0,
 		5, 0, 10, 5, 4, 0, 0,
 		0, 10, 0, 11, 0, 0, 0,
