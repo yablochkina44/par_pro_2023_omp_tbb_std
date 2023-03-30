@@ -7,7 +7,6 @@
 TEST(Str, test1) {
     SparceMatrix A;
     A.n = 4;
-
     A.data = {9, 3, 8, 15, 7, 16};
     A.row_id = {3, 0, 1, 3, 0, 3};
     A.col_ptr = {0, 1, 2, 4, 6};
@@ -16,7 +15,6 @@ TEST(Str, test1) {
     B.row_id = {1, 3, 2, 0, 2, 3};
     B.col_ptr = {0, 2, 3, 3, 6};
     SparceMatrix C = transport(A);
-    
     EXPECT_EQ(A.data, C.data);
     EXPECT_EQ(A.row_id, C.row_id);
     EXPECT_EQ(A.col_ptr, C.col_ptr);
