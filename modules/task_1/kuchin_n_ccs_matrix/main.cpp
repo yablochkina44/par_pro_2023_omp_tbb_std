@@ -27,7 +27,7 @@ TEST(Str, test2) {
     A.row_id = {0, 2, 3, 3, 0};
     A.col_ptr = {0, 2, 3, 3, 4, 5};
     SparceMatrix B;
-    B.data = {2.37, 4.22, 3.65, 4.22, 7.63};
+    B.data = {2.37, 4.22, 3.65, 1.22, 7.63};
     B.row_id = {0, 4, 0, 1, 3};
     B.col_ptr = {0, 2, 2, 3, 5, 5};
     SparceMatrix C = transport(A);
