@@ -22,7 +22,7 @@ struct Matrix {
     void randomize() {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                data.at(i).at(j) = random() % 10;
+                data.at(i).at(j) = std::rand() % 10;
             }
         }
     }
