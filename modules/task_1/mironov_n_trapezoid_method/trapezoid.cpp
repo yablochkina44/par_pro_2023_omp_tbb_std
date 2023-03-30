@@ -3,7 +3,7 @@
 
 double d1_method(
     double (*f)(std::vector<double>),
-    const std::vector<std::pair<double, double>>& bounds,
+    std::vector<std::pair<double, double>>& bounds,
     int N) {
     double h = (bounds[0].second - bounds[0].first)/N;
 
@@ -23,7 +23,7 @@ double d1_method(
 
 double d2_method(
     double (*f)(std::vector<double>),
-    const std::vector<std::pair<double, double>>& bounds,
+    std::vector<std::pair<double, double>>& bounds,
     int N) {
     double h_for_x = (bounds[0].second - bounds[0].first)/N;
     double h_for_y = (bounds[1].second - bounds[1].first)/N;
@@ -67,7 +67,7 @@ double d2_method(
 
 double d3_method(
     double (*f)(std::vector<double>),
-    const std::vector<std::pair<double, double>>& bounds,
+    std::vector<std::pair<double, double>>& bounds,
     int N) {
     double h_for_x = (bounds[0].second - bounds[0].first)/N;
     double h_for_y = (bounds[1].second - bounds[1].first)/N;
@@ -159,7 +159,7 @@ double d3_method(
 
 double trapezoid_method(
     double (*f)(std::vector<double>),
-    const std::vector<std::pair<double, double>>& bounds,
+    std::vector<std::pair<double, double>>& bounds,
     int dimensions,
     int N) {
     if (dimensions != bounds.size()) {
