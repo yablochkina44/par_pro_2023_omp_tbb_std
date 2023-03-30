@@ -1,7 +1,6 @@
 // Copyright 2023 Selivankin Sergey
 #include <vector>
 #include <random>
-#include <omp.h>
 #include "../../../modules/task_2/selivankin_s_strassen/strassen.h"
 
 std::vector<double> getRandomMatrix(int m, int n) {
