@@ -43,7 +43,7 @@ TEST(trapezoid, d1_test) {
     int dimensions = 1;
     double integration_result = 485.0/3.0;
     double method_result = trapezoid_method(f1, bounds, dimensions, 100);
-    double tolerance = 0.1;
+    double tolerance = 0.05;
 
     ASSERT_NEAR(method_result, integration_result, tolerance);
 }
@@ -54,8 +54,8 @@ TEST(trapezoid, d2_test) {
     bounds[1] = {1, 4};
     int dimensions = 2;
     double integration_result = 825.0/4.0;
-    double method_result = trapezoid_method(f2, bounds, dimensions, 1000);
-    double tolerance = 0.1;
+    double method_result = trapezoid_method(f2, bounds, dimensions, 10000);
+    double tolerance = 0.05;
 
     ASSERT_NEAR(method_result, integration_result, tolerance);
 }
