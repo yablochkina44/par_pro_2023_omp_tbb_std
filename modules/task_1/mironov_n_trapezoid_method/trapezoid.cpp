@@ -25,8 +25,8 @@ double d2_method(
     double (*f)(std::vector<double>),
     const std::vector<std::pair<double, double>>& bounds,
     int N) {
-    double h_for_x = (bounds[0].second - bounds[0].first)/N;
-    double h_for_y = (bounds[1].second - bounds[1].first)/N;
+    double h_for_x = (bounds[0].second - bounds[0].first)/(double)N;
+    double h_for_y = (bounds[1].second - bounds[1].first)/(double)N;
 
     double x = 0;
     double y = 0;
@@ -69,9 +69,9 @@ double d3_method(
     double (*f)(std::vector<double>),
     const std::vector<std::pair<double, double>>& bounds,
     int N) {
-    double h_for_x = (bounds[0].second - bounds[0].first)/N;
-    double h_for_y = (bounds[1].second - bounds[1].first)/N;
-    double h_for_z = (bounds[2].second - bounds[2].first)/N;
+    double h_for_x = (bounds[0].second - bounds[0].first)/(double)N;
+    double h_for_y = (bounds[1].second - bounds[1].first)/(double)N;
+    double h_for_z = (bounds[2].second - bounds[2].first)/(double)N;
 
     double x = 0;
     double y = 0;
