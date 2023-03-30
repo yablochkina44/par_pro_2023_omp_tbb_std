@@ -1,6 +1,6 @@
 // Copyright 2023 Mironov Nikita
 #include <gtest/gtest.h>
-#include "../../../modules/task_1/mironov_n_trapezoid_method/trapezoid.h"
+#include "./trapezoid.h"
 
 double f1(std::vector<double> values) {
     double x = values[0];
@@ -38,7 +38,7 @@ TEST(trapezoid, dimensions_mistake_test) {
 }
 
 TEST(trapezoid, d1_test) {
-    std::vector<std::pair<double, double>> bounds(3);
+    std::vector<std::pair<double, double>> bounds(1);
     bounds[0] = {3, 8};
     int dimensions = 1;
     double integration_result = 485/3;
@@ -49,7 +49,7 @@ TEST(trapezoid, d1_test) {
 }
 
 TEST(trapezoid, d2_test) {
-    std::vector<std::pair<double, double>> bounds(3);
+    std::vector<std::pair<double, double>> bounds(2);
     bounds[0] = {3, 8};
     bounds[1] = {1, 4};
     int dimensions = 2;
