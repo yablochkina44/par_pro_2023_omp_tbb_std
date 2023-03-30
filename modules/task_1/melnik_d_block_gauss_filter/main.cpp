@@ -12,7 +12,9 @@ TEST(Gauss_Filter_Seq, Test1_3x3) {
     int resArr[] = {75, 75, 75, 50, 50, 50, 75, 75, 75};
     res.Load(resArr);
 
-    ASSERT_EQ(res, image);
+    Image handled = GaussFilter(image);
+
+    ASSERT_EQ(res, handled);
 }
 
 TEST(Gauss_Filter_Seq, Test2_4x4) {
@@ -26,7 +28,9 @@ TEST(Gauss_Filter_Seq, Test2_4x4) {
     int resArr[] = {87, 87, 87, 87, 55, 55, 55, 55, 22, 22, 22, 22, 5, 5, 5, 5};
     res.Load(resArr);
 
-    ASSERT_EQ(res, image);
+    Image handled = GaussFilter(image);
+
+    ASSERT_EQ(res, handled);
 }
 
 TEST(Gauss_Filter_Seq, Test3_5x3) {
@@ -38,7 +42,9 @@ TEST(Gauss_Filter_Seq, Test3_5x3) {
     int resArr[] = {87, 87, 84, 68, 46, 62, 59, 46, 28, 15, 50, 40, 18, 3, 0};
     res.Load(resArr);
 
-    ASSERT_EQ(res, image);
+    Image handled = GaussFilter(image);
+
+    ASSERT_EQ(res, handled);
 }
 
 TEST(Gauss_Filter_Seq, Test4_4x5) {
@@ -52,7 +58,9 @@ TEST(Gauss_Filter_Seq, Test4_4x5) {
                     30, 15, 30, 20, 20, 10, 18, 12, 12, 6};
     res.Load(resArr);
 
-    ASSERT_EQ(res, image);
+    Image handled = GaussFilter(image);
+
+    ASSERT_EQ(res, handled);
 }
 
 TEST(Gauss_Filter_Seq, Test5_5x5) {
@@ -66,5 +74,7 @@ TEST(Gauss_Filter_Seq, Test5_5x5) {
                     30, 45, 30, 20, 20, 30, 60, 18, 12, 12, 30, 71};
     res.Load(resArr);
 
-    ASSERT_EQ(res, image);
+    Image handled = GaussFilter(image);
+
+    ASSERT_EQ(res, handled);
 }
