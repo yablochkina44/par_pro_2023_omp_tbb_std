@@ -1,6 +1,5 @@
 // Copyright 2023 Bulgakov Daniil
 
-// Copyright 2018 Nesterov Alexander
 #include <gtest/gtest.h>
 
 #include "../../../modules/task_1/bulgakov_d_slau_gradient/slau_gradient.h"
