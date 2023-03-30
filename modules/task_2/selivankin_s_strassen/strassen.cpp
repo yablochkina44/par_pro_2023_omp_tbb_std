@@ -105,13 +105,13 @@ std::vector<double> strassen(const std::vector<double>& A, const std::vector<dou
         int split_size = static_cast<int>(subA[0].size());
         std::vector<std::vector<double>> P(7);
 
-        P[0] = strassen(sumOrSub(true, subA[0], subA[3]),sumOrSub(true, subB[0], subB[3]));
-        P[1] = strassen(sumOrSub(true, subA[2], subA[3]),subB[0]);
-        P[2] = strassen(subA[0],sumOrSub(false, subB[1], subB[3]));
-        P[3] = strassen(subA[3],sumOrSub(false, subB[2],subB[0]));
-        P[4] = strassen(sumOrSub(true, subA[0], subA[1]),subB[3]);
-        P[5] = strassen(sumOrSub(false, subA[2], subA[0]),sumOrSub(true, subB[0], subB[1]));
-        P[6] = strassen(sumOrSub(false, subA[1], subA[3]),sumOrSub(true, subB[2], subB[3]));
+        P[0] = strassen(sumOrSub(true, subA[0], subA[3]), sumOrSub(true, subB[0], subB[3]));
+        P[1] = strassen(sumOrSub(true, subA[2], subA[3]), subB[0]);
+        P[2] = strassen(subA[0], sumOrSub(false, subB[1], subB[3]));
+        P[3] = strassen(subA[3], sumOrSub(false, subB[2], subB[0]));
+        P[4] = strassen(sumOrSub(true, subA[0], subA[1]), subB[3]);
+        P[5] = strassen(sumOrSub(false, subA[2], subA[0]), sumOrSub(true, subB[0], subB[1]));
+        P[6] = strassen(sumOrSub(false, subA[1], subA[3]), sumOrSub(true, subB[2], subB[3]));
 
         std::vector<std::vector<double>> C(4);
 
@@ -158,31 +158,31 @@ std::vector<double> getStrassenParallel(const std::vector<double>& A, const std:
         {
             #pragma omp section
             {
-                P[0] = strassen(sumOrSub(true, subA[0], subA[3]),sumOrSub(true, subB[0], subB[3]));
+                P[0] = strassen(sumOrSub(true, subA[0], subA[3]), sumOrSub(true, subB[0], subB[3]));
             }
             #pragma omp section
             {
-                P[1] = strassen(sumOrSub(true, subA[2], subA[3]),subB[0]);
+                P[1] = strassen(sumOrSub(true, subA[2], subA[3]), subB[0]);
             }
             #pragma omp section
             {
-                P[2] = strassen(subA[0],sumOrSub(false, subB[1], subB[3]));
+                P[2] = strassen(subA[0], sumOrSub(false, subB[1], subB[3]));
             }
             #pragma omp section
             {
-                P[3] = strassen(subA[3],sumOrSub(false, subB[2],subB[0]));
+                P[3] = strassen(subA[3], sumOrSub(false, subB[2], subB[0]));
             }
             #pragma omp section
             {
-                P[4] = strassen(sumOrSub(true, subA[0], subA[1]),subB[3]);
+                P[4] = strassen(sumOrSub(true, subA[0], subA[1]), subB[3]);
             }
             #pragma omp section
             {
-                P[5] = strassen(sumOrSub(false, subA[2], subA[0]),sumOrSub(true, subB[0], subB[1]));
+                P[5] = strassen(sumOrSub(false, subA[2], subA[0]), sumOrSub(true, subB[0], subB[1]));
             }
             #pragma omp section
             {
-                P[6] = strassen(sumOrSub(false, subA[1], subA[3]),sumOrSub(true, subB[2], subB[3]));
+                P[6] = strassen(sumOrSub(false, subA[1], subA[3]), sumOrSub(true, subB[2], subB[3]));
             }
         }
     }
