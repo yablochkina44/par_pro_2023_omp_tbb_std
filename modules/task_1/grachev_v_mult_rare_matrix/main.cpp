@@ -74,7 +74,7 @@ TEST(Mult_rare_matrix_sequential, Test_4_3x3_and_3x5) {
     EXPECT_EQ(ans, true);
 }
 
-TEST(Mult_rare_matrix_sequential, Test_4_3x3_and_3x5) {
+TEST(Mult_rare_matrix_sequential, Test_5_4x4_and_4x4) {
     double arr1[] = {1, 0, 0, 2, 0, 1, 2, 0, 0, 2, 1, 0, 2, 0, 0, 1};
     MatrixCRS matr1(4, 4);
     matr1.Fill(arr1);
