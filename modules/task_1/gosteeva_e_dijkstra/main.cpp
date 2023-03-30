@@ -49,7 +49,7 @@ TEST(Dijkstra, Test4) {
         6, 5, 11, 0, 5, 4, 6,
         0, 4, 0, 5, 0, 8, 9,
         0, 0, 0, 4, 8, 0, 7,
-        0, 0, 0, 6, 9, 7, 0	};
+        0, 0, 0, 6, 9, 7, 0 };
     std::vector<int> res = Dijkstra(graph, 0, 7);
     std::vector<int> result = {0, 5, 15, 6, 9, 10, 12 };
     ASSERT_EQ(res, result);
