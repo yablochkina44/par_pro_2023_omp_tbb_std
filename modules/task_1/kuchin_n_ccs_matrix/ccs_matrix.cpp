@@ -67,5 +67,6 @@ SparceMatrix multiply(SparceMatrix A, SparceMatrix B) {
         }
     }
     C.col_ptr.push_back(C.data.size());
+    C.n = A.col_ptr.size() - 1;
     return C;
 }
