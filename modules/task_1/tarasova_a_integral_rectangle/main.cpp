@@ -27,9 +27,9 @@ double integral(const double a1, const double a2, const double a3, const double 
     const double b2, const double b3, const double h, double f(double, double, double)) {
     double sum = 0.0, x, y, z;
     int n1, n2, n3;
-    n1 = (int)((b1 - a1) / h);
-    n2 = (int)((b2 - a2) / h);
-    n3 = (int)((b3 - a3) / h);
+    n1 = static_cast<int>((b1 - a1) / h);
+    n2 = static_cast<int>((b2 - a2) / h);
+    n3 = static_cast<int>((b3 - a3) / h);
     std::vector<double> x1(n1), y1(n2), z1(n3);
     for (int i = 0; i < n1; i++)
         x1[i] = a1 + i * h + h / 2;
