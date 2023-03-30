@@ -7,7 +7,6 @@
 #include "../../../modules/task_1/khramov_e_integral_rectangles/khramov_e_integral_rectangles.h"
 
 
-
 double getRectangleValue(IntegralFunction f, double x, double y, double z, double* h) {
     return f(x + h[0] / 2, y + h[1] / 2, z + h[2] / 2);
 }
