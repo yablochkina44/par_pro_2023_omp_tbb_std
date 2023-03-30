@@ -67,7 +67,7 @@ TEST(trapezoid, d3_test_1) {
     bounds[2] = {0, 9};
     int dimensions = 3;
     double integration_result = 66825.0/8.0;
-    double method_result = trapezoid_method(f3, bounds, dimensions, 100);
+    double method_result = trapezoid_method(f3, bounds, dimensions, 300);
     double tolerance = 0.05;
 
     ASSERT_NEAR(method_result, integration_result, tolerance);
@@ -80,7 +80,7 @@ TEST(trapezoid, d3_test_2) {
     bounds[2] = {0, 9};
     int dimensions = 3;
     double integration_result = 713.774;
-    double method_result = trapezoid_method(f4, bounds, dimensions, 100);
+    double method_result = trapezoid_method(f4, bounds, dimensions, 300);
     double tolerance = 0.05;
 
     ASSERT_NEAR(method_result, integration_result, tolerance);
