@@ -33,4 +33,4 @@ class Image {
 
 Image GaussFilter(const Image &origin);
 
-#endif // MODULES_TASK_1_MELNIK_D_BLOCK_GAUSS_FILTER_BLOCK_GAUSS_FILTER_H_
+#endif  // MODULES_TASK_1_MELNIK_D_BLOCK_GAUSS_FILTER_BLOCK_GAUSS_FILTER_H_
