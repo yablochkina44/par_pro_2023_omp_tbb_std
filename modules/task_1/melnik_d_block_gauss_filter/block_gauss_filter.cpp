@@ -8,7 +8,6 @@ Image GaussFilter(const Image &origin) {
     Image result = origin;
 
     for (int y = 0; y < origin.H(); y++) {
-
         for (int x = 0; x < origin.W(); x++) {
             double pixel_res = 0;
             pixel_res += origin.GetPixel(x - 1, y - 1) * kernel[0];
@@ -67,7 +66,7 @@ void Image::Print() const {
     }
 }
 
-bool Image::operator==(const Image& other) const
-{
-	return width == other.width && height == other.height && pixels == other.pixels;
+bool Image::operator==(const Image &other) const {
+    return width == other.width && height == other.height &&
+           pixels == other.pixels;
 }

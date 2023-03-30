@@ -19,7 +19,7 @@ TEST(Gauss_Filter_Seq, Test2_4x4) {
     Image image(4, 4);
     int arr[] = {100, 100, 100, 100, 50, 50, 50, 50,
                  20,  20,  20,  20,  0,  0,  0,  0};
-    image.Load(resArr);
+    image.Load(arr);
 
     Image res(4, 4);
 
