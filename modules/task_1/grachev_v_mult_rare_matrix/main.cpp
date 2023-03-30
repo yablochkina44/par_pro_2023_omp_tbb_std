@@ -16,7 +16,7 @@ TEST(Mult_rare_matrix_sequential, Test_1_2x2_and_2x2) {
     MatrixCRS resMatr(2, 2);
     resMatr.Fill(res);
 
-    ASSERT_TRUE(matr1.Multiple(matr2).Equal(resMatr));
+    EXPECT_TRUE(matr1.Multiple(matr2).Equal(resMatr));
 }
 
 TEST(Mult_rare_matrix_sequential, Test_2_3x4_and_4x3) {
@@ -32,7 +32,7 @@ TEST(Mult_rare_matrix_sequential, Test_2_3x4_and_4x3) {
     MatrixCRS resMatr(3, 3);
     resMatr.Fill(res);
 
-    ASSERT_TRUE(matr1.Multiple(matr2).Equal(resMatr));
+    EXPECT_TRUE(matr1.Multiple(matr2).Equal(resMatr));
 }
 
 TEST(Mult_rare_matrix_sequential, Test_3_4x2_and_2x4) {
@@ -48,7 +48,7 @@ TEST(Mult_rare_matrix_sequential, Test_3_4x2_and_2x4) {
     MatrixCRS resMatr(4, 4);
     resMatr.Fill(res);
 
-    ASSERT_TRUE(matr1.Multiple(matr2).Equal(resMatr));
+    EXPECT_TRUE(matr1.Multiple(matr2).Equal(resMatr));
 }
 
 TEST(Mult_rare_matrix_sequential, Test_4_3x3_and_3x5) {
@@ -64,7 +64,7 @@ TEST(Mult_rare_matrix_sequential, Test_4_3x3_and_3x5) {
     MatrixCRS resMatr(3, 5);
     resMatr.Fill(res);
 
-    ASSERT_TRUE(matr1.Multiple(matr2).Equal(resMatr));
+    EXPECT_TRUE(matr1.Multiple(matr2).Equal(resMatr));
 }
 
 TEST(Mult_rare_matrix_sequential, Test_4_3x3_and_3x5) {
@@ -80,5 +80,5 @@ TEST(Mult_rare_matrix_sequential, Test_4_3x3_and_3x5) {
     MatrixCRS resMatr(4, 4);
     resMatr.Fill(res);
 
-    ASSERT_TRUE(matr1.Multiple(matr2).Equal(resMatr));
+    EXPECT_TRUE(matr1.Multiple(matr2).Equal(resMatr));
 }
