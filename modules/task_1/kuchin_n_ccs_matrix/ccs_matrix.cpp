@@ -5,8 +5,8 @@
 SparceMatrix transport(SparceMatrix A) {
     SparceMatrix AT;
     AT.n = A.n;
-    std::vector<std::vector<int>> row;
-    std::vector<std::vector<double>> val;
+    std::vector<std::vector<int>> row = {{}, {}, {}, {}};
+    std::vector<std::vector<double>> val = {{}, {}, {}, {}};
     std::vector<int> js;
     int f = 0;
 
