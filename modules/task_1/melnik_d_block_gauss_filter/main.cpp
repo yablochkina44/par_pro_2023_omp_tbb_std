@@ -22,6 +22,7 @@ TEST(Gauss_Filter_Seq, Test2_4x4) {
     image.Load(resArr);
 
     Image res(4, 4);
+
     int resArr[] = {87, 87, 87, 87, 55, 55, 55, 55, 22, 22, 22, 22, 5, 5, 5, 5};
     res.Load(resArr);
 
