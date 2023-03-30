@@ -131,7 +131,7 @@ double d3_method(
     for (int i = 1; i < N; i++) {
         x = bounds[0].first + h_for_x * i;
         y = bounds[1].first + h_for_y * i;
-        z = bounds[2].first + h_for_z * s;
+        z = bounds[2].first + h_for_z * i;
 
         result += 0.25 *
         (f({x, bounds[1].first, bounds[2].first}) +
