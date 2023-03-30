@@ -129,7 +129,6 @@ double d3_method(
             result += 0.5 * (f({x, y, bounds[2].first}) +
             f({x, y, bounds[2].second}));
 
-            y = bounds[1].first + h_for_y * j;
             for (int s = 1; s < N; s++) {
                 z = bounds[2].first + h_for_z * s;
 
