@@ -45,25 +45,16 @@ double d2_method(
 
     for (int i = 1; i < N; i++) {
         x = bounds[0].first + h_for_x * i;
+        result += 0.5 * (f({x, bounds[1].first}) +
+        f({x, bounds[1].second}));
         for (int j = 1; j < N; j++) {
             y = bounds[1].first + h_for_y * j;
 
+            result += 0.5 * (f({bounds[0].first, y}) +
+            f({bounds[0].second, y}));
+
             result += f({x, y});
         }
-    }
-
-    for (int i = 1; i < N; i++) {
-        x = bounds[0].first + h_for_x * i;
-
-        result += 0.5 * (f({x, bounds[1].first}) +
-        f({x, bounds[1].second}));
-    }
-
-    for (int j = 1; j < N; j++) {
-        y = bounds[0].first + h_for_y * j;
-
-        result += 0.5 * (f({bounds[0].first, y}) +
-        f({bounds[0].second, y}));
     }
 
     result = result * h_for_x * h_for_y;
