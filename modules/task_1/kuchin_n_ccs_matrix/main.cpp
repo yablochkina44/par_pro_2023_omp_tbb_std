@@ -22,7 +22,7 @@ TEST(Str, test1) {
 
 TEST(Str, test2) {
     SparceMatrix A;
-    A.n = 4;
+    A.n = 5;
     A.data = {2.37, 3.65, 1.22, 7.63, 4.22};
     A.row_id = {0, 2, 3, 3, 0};
     A.col_ptr = {0, 2, 3, 3, 4, 5};
