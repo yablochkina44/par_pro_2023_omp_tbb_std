@@ -9,7 +9,7 @@ SparceMatrix transport(SparceMatrix A) {
     std::vector<std::vector<double>> val;
     std::vector<int> emptyr;
     std::vector<double> emptyv;
-    for (int i = 0; i <= A.n; i++) {
+    for (int i = 0; i < A.n; i++) {
         row.push_back(emptyr);
         val.push_back(emptyv);
     }
