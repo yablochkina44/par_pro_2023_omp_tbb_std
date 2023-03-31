@@ -33,7 +33,7 @@ int n[3] = {100, 100, 100};
 
 void testIntegral(IntegralFunction func) {
     double sequential = integrateSequential(func, a, b, n);
-    double parallel = integrateSequential(func, a, b, n);
+    double parallel = integrateParallel(func, a, b, n);
     ASSERT_NEAR(sequential, parallel, epsilon);
 }
 
