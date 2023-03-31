@@ -127,8 +127,11 @@ std::list<double> getRandList(int size, double lower_bound,
                               double upper_bound) {
     std::list<double> res;
     for (int i = 0; i < size; i++) {
-        res.push_back(lower_bound + (upper_bound - lower_bound) *
-                                        (random() % RAND_MAX) / RAND_MAX);
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        int r = static_cast<int>(gen());
+        res.push_back(lower_bound +
+                      (upper_bound - lower_bound) * (r % RAND_MAX) / RAND_MAX);
     }
     return res;
 }
