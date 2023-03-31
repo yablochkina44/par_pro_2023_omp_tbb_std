@@ -37,8 +37,8 @@ SparceMatrix transport(SparceMatrix A) {
         indic += row[i].size();
         ind.push_back(indic);
     }
-    if(row.size()<A.n){
-        for(int i=0;i<A.n-row.size();i++){
+    if (row.size() < A.n) {
+        for (int i = 0; i < A.n - row.size(); i++) {
             ind.push_back(indic);
         }
     }
