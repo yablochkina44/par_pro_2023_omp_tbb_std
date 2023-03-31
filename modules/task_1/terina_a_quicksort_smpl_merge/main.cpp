@@ -1,9 +1,7 @@
 // Copyright 2023 Terina Alina
 #include <gtest/gtest.h>
 #include <omp.h>
-
 #include <iostream>
-
 #include "../../../modules/task_1/terina_a_quicksort_smpl_merge/qs_smpl_mrg.h"
 
 TEST(Sequentional_version_QS, can_sort_mas) {

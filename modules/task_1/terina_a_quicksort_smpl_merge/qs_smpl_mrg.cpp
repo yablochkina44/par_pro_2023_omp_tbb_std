@@ -2,7 +2,6 @@
 #include <ctime>
 #include <random>
 #include <utility>
-
 #include "../../../modules/task_1/terina_a_quicksort_smpl_merge/qs_smpl_mrg.h"
 
 void get_mas_rand(double* list, int size) {
