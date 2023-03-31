@@ -4,6 +4,7 @@
 #include <cmath>
 #include "./monte_carlo.h"
 
+
 constexpr double precision = 0.01;
 
 TEST(Sequential_Monte_Carlo, Two_Dims_Sum) {
