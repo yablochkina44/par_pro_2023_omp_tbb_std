@@ -11,12 +11,11 @@ SparceMatrix transport(SparceMatrix A) {
     int f = 0;
 
     for (int i = 1; i < A.n + 1; i++) {
-        for (int j = 0; j < A.col_ptr[i] - A.col_ptr[i-1]; j++) {
+        for (int j = 0; j < A.col_ptr[i] - A.col_ptr[i - 1]; j++) {
             js.push_back(f);
         }
         f++;
     }
-            
     for (int i = 0; i < js.size(); i++) {
         row[A.row_id[i]].push_back(js[i]);
         val[A.row_id[i]].push_back(A.data[i]);
