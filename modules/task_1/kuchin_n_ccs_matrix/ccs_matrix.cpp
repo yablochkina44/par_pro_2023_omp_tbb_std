@@ -27,7 +27,7 @@ SparceMatrix transport(SparceMatrix A) {
     ind.push_back(0);
     int indic = 0;
 
-    for (int i = 0; i < A.n; i++) {
+    for (int i = 0; i < A.n-1; i++) {
         for (int j = 0; j < row[i].size(); j++) {
             resrow.push_back(row[i][j]);
         }
