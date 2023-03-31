@@ -13,7 +13,7 @@ std::vector<double> getRandomMatrix(int m, int n) {
 }
 
 int getNewSize(int m1, int n1, int m2, int n2) {
-    int max = std::max(std::max(m1, n1), std::max(m2, n2));
+    int max = (std::max)((std::max)(m1, n1), (std::max)(m2, n2));
     int n = 1;
     for (; max > n; n*=2) {}
     return n;
