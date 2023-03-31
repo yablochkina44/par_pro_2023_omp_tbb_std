@@ -65,11 +65,12 @@ std::list<double> RadixSort(std::list<double> arr) {
         sortArr[iter].d = i;
         iter++;
     }
-    sortArr = SeqRadixSort(sortArr, arr.size());
+    convDouble *resArr = SeqRadixSort(sortArr, arr.size());
     for (int i = 0; i < arr.size(); i++) {
-        res.push_back(sortArr[i].d);
+        res.push_back(resArr[i].d);
     }
     delete[] sortArr;
+    delete[] resArr;
     return res;
 }
 
