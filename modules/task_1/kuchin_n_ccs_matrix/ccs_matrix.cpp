@@ -16,7 +16,7 @@ SparceMatrix transport(SparceMatrix A) {
         }
         f++;
     }
-
+            
     for (int i = 0; i < js.size(); i++) {
         row[A.row_id[i]].push_back(js[i]);
         val[A.row_id[i]].push_back(A.data[i]);
@@ -28,7 +28,7 @@ SparceMatrix transport(SparceMatrix A) {
     ind.push_back(0);
     int indic = 0;
 
-    for (int i = 0; i < js.size(); i++) {
+    for (int i = 0; i < A.n; i++) {
         for (int j = 0; j < row[i].size(); j++) {
             resrow.push_back(row[i][j]);
         }
