@@ -16,6 +16,7 @@ TEST(TestForFunctions, TestCalcNewPixColor_0_0) {
   std::vector<float> img{0, 128, 255, 0, 128, 255, 0, 128, 255};
   float color = calcNewPixColor(0, 0, 3, 3, kernel, 1, img);
 
+
   ASSERT_NEAR(color, 27.2716, 0.001);
 }
 
