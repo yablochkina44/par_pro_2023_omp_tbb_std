@@ -163,8 +163,7 @@ std::vector<double> strassenParallel(const std::vector<double>& A, const std::ve
             [&]{ P[3] = strassen(subA[3], sumOrSub(false, subB[2], subB[0])); },
             [&]{ P[4] = strassen(sumOrSub(true, subA[0], subA[1]), subB[3]); },
             [&]{ P[5] = strassen(sumOrSub(false, subA[2], subA[0]), sumOrSub(true, subB[0], subB[1])); },
-            [&]{ P[6] = strassen(sumOrSub(false, subA[1], subA[3]), sumOrSub(true, subB[2], subB[3])); }
-        );
+            [&]{ P[6] = strassen(sumOrSub(false, subA[1], subA[3]), sumOrSub(true, subB[2], subB[3])); });
 
         std::vector<std::vector<double>> C(4);
 
