@@ -68,7 +68,7 @@ dvec omp_matrix_vec(const dmat &a, const dvec &b) {
 double omp_vec_vec(const dvec &a, const dvec &b) {
     double res = 0.0;
     #pragma omp parallel for reduction(+:res)
-    for (size_t i = 0; i < a.size(); i++) {
+    for (int i = 0; i < a.size(); i++) {
         res += a[i] * b[i];
     }
     return res;
@@ -102,7 +102,7 @@ dvec solve(const dmat &a, const dvec& b) {
 
     double end = omp_get_wtime();
 
-    std::cout << "SEQ TIME " << (end - begin) << std::endl;
+    // std::cout << "SEQ TIME " << (end - begin) << std::endl;
 
     return res;
 }
@@ -144,7 +144,7 @@ dvec omp_solve(const dmat &a, const dvec& b) {
 
     double end = omp_get_wtime();
 
-    std::cout << "PARALLEL TIME " << (end - begin) << std::endl;
+    // std::cout << "PARALLEL TIME " << (end - begin) << std::endl;
 
     return res;
 }

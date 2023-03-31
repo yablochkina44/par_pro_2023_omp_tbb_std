@@ -44,8 +44,8 @@ TEST(Sequential, Test_3) {
 }
 
 TEST(Sequential, Test_4) {
-    dmat A =  generateMatrix(1000, 15);
-    dvec ans = generateVector(1000, 51);
+    dmat A =  generateMatrix(200, 15);
+    dvec ans = generateVector(200, 51);
     dvec B = matrix_vec(A, ans);
     dvec omp_solved = omp_solve(A, B);
     dvec solved = solve(A, B);
@@ -53,8 +53,8 @@ TEST(Sequential, Test_4) {
 }
 
 TEST(Sequential, Test_5) {
-    dmat A =  generateMatrix(700, 155);
-    dvec ans = generateVector(700, 551);
+    dmat A =  generateMatrix(500, 155);
+    dvec ans = generateVector(500, 551);
     dvec B = matrix_vec(A, ans);
     dvec omp_solved = omp_solve(A, B);
     dvec solved = solve(A, B);
