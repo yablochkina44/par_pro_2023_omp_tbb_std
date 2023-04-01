@@ -34,7 +34,6 @@ TEST(zagrebin_ccs_seq, Test_Zero) {
     CCS m2(3, 2, y);
     CCS m3(2, 2);
     m3 = mult(m1, m2);  // 0 0 \ 0 0
-    Comp ans[] = {};
 
     EXPECT_EQ(m3.data.size(), 0);
 }
