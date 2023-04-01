@@ -64,5 +64,3 @@ TEST(Sequential, Test_Array_Whose_Values_Are_All_The_Same) {
     ASSERT_LE(res[i - 1], res[i]);
   }
 }
-
-// line to run git actions
