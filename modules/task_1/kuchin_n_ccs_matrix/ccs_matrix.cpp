@@ -2,6 +2,8 @@
 
 #include "../../../modules/task_1/kuchin_n_ccs_matrix/ccs_matrix.h"
 
+#include <cmath>
+
 SparceMatrix transport(SparceMatrix A) {
     SparceMatrix AT;
     AT.n = A.n;
@@ -78,4 +80,12 @@ SparceMatrix multiply(SparceMatrix A, SparceMatrix B) {
     C.col_ptr.push_back(C.data.size());
     C.n = A.col_ptr.size() - 1;
     return C;
+}
+
+std::vector<double> std::operator-(const vector<double>& a,
+                                   const vector<double>& b) {
+    if (a.size() != b.size()) throw("a.size() != b.size()");
+    vector<double> c(a.size());
+    for (size_t i = 0; i < a.size(); ++i) c[i] = fabs(a[i] - b[i]);
+    return c;
 }

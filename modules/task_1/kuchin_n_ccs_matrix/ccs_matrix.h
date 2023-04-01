@@ -12,4 +12,6 @@ struct SparceMatrix {
 
 SparceMatrix transport(SparceMatrix A);
 SparceMatrix multiply(SparceMatrix A, SparceMatrix B);
+std::vector<double> std::operator-(const vector<double>& a,
+                                   const vector<double>& b);
 #endif  // MODULES_TASK_1_KUCHIN_N_CCS_MATRIX_CCS_MATRIX_H_

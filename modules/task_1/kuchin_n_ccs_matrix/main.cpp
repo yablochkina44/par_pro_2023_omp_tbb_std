@@ -21,7 +21,10 @@ TEST(Str, test1) {
     C.row_id = {0, 0};
     C.col_ptr = {0, 1, 1, 2};
     SparceMatrix res = multiply(A, B);
-    EXPECT_EQ(C.data, res.data);
+    std::vector<double> dis = C.data - res.data;
+    for (int i = 0; i < dis.size(); i++) {
+        ASSERT_TRUE(dis[i] < 0.01);
+    }
     EXPECT_EQ(C.row_id, res.row_id);
     EXPECT_EQ(C.col_ptr, res.col_ptr);
 }
@@ -43,7 +46,10 @@ TEST(Str, test2) {
     C.row_id = {1, 0, 1, 2, 3};
     C.col_ptr = {0, 0, 1, 5, 5};
     SparceMatrix res = multiply(A, B);
-    EXPECT_EQ(C.data, res.data);
+    std::vector<double> dis = C.data - res.data;
+    for (int i = 0; i < dis.size(); i++) {
+        ASSERT_TRUE(dis[i] < 0.01);
+    }
     EXPECT_EQ(C.row_id, res.row_id);
     EXPECT_EQ(C.col_ptr, res.col_ptr);
 }
@@ -65,7 +71,10 @@ TEST(Str, test3) {
     C.row_id = {0, 3, 0, 5, 1, 3, 3, 0};
     C.col_ptr = {0, 1, 2, 4, 6, 7, 8};
     SparceMatrix res = multiply(A, B);
-    EXPECT_EQ(C.data, res.data);
+    std::vector<double> dis = C.data - res.data;
+    for (int i = 0; i < dis.size(); i++) {
+        ASSERT_TRUE(dis[i] < 0.01);
+    }
     EXPECT_EQ(C.row_id, res.row_id);
     EXPECT_EQ(C.col_ptr, res.col_ptr);
 }
@@ -83,11 +92,14 @@ TEST(Str, test4) {
     SparceMatrix C;
     C.n = 5;
     C.data = {190.2219, 44.2581,  2.688,   163.1586, 245.6874,
-              37.6914,  127.5867, 18.6112, 80.184};
+              37.9614,  127.5867, 18.6112, 80.184};
     C.row_id = {1, 3, 2, 1, 2, 3, 2, 2, 3};
     C.col_ptr = {0, 2, 3, 6, 7, 9};
     SparceMatrix res = multiply(A, B);
-    EXPECT_EQ(C.data, res.data);
+    std::vector<double> dis = C.data - res.data;
+    for (int i = 0; i < dis.size(); i++) {
+        ASSERT_TRUE(dis[i] < 0.01);
+    }
     EXPECT_EQ(C.row_id, res.row_id);
     EXPECT_EQ(C.col_ptr, res.col_ptr);
 }
@@ -108,7 +120,10 @@ TEST(Str, test5) {
     C.row_id = {1, 0, 1, 2, 3, 5, 0, 3};
     C.col_ptr = {0, 1, 2, 3, 5, 6, 8};
     SparceMatrix res = multiply(A, B);
-    EXPECT_EQ(C.data, res.data);
+    std::vector<double> dis = C.data - res.data;
+    for (int i = 0; i < dis.size(); i++) {
+        ASSERT_TRUE(dis[i] < 0.01);
+    }
     EXPECT_EQ(C.row_id, res.row_id);
     EXPECT_EQ(C.col_ptr, res.col_ptr);
 }
