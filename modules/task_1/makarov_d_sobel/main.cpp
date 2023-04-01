@@ -11,7 +11,7 @@ TEST(SEQ, SOBEL_MATRIX_1x1_1) {
 
   /*std::cout << "Expected:" << std::endl;
   printMatrix(expected);
-  std::cout << "Result:" << std::endl;
+  std::cout << "Result:" <<std::endl;
   printMatrix(actual);*/
 }
 
