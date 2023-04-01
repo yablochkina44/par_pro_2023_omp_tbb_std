@@ -43,7 +43,7 @@ void radixSort(std::vector<int>& arr) {
 }
 
 std::vector<int> radixSortMerge(std::vector<int>& arr) {
-  if (arr.size() == 0) throw -1;
+  if (arr.size() == 0) throw - 1;
 
   std::vector<int> result(arr.size());
 
@@ -54,7 +54,8 @@ std::vector<int> radixSortMerge(std::vector<int>& arr) {
   radixSort(first);
   radixSort(second);
 
-  std::merge(first.begin(), first.end(), second.begin(), second.end(), result.begin());
+  std::merge(first.begin(), first.end(), second.begin(), second.end(),
+             result.begin());
   return result;
 }
 
