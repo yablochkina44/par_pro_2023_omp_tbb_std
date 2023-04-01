@@ -81,20 +81,20 @@ TEST(Str, test4) {
 }
 TEST(Str, test5) {
     SparceMatrix A;
-    A.n = 6;
-    A.data = {1.81, 7.47, 8.3, 5.62, 5.54, 8.36, 0.22, 0.69};
-    A.row_id = {0, 4, 1, 2, 3, 0, 5};
-    A.col_ptr = {0, 2, 3, 4, 6, 7, 8};
+    A.n = 4;
+    A.data = {1.5, 3.2, 8.7, 2.5, 3.3};
+    A.row_id = {0, 2, 3, 1, 2};
+    A.col_ptr = {0, 1, 3, 4, 5};
     SparceMatrix B;
-    B.n = 6;
-    B.data = {1.3, 2.5, 8.95, 3.11, 2.28, 3.22, 1.44, 6.55};
-    B.row_id = {2, 4, 2, 1, 3, 5, 1, 4};
-    B.col_ptr = {0, 1, 2, 3, 5, 6, 8};
+    B.n = 4;
+    B.data = {4.2, 7.8, 3.2, 1.1};
+    B.row_id = {1, 2, 1, 3};
+    B.col_ptr = {0, 1, 2, 3, 4};
     SparceMatrix C;
-    C.n = 6;
-    C.data = {7.306, 0.55, 50.299, 12.6312, 44.8738, 2.2218, 1.441, 11.952};
-    C.row_id = {1, 0, 1, 2, 3, 5, 0, 3};
-    C.col_ptr = {0, 1, 2, 3, 5, 6, 8};
+    C.n = 4;
+    C.data = {13.44, 36.54, 19.5, 10.24, 27.84, 3.63};
+    C.row_id = {2, 3, 1, 2, 3, 2};
+    C.col_ptr = {0, 2, 3, 5, 6};
     SparceMatrix res = multiply(A, B);
     EXPECT_EQ(C.row_id, res.row_id);
     EXPECT_EQ(C.col_ptr, res.col_ptr);
