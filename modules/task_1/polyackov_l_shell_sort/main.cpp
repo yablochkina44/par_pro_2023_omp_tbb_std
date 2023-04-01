@@ -34,7 +34,7 @@ TEST(Sequential, Test_Reverse_Sorted_Array) {
 
 TEST(Sequential, Test_Partially_Sorted_Array) {
   std::vector<int> tmp = get_random_vec(num_of_elems, random_gen_seed);
-  int delta = 3;  // delta * 2 элемента будут отсортированы в середине массива
+  int delta = 3;  // delta * 2 elements will be sorted in the middle of the array
   std::sort(tmp.begin() + num_of_elems / 2 - delta, tmp.begin() + num_of_elems / 2 + delta);
   std::vector<int> res = shell_sort_with_simple_merge_seq(tmp, num_of_parts);
   for (int i = 1; i < res.size(); i++) {
@@ -44,7 +44,7 @@ TEST(Sequential, Test_Partially_Sorted_Array) {
 
 TEST(Sequential, Test_Array_With_Repeating_Elements) {
   std::vector<int> tmp = get_random_vec(num_of_elems, random_gen_seed);
-  int delta = 3;  // delta * 2 элемента будут изменены в середине массива
+  int delta = 3;  // delta * 2 elements will be changed in the middle of the array
   for (int i = num_of_elems / 2 - delta; i < num_of_elems / 2; i++) {
     tmp[i] = tmp[i - 1];
   }
