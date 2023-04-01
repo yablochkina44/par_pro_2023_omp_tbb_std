@@ -1,7 +1,7 @@
 // Copyright 2023 Sharovatov Daniil
 #include "../../../modules/task_1/sharovatov_d_int_radix_merge/int_radix_merge.h"
 
-int getMax(std::vector<int>& arr) {
+int getMax(const std::vector<int> arr) {
   int maxNum = arr[0];
   for (int i = 1; i < arr.size(); i++) {
     if (arr[i] > maxNum) {
@@ -11,7 +11,7 @@ int getMax(std::vector<int>& arr) {
   return maxNum;
 }
 
-void radixSortForExp(std::vector<int>& arr, int exp) {
+std::vector<int> radixSortForExp(std::vector<int> arr, int exp) {
   int n = arr.size();
   std::vector<int> output(n);
   std::vector<int> count(10, 0);
@@ -32,30 +32,35 @@ void radixSortForExp(std::vector<int>& arr, int exp) {
   for (int i = 0; i < n; i++) {
     arr[i] = output[i];
   }
+
+  return arr;
 }
 
-void radixSort(std::vector<int>& arr) {
+std::vector<int> radixSort(std::vector<int> arr) {
   int maxNum = getMax(arr);
 
   for (int exp = 1; maxNum / exp > 0; exp *= 10) {
-    radixSortForExp(arr, exp);
+    arr = radixSortForExp(arr, exp);
   }
+
+  return arr;
 }
 
-std::vector<int> radixSortMerge(std::vector<int>& arr) {
+std::vector<int> radixSortMerge(std::vector<int> arr) {
   if (arr.size() == 0) throw - 1;
 
   std::vector<int> result(arr.size());
 
-  const int half = arr.size() / 2;
+  int half = arr.size() / 2;
   std::vector<int> first(arr.begin(), arr.begin() + half);
   std::vector<int> second(arr.begin() + half, arr.end());
 
-  radixSort(first);
-  radixSort(second);
+  first = radixSort(first);
+  second = radixSort(second);
 
   std::merge(first.begin(), first.end(), second.begin(), second.end(),
              result.begin());
+
   return result;
 }
 
