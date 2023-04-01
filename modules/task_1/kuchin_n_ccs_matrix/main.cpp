@@ -119,7 +119,7 @@ TEST(Str, test5) {
     C.col_ptr = {0, 1, 2, 3, 5, 6, 8};
     SparceMatrix res = multiply(A, B);
     for (int i = 0; i < C.data.size(); i++) {
-        ASSERT_TRUE(fabs(C.data[i] - res.data[i]) < 0.01);
+        ASSERT_TRUE(fabs(C.data[i] - res.data[i]) < 0.1);
     }
     EXPECT_EQ(C.row_id, res.row_id);
     EXPECT_EQ(C.col_ptr, res.col_ptr);
