@@ -7,7 +7,6 @@
 #include<cmath>
 #include "../../../modules/task_1/sukharev_a_convex_hull_binimg/sukharev_a_convex_hull_binimg.h"
 
-
 std::vector<std::vector<std::pair<int, int>>> build_components(
     const std::vector<std::vector<int>>& img, const int n, const int m) {
     std::vector<std::vector<std::pair<int, int>>> res;
