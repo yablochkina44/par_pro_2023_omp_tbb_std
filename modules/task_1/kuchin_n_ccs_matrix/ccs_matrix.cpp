@@ -82,10 +82,10 @@ SparceMatrix multiply(SparceMatrix A, SparceMatrix B) {
     return C;
 }
 
-std::vector<double> std::operator-(const vector<double>& a,
-                                   const vector<double>& b) {
+std::vector<double> minus(const std::vector<double>& a,
+                          const std::vector<double>& b) {
     if (a.size() != b.size()) throw("a.size() != b.size()");
-    vector<double> c(a.size());
+    std::vector<double> c(a.size());
     for (size_t i = 0; i < a.size(); ++i) c[i] = fabs(a[i] - b[i]);
     return c;
 }
