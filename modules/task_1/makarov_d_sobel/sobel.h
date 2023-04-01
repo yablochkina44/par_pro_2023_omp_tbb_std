@@ -3,6 +3,7 @@
 #define MODULES_TASK_1_MAKAROV_D_SOBEL_SOBEL_H_
 
 #include <vector>
+#include <algorithm>
 
 using Matrix = std::vector<std::vector<int>>;
 
