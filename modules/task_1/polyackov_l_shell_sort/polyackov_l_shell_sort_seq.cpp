@@ -1,4 +1,3 @@
-// Copyright 2023 Polyackov Lev
 #include "../../modules/task_1/polyackov_l_shell_sort/polyackov_l_shell_sort_seq.h"
 
 std::vector<int> get_random_vec(int size, unsigned int seed) {

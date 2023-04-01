@@ -1,5 +1,4 @@
-﻿//  Copyright 2023 Polyackov Lev
-#include <gtest/gtest.h>
+﻿#include <gtest/gtest.h>
 #include <algorithm>
 #include "../../modules/task_1/polyackov_l_shell_sort/polyackov_l_shell_sort_seq.h"
 
