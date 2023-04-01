@@ -1,4 +1,4 @@
-//  Copyright 2023 Zagrebin S.
+// Copyright 2023 Zagrebin S.
 
 #ifndef MODULES_TASK_1_ZAGREBIN_S_CCS_MULT_CCS_MULT_H_
 #define MODULES_TASK_1_ZAGREBIN_S_CCS_MULT_CCS_MULT_H_
@@ -26,7 +26,7 @@ struct CCS {
 
 std::ostream& operator<<(std::ostream &os, const CCS &_m);
 
-void fill(CCS& m, double p, std::default_random_engine& eng);
+void fill(CCS* m, double p, std::default_random_engine* eng);
 
 using it = std::vector<CCS::elem>::const_iterator;
 inline Comp mult(it i, it a, it j, it b);
