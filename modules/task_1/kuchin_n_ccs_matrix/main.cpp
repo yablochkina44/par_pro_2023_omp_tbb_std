@@ -30,7 +30,28 @@ TEST(Str, test1) {
     EXPECT_EQ(C.col_ptr, res.col_ptr);
 }
 
-TEST(Str, test2) { EXPECT_EQ(1, 1); }
+TEST(Str, test2) {
+    SparceMatrix A;
+    A.n = 4;
+    A.data = {1.3, 7.5, 6.3, 2.1, 9.5};
+    A.row_id = {0, 2, 1, 3, 2};
+    A.col_ptr = {0, 1, 2, 4, 5};
+    SparceMatrix B;
+    B.n = 4;
+    B.data = {1.4, 5.9, 8.3, 3.1, 2.2};
+    B.row_id = {0, 1, 3, 1, 2};
+    B.col_ptr = {0, 1, 3, 4, 5};
+    SparceMatrix C;
+    C.n = 4;
+    C.data = {1.82, 123.1, 23.25, 13.86, 4.62};
+    C.row_id = {
+        0, 2, 2, 1, 3,
+    };
+    C.col_ptr = {0, 1, 2, 3, 5};
+    SparceMatrix res = multiply(A, B);
+    EXPECT_EQ(C.row_id, res.row_id);
+    EXPECT_EQ(C.col_ptr, res.col_ptr);
+}
 
 TEST(Str, test3) {
     SparceMatrix A;
