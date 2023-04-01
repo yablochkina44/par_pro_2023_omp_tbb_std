@@ -2,9 +2,6 @@
 
 #include "../../../modules/task_1/kuchin_n_ccs_matrix/ccs_matrix.h"
 
-#include <cmath>
-
-const double ZERO = 0.000001;
 SparceMatrix transport(SparceMatrix A) {
     SparceMatrix AT;
     AT.n = A.n;
