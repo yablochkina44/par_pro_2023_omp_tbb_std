@@ -1,4 +1,5 @@
 // Copyright 2023 Elistratov Vladimir
+
 #include <gtest/gtest.h>
 
 #include "../../../modules/task_1/elistratov_v_jarvis_passage/jarvis_passage.h"
