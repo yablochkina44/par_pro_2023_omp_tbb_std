@@ -14,7 +14,7 @@ std::vector<int> get_random_vec(int size, unsigned int seed) {
   return vec;
 }
 
-std::vector<int> shell_sort_seq(std::vector<int>& vec) {
+std::vector<int> shell_sort_seq(const std::vector<int>& vec) {
   std::vector<int> result_vec(vec);
 
   for (int delta = result_vec.size() / 2; delta > 0; delta /= 2) {
@@ -31,7 +31,7 @@ std::vector<int> shell_sort_seq(std::vector<int>& vec) {
   return result_vec;
 }
 
-std::vector<int> simple_merge(std::vector<int>& first_vec, std::vector<int>& second_vec) {
+std::vector<int> simple_merge(const std::vector<int>& first_vec, const std::vector<int>& second_vec) {
   int i = 0, j = 0, k = 0;
 
   int first_size = first_vec.size();
@@ -63,7 +63,7 @@ std::vector<int> simple_merge(std::vector<int>& first_vec, std::vector<int>& sec
   return result_vec;
 }
 
-std::vector<std::vector<int>> simple_separate(std::vector<int>& vec, int num_of_parts) {
+std::vector<std::vector<int>> simple_separate(const std::vector<int>& vec, int num_of_parts) {
   std::vector<std::vector<int>> result_vec;
   std::vector<int> tmp;
 
@@ -85,9 +85,9 @@ std::vector<std::vector<int>> simple_separate(std::vector<int>& vec, int num_of_
   return result_vec;
 }
 
-std::vector<int> shell_sort_with_simple_merge_seq(std::vector<int>& vec, int num_of_parts) {
+std::vector<int> shell_sort_with_simple_merge_seq(const std::vector<int>& vec, int num_of_parts) {
   std::vector<std::vector<int>> tmp_res = simple_separate(vec, num_of_parts);
-  /*for (auto& tmp_elem : tmp_res) {
+  /* for (auto& tmp_elem : tmp_res) {
     for (auto& elem : tmp_elem) {
       std::cout << elem << ' ';
     }
