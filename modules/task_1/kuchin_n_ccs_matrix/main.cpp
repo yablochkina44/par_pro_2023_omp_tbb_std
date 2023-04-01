@@ -30,9 +30,7 @@ TEST(Str, test1) {
     EXPECT_EQ(C.col_ptr, res.col_ptr);
 }
 
-TEST(Str, test2) {
-    EXPECT_EQ(1,1);
-}
+TEST(Str, test2) { EXPECT_EQ(1, 1); }
 
 TEST(Str, test3) {
     SparceMatrix A;
