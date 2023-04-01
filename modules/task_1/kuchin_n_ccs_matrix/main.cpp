@@ -2,6 +2,8 @@
 
 #include <gtest/gtest.h>
 
+#include <cmath>
+
 #include "./ccs_matrix.h"
 
 TEST(Str, test1) {
@@ -46,7 +48,7 @@ TEST(Str, test2) {
     C.col_ptr = {0, 0, 1, 5, 5};
     SparceMatrix res = multiply(A, B);
     for (int i = 0; i < C.data.size(); i++) {
-        ASSERT_TRUE(C.data[i] - res.data[i] < 0.01);
+        ASSERT_TRUE(fabs(C.data[i] - res.data[i]) < 0.01);
     }
     EXPECT_EQ(C.row_id, res.row_id);
     EXPECT_EQ(C.col_ptr, res.col_ptr);
