@@ -36,9 +36,7 @@ TEST(zagrebin_ccs_seq, Test_Zero) {
     m3 = mult(m1, m2);  // 0 0 \ 0 0
     Comp ans[] = {};
 
-    EXPECT_EQ(m3.data.size(), sizeof(ans) / sizeof(Comp));
-    for (size_t i = 0; i < m3.data.size(); ++i)
-        EXPECT_NEAR(std::abs(m3.data[i].val - ans[i]), 0, 0.0001);
+    EXPECT_EQ(m3.data.size(), 0);
 }
 
 TEST(zagrebin_ccs_seq, Test_Dense) {
