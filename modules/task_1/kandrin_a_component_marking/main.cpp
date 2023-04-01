@@ -20,6 +20,8 @@ Matrix<T> TwoDimensionalVectorToMatrix(
 }  // namespace
 
 TEST(Sequential, WhiteImage) {
+  // 1 is the black area(object)
+  // 0 is the white area(background)
   BinaryImage image(5, 5, 1);
   LabelImage expectedLabelImage =
       TwoDimensionalVectorToMatrix<Label>({{1, 1, 1, 1, 1},
@@ -45,6 +47,8 @@ TEST(Sequential, BlackImage) {
   ASSERT_EQ(labelImage, expectedLabelImage);
 }
 TEST(Sequential, ChessImage) {
+  // 1 is the black area(object)
+  // 0 is the white area(background)
   BinaryImage image =
       TwoDimensionalVectorToMatrix<BinaryPixel>({{1, 0, 1, 0, 1},
                                                  {0, 1, 0, 1, 0},
@@ -63,6 +67,8 @@ TEST(Sequential, ChessImage) {
 }
 
 TEST(Sequential, TwoTrianglesImage) {
+  // 1 is the black area(object)
+  // 0 is the white area(background)
   BinaryImage image =
       TwoDimensionalVectorToMatrix<BinaryPixel>({{1, 1, 1, 0, 0},
                                                  {1, 1, 0, 0, 0},
@@ -81,6 +87,8 @@ TEST(Sequential, TwoTrianglesImage) {
 }
 
 TEST(Sequential, UnionImage) {
+  // 1 is the black area(object)
+  // 0 is the white area(background)
   BinaryImage image =
       TwoDimensionalVectorToMatrix<BinaryPixel>({{1, 0, 1, 0, 1},
                                                  {1, 0, 1, 0, 0},
