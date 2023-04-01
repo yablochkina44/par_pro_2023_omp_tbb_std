@@ -1,12 +1,14 @@
 // Copyright 2023 Kandrin Alexey
 #include <gtest/gtest.h>
-#include "component_marking.h"
+
+#include "./component_marking.h"
 
 namespace {
 template <class T>
 Matrix<T> TwoDimensionalVectorToMatrix(
     std::initializer_list<std::initializer_list<T>> initializerList) {
-  std::vector<std::vector<T>> vec(initializerList.begin(), initializerList.end());
+  std::vector<std::vector<T>> vec(initializerList.begin(),
+                                  initializerList.end());
   Matrix<T> result(vec.size(), vec[0].size());
   for (size_t i = 0; i < result.GetRowCount(); ++i) {
     for (size_t j = 0; j < result.GetColCount(); ++j) {
@@ -25,7 +27,8 @@ TEST(Sequential, WhiteImage) {
                                            {1, 1, 1, 1, 1},
                                            {1, 1, 1, 1, 1},
                                            {1, 1, 1, 1, 1}});
-  LabelImage labelImage = GetComponentMarking<ExecutionPolicy::Sequential>(image);
+  LabelImage labelImage =
+      GetComponentMarking<ExecutionPolicy::Sequential>(image);
   ASSERT_EQ(labelImage, expectedLabelImage);
 }
 

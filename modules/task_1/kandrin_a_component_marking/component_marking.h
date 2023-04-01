@@ -81,11 +81,11 @@ class WorkSplitter {
   WorkSplitter(size_t work, size_t workerCount);
 
   // Determining how much work a worker should do.
-  // \param workerNumber The worker for whom we calculate how much work he has to do.
-  // \return What part of the work should worker do.
-  // (If there are fewer work than workerCount, then some workers will do
-  // nothing. If work is proportional to the workerCount, then all workers will
-  // do the same amount of work)
+  // \param workerNumber The worker for whom we calculate how much work he has
+  // to do. \return What part of the work should worker do. (If there are fewer
+  // work than workerCount, then some workers will do nothing. If work is
+  // proportional to the workerCount, then all workers will do the same amount
+  // of work)
   size_t GetPartWork(size_t workerNumber) const;
 };
 
@@ -108,29 +108,40 @@ Matrix<T> GetRandomMatrix(size_t rowCount, size_t colCount,
 
 #pragma endregion HelperClasses
 
-// Бинарный пиксель (использовать bool не получилось из-за существования специализации vector<bool>)
+// Binary pixel (using bool failed due to the existence
+// specialization vector<bool>)
 using BinaryPixel = char;
-using BinaryImage = Matrix<BinaryPixel>; // бинарное изображение
+using BinaryImage = Matrix<BinaryPixel>;  // binary image
 
-using Label = unsigned int; // тип для метки
-using LabelImage = Matrix<Label>; // размеченное изображение
+using Label = unsigned int;        // type for label
+using LabelImage = Matrix<Label>;  // labeled image
 
-// Политика выполнения
+// Execution Policy
 enum class ExecutionPolicy {
-    Sequential, // последовательное выполнение
-    Parallel // паралелльное выполнение
+  Sequential,  // sequential execution
+  Parallel     // parallel execution
 };
 
-template<ExecutionPolicy executionPolicy>
-LabelImage GetComponentMarking(const BinaryImage& sourceImage);
+// Implementation of getting labeling of connectivity components
+template <ExecutionPolicy executionPolicy>
+LabelImage GetComponentMarkingImp(const BinaryImage& source);
 
-template<>
-LabelImage GetComponentMarking<ExecutionPolicy::Sequential>(
-    const BinaryImage& sourceImage);
-
+// Implementation of getting labeling of connectivity components (sequential
+// implementation)
 template <>
-LabelImage GetComponentMarking<ExecutionPolicy::Parallel>(
-    const BinaryImage& sourceImage) =
-    delete;  // в первой лабораторной работе отсуствует параллельная реализация
+LabelImage GetComponentMarkingImp<ExecutionPolicy::Sequential>(
+    const BinaryImage& source);
+
+// Implementation of getting labeling of connectivity components (parallel
+// implementation)
+template <>
+LabelImage GetComponentMarkingImp<ExecutionPolicy::Parallel>(
+    const BinaryImage& source) = delete;
+
+// Get labeled connectivity components
+template <ExecutionPolicy executionPolicy>
+LabelImage GetComponentMarking(const BinaryImage& sourceImage) {
+  return GetComponentMarkingImp<executionPolicy>(sourceImage);
+}
 
 #endif  // MODULES_TASK_1_KANDRIN_A_COMPONENT_MARKING_COMPONENT_MARKING_H_
