@@ -2,6 +2,9 @@
 
 #include "../../../modules/task_1/kuchin_n_ccs_matrix/ccs_matrix.h"
 
+#include <cmath>
+
+const double ZERO = 0.000001;
 SparceMatrix transport(SparceMatrix A) {
     SparceMatrix AT;
     AT.n = A.n;
@@ -77,5 +80,44 @@ SparceMatrix multiply(SparceMatrix A, SparceMatrix B) {
     }
     C.col_ptr.push_back(C.data.size());
     C.n = A.col_ptr.size() - 1;
+    return C;
+}
+
+SparceMatrix Multiplicate(SparceMatrix A, SparceMatrix B) {
+    SparceMatrix C;
+    C.n = A.n;
+    int N = A.n;
+    std::vector<int> rows;
+    std::vector<double> values;
+    std::vector<int> col_ind;
+    int colNZ;
+    col_ind.push_back(0);
+    for (int i = 0; i < N; i++) {
+        colNZ = 0;
+        for (int j = 0; j < N; j++) {
+            double sum = 0;
+            for (int k = A.col_ptr[i]; k < A.col_ptr[i + 1]; k++) {
+                for (int l = B.col_ptr[j]; l < B.col_ptr[j + 1]; l++) {
+                    if (A.row_id[k] == B.row_id[l]) {
+                        sum += A.data[k] * B.data[l];
+                        break;
+                    }
+                }
+            }
+            if (fabs(sum) > ZERO) {
+                rows.push_back(j);
+                values.push_back(sum);
+                colNZ++;
+            }
+        }
+        col_ind.push_back(colNZ + col_ind[i]);
+    }
+
+    for (unsigned int j = 0; j < rows.size(); j++) {
+        C.row_id[j] = rows[j];
+        C.data[j] = values[j];
+    }
+    for (int i = 0; i <= N; i++) C.col_ptr[i] = col_ind[i];
+
     return C;
 }

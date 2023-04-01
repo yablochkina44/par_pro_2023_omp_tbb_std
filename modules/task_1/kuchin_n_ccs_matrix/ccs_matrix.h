@@ -12,6 +12,7 @@ struct SparceMatrix {
 
 SparceMatrix transport(SparceMatrix A);
 SparceMatrix multiply(SparceMatrix A, SparceMatrix B);
+SparceMatrix Multiplicate(SparceMatrix A, SparceMatrix B);
 int test();
 double test1();
 #endif  // MODULES_TASK_1_KUCHIN_N_CCS_MATRIX_CCS_MATRIX_H_
