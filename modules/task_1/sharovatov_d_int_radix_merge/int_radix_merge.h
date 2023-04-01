@@ -7,13 +7,13 @@
 #include <vector>
 #include <random>
 
-int getMax(std::vector<int> arr);
+int getMax(std::vector<int>* vec);
 
-std::vector<int> radixSortForExp(std::vector<int> arr, int exp);
+void radixSortForExp(std::vector<int>* vec, int exp);
 
-std::vector<int> radixSort(std::vector<int> arr);
+void radixSort(std::vector<int>* vec);
 
-std::vector<int> radixSortMerge(std::vector<int> arr);
+std::vector<int> radixSortMerge(std::vector<int>* vec);
 
 std::vector<int> getRandomVector(int size);
 
