@@ -43,8 +43,7 @@ std::vector<double> merge(const std::vector<double>& arr1,
         if (arr1[indexFirst] > arr2[indexSecond]) {
             out[i] = arr2[indexSecond];
             indexSecond++;
-        }
-        else if (arr1[indexFirst] <= arr2[indexSecond]) {
+        } else if (arr1[indexFirst] <= arr2[indexSecond]) {
             out[i] = arr1[indexFirst];
             indexFirst++;
         }
@@ -102,8 +101,7 @@ bool countSortFinalStep(double* in, double* out, int len) {
             out[i] = in[j];
             if (flag) {
                 j++;
-            }
-            else {
+            } else {
                 j--;
             }
             if (j == firstNegativeIndex - 1 && !flag) {
@@ -112,8 +110,7 @@ bool countSortFinalStep(double* in, double* out, int len) {
             }
         }
         return true;
-    }
-    else if (!positiveFlag) {
+    } else if (!positiveFlag) {
         for (int i = len - 1, j = 0; i >= 0; i--, j++) {
             out[j] = in[i];
         }

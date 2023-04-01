@@ -18,8 +18,8 @@ TEST(Sequential, Test_Sort_With_20_Random_Elements) {
     std::vector<double> result;
     result = radixSort(firstPart, secondPart);
     std::sort(vec1.begin(), vec1.end());
-    //printVector(vec1);
-    //printVector(result);
+    // printVector(vec1);
+    // printVector(result);
     for (int i = 0; i < vec1.size(); i++) {
         ASSERT_EQ(vec1[i], result[i]);
     }
@@ -37,8 +37,8 @@ TEST(Sequential, Test_Sort_With_30_Only_Positive_Elements) {
     std::vector<double> result;
     result = radixSort(firstPart, secondPart);
     std::sort(vec1.begin(), vec1.end());
-    //printVector(vec1);
-    //printVector(result);
+    // printVector(vec1);
+    // printVector(result);
     for (int i = 0; i < vec1.size(); i++) {
         ASSERT_EQ(vec1[i], result[i]);
     }
@@ -56,8 +56,8 @@ TEST(Sequential, Test_Sort_With_30_Only_Negative_Elements) {
     std::vector<double> result;
     result = radixSort(firstPart, secondPart);
     std::sort(vec1.begin(), vec1.end());
-    //printVector(vec1);
-    //printVector(result);
+    // printVector(vec1);
+    // printVector(result);
     for (int i = 0; i < vec1.size(); i++) {
         ASSERT_EQ(vec1[i], result[i]);
     }
@@ -75,8 +75,8 @@ TEST(Sequential, Test_Sort_With_100_Random_Elements) {
     std::vector<double> result;
     result = radixSort(firstPart, secondPart);
     std::sort(vec1.begin(), vec1.end());
-    //printVector(vec1);
-    //printVector(result);
+    // printVector(vec1);
+    // printVector(result);
     for (int i = 0; i < vec1.size(); i++) {
         ASSERT_EQ(vec1[i], result[i]);
     }
@@ -94,8 +94,8 @@ TEST(Sequential, Test_Sort_With_1000_Random_Elements) {
     std::vector<double> result;
     result = radixSort(firstPart, secondPart);
     std::sort(vec1.begin(), vec1.end());
-    //printVector(vec1);
-    //printVector(result);
+    // printVector(vec1);
+    // printVector(result);
     for (int i = 0; i < vec1.size(); i++) {
         ASSERT_EQ(vec1[i], result[i]);
     }

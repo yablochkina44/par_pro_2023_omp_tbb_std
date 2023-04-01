@@ -13,4 +13,4 @@ bool countSortFinalStep(double* in, double* out, int len);
 void countSort(double* in, double* out, int len, int exp);
 std::vector<double> randomVec(int size, int leftBound, int rightBound);
 
-#endif // !MODULES_TASK_1_YUNIN_D_RADIX_DOUBLE_SORT_EAZY_MERGE_YUNIN_D_RADIX_DOUBLE_SORT_EAZY_MERGE_H_
+#endif // MODULES_TASK_1_YUNIN_D_RADIX_DOUBLE_SORT_EAZY_MERGE_YUNIN_D_RADIX_DOUBLE_SORT_EAZY_MERGE_H_
