@@ -5,6 +5,7 @@
 #include <cmath>
 #include <iostream>
 
+
 const double MaxError = 0.01;
 const double Steps = 100;
 
