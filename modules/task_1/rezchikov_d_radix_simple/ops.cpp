@@ -64,7 +64,7 @@ std::vector<int> getRndVector(int size) {
     std::random_device dev;
     std::mt19937 gen(dev());
 
-    std::vector<int> res;
+    std::vector<int> res(size);
 
     for (int i = 0; i < size; ++i) {
         res[i] = gen() % 1000;
