@@ -1,0 +1,29 @@
+// Copyright 2023 Yurin Evgeny
+
+#ifndef MODULES_TASK_1_YURIN_E_SLAU_GRADIENT_SLAU_GRADIENT_H_
+#define MODULES_TASK_1_YURIN_E_SLAU_GRADIENT_SLAU_GRADIENT_H_
+
+#include <vector>
+#include <cmath>
+#include <algorithm>
+#include <numeric>
+#include <random>
+
+const double EPS = 1.0e-10;
+
+using dvec = std::vector<double>;
+using dmat = std::vector<dvec>;
+
+dmat generateMatrix(int size, unsigned int seed);
+
+dvec generateVector(int size, unsigned int seed);
+
+double scalarProduct(const dvec &a, const dvec &b);
+
+dvec matrix_vec(const dmat &a, const dvec &b);
+
+dvec vec_vec_comb(double firstScalar, const dvec& firstVector, double secondScalar, const dvec& secondVector);
+
+dvec solve(const dmat &matrix, const dvec& vector);
+
+#endif  // MODULES_TASK_1_YURIN_E_SLAU_GRADIENT_SLAU_GRADIENT_H_
