@@ -14,7 +14,7 @@ if ( USE_SEQ )
 
     target_link_libraries(${ProjectId} ${PACK_LIB})
     target_link_directories(${ProjectId} PUBLIC ${CMAKE_BINARY_DIR}/googletest-install/lib)
-    target_link_libraries(${ProjectId} gtest )
+    target_link_libraries(${ProjectId} gtest pthread )
 
     enable_testing()
     add_test(NAME ${ProjectId} COMMAND ${ProjectId})
