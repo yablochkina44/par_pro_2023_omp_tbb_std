@@ -1,9 +1,9 @@
 // Copyright 2023 Maxim Kolesov
 #pragma once
 
+#include <omp.h>
 #include <vector>
 #include <cstdint>
-#include <omp.h>
 
 constexpr uint32_t kernelSize = 3;
 
