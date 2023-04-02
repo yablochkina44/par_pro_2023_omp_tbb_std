@@ -15,8 +15,8 @@ void GoogleAssertNear(dvec a, dvec b, double eps) {
 }
 
 TEST(Sequential, Test_1) {
-    dmat randomMatrix = generateMatrix(1, 111);
-    dvec randomAnswer = generateVector(1, 222);
+    dmat randomMatrix = generateMatrix(1, 1111);
+    dvec randomAnswer = generateVector(1, 2222);
     dvec matrixFromRandom = matrix_vec(randomMatrix, randomAnswer);
     dvec answer = solve(randomMatrix, matrixFromRandom);
     GoogleAssertNear(answer, randomAnswer, EPS);
