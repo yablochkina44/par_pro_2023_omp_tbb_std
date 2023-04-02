@@ -33,7 +33,7 @@ TEST(MonteCarloSeq, Test_4) {
 
 TEST(MonteCarloSeq, Test_5) {
   std::vector<double> a{ 3,3,3 };
-  std::vector<double> b{ 6,6,6 };
+  std::vector<double> b{ 7,7,7 };
   ASSERT_NO_THROW(MonteCarloSeq(a, b, 20000, func));
 }
 
