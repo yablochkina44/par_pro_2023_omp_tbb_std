@@ -4,8 +4,6 @@
 
 #include "../../../modules/task_1/yurin_e_slau_gradient/slau_gradient.h"
 
-const double EPS = 1.0e-6;
-
 void GoogleAssertNear(dvec a, dvec b, double eps) {
     for (int i = 0; i < a.size(); i++) {
         for (int j = 0; j < b.size(); j++) {

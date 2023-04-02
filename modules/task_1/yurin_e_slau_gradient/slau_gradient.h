@@ -9,7 +9,7 @@
 #include <numeric>
 #include <random>
 
-const double EPS = 1.0e-10;
+const double EPS = 1.0e-6;
 
 using dvec = std::vector<double>;
 using dmat = std::vector<dvec>;
