@@ -9,7 +9,7 @@
 
 
 double MonteCarloSeq(std::vector<double> a,
-  std::vector<double> b, int n, double func(double, double, double)){
+  std::vector<double> b, int n, double func(double, double, double)) {
   double sum = 0;
   double integer = 0;
   std::vector<double> x(3);
