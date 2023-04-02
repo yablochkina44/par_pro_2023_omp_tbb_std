@@ -16,10 +16,10 @@ std::vector<int> getRandomVector(int size) {
 void ShellSort(std::vector<int>* vec) {
     unsigned size = vec->size();
     unsigned k = 1;
-    while ((k << 1 | 1) < size) { 
-        k = (k << 1) | 1; 
+    while ((k << 1 | 1) < size) {
+        k = (k << 1) | 1;
     }
-    for (; k > 0; k >>= 1) {  
+    for (; k > 0; k >>= 1) {
         for (unsigned i = k; i < size; i++) {
             int t = (*vec)[i];
             unsigned j = i;
