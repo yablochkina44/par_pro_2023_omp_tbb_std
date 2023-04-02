@@ -83,7 +83,7 @@ std::vector<uint32_t> processParallel(const std::vector<uint32_t> &image, uint32
   std::vector<uint32_t> result(image.size());
 
 #pragma omp parallel for default(none) shared(result, image, width, height)
-  for (uint32_t i = 0; i < height; i++) {
+  for (int64_t i = 0; i < height; i++) {
     std::vector<uint32_t> line = processLine(image, width, height, i);
     std::memcpy(result.data() + width*i, line.data(), line.size() * sizeof(uint32_t));
   }
