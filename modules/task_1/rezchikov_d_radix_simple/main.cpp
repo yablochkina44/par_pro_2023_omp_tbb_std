@@ -1,6 +1,6 @@
 // Copyright 2023 Rezchikov Dmitrii
 #include <gtest/gtest.h>
-#include "./ops.h"
+#include "../../../modules/task_1/rezchikov_d_radix_simple/ops.h"
 
 
 TEST(Sequential, Test_Size_0) {
