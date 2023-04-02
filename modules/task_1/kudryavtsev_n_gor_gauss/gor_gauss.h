@@ -6,6 +6,7 @@
 #include<ctime>
 #include<random>
 #include<algorithm>
+
 using Matrix = std::vector<std::vector<double>>;
 Matrix getRandomMatrix(int rows, int cols);
 template <class T> T clamp(T tmp, int max, int min);
