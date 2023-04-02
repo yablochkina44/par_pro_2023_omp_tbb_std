@@ -54,8 +54,8 @@ void mergeRadixSort(std::vector<int> * vec) {
     std::vector<int> v1(vec->begin(), vec->begin() + pvt);
     std::vector<int> v2(vec->begin() + pvt, vec->end() );
 
-    radSortSeq(v1);
-    radSortSeq(v2);
+    radSortSeq(&v1);
+    radSortSeq(&v2);
 
     std::merge(v1.begin(), v1.end(), v2.begin(), v2.end(), vec->begin());
 }
