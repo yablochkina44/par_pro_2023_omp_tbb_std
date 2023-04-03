@@ -1,4 +1,4 @@
-//Copyright 2023 Popov Andrey
+// Copyright 2023 Popov Andrey
 #include <algorithm>
 #include <iostream>
 #include <random>
