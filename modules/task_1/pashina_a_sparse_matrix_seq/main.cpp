@@ -14,13 +14,12 @@ class CRSMatrix {
   std::vector<int> pointerCRS;
 
   CRSMatrix(int numC, int numR, const std::vector<double>& myVal,
-            const std::vector<int>& myColu, const std::vector<int>& myPointer) {
-    valueCRS = myVal;
-    numCol = numC;
-    colsCRS = myColu;
-    numRow = numR;
-    pointerCRS = myPointer;
-  }
+            const std::vector<int>& myColu, const std::vector<int>& myPointer)
+      : valueCRS(myVal),
+        numCol(numC),
+        colsCRS(myColu),
+        numRow(numR),
+        pointerCRS(myPointer) {}
   explicit CRSMatrix(int numC = 0, int numR = 0) {
     numCol = numC;
     numRow = numR;
