@@ -50,7 +50,7 @@ SparseMatrix& SparseMatrix::transpose() {
     if (is_empty())
         return *this;
     std::vector<int> row_indexes;
-    std::vector<int> tmp_rows(pointer.size());  // костыль!
+    std::vector<int> tmp_rows(pointer.size());
 
     for (int i = 1; i < pointer.size(); i++) {
         std::vector<double> values_a(values.begin() + pointer[i - 1], values.begin() + pointer[i]);
