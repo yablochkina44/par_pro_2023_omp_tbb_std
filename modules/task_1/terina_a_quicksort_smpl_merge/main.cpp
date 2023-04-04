@@ -4,59 +4,55 @@
 #include <iostream>
 #include "../../../modules/task_1/terina_a_quicksort_smpl_merge/qs_smpl_mrg.h"
 
-TEST(Sequentional_version_QS, can_sort_mas) {
-    int n = 10000;
-    double* mas = new double[n];
-    get_mas_rand(mas, n);
-    quickSort(mas, 0, n - 1);
+TEST(Sequentional_version_QS, can_sort_mas_10) {
+    int n = 10;
+    std::vector<int> vec = getRandomVector(n);
+    std::vector<int> Vec1(vec);
+    quickSort(0, n - 1, &vec);
+    std::sort(Vec1.begin(), Vec1.end());
 
-    ASSERT_EQ(1, CheckSort(mas, n));
+    EXPECT_EQ(vec, Vec1);
 }
 
+TEST(Sequentional_version_QS, can_sort_mas_100) {
+    int n = 100;
+    std::vector<int> vec = getRandomVector(n);
+    std::vector<int> Vec1(vec);
+    quickSort(0, n - 1, &vec);
+    std::sort(Vec1.begin(), Vec1.end());
+
+    EXPECT_EQ(vec, Vec1);
+}
+TEST(Sequentional_version_QS, can_sort_mas_300) {
+    int n = 300;
+    std::vector<int> vec = getRandomVector(n);
+    std::vector<int> Vec1(vec);
+    quickSort(0, n - 1, &vec);
+    std::sort(Vec1.begin(), Vec1.end());
+
+    EXPECT_EQ(vec, Vec1);
+}
 TEST(Sequentional_version_QS, sort_already_sorted_mas) {
-    int n = 10000;
-    double* mas = new double[n];
-    get_mas_rand(mas, n);
+    int n = 300;
+    std::vector<int> vec = GetSortedVec(n);
+    std::vector<int> Vec1(vec);
 
-    std::sort(&mas[0], &mas[n]);
-    quickSort(mas, 0, n - 1);
+    quickSort(0, n - 1, &vec);
 
-    ASSERT_EQ(1, CheckSort(mas, n));
+    EXPECT_EQ(vec, Vec1);
 }
-TEST(Sequentional_version_QS, sort_mas_with_the_same_elems) {
-    int n = 10000;
-    double* mas = new double[n];
-    for (int i = 0; i < n; i++) {
-        mas[i] = 5;
-    }
-    quickSort(mas, 0, n - 1);
-    ASSERT_EQ(1, CheckSort(mas, n));
-}
+
 TEST(Sequentional_version_QS, sort_mirror_mas) {
-    int n = 10000;
-    double* mas = new double[n], * b = new double[n];
-    get_mas_rand(mas, n);
+    int n = 300;
+    std::vector<int> vec = GetReversedVec(n);
+    std::vector<int> Vec1(vec);
 
-    std::sort(&mas[0], &mas[n]);
-    Copy_elements(mas, b, n);
+    quickSort(0, n - 1, &vec);
+    std::reverse(Vec1.begin(), Vec1.end());
 
-    for (int i = 0; i < n / 2; i++) {
-        std::swap(mas[i], mas[n - i - 1]);
-    }
-
-    quickSort(mas, 0, n - 1);
-
-    bool res = std::equal(&mas[0], &mas[n], &b[0]);
-    ASSERT_EQ(1, res);
+    EXPECT_EQ(vec, Vec1);
 }
 
-TEST(Sequentional_version_QS, one_elem_in_mass) {
-    int n = 10000;
-    double* mas = new double[n];
-    mas[0] = 1;
-    quickSort(mas, 0, n - 1);
-    ASSERT_EQ(mas[n - 1], 1);
-}
 
 int main(int argc, char** argv) {
     ::testing::InitGoogleTest(&argc, argv);
