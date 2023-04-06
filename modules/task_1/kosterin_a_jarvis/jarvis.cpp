@@ -6,7 +6,7 @@
 
 #include "../../../modules/task_1/kosterin_a_jarvis/jarvis.h"
 struct SPoint {
-  SPoint(int _x = 0, int _y = 0) {
+  explicit SPoint(int _x = 0, int _y = 0) {
     x = _x;
     y = _y;
   }
@@ -17,7 +17,7 @@ struct SPoint {
 struct SVector {
   int x, y;
 
-  SVector(SPoint a, SPoint b) {
+  explicit SVector(SPoint a, SPoint b) {
     x = b.x - a.x;
     y = b.y - a.y;
   }
@@ -69,20 +69,16 @@ bool ChekJarvis(std::vector<SPoint> jarArr) {
 }
 
 std::vector<SPoint> DoJarvis(std::vector<SPoint> arr, int size) {
-
   for (int i = 1; i < size; i++) {
     if (arr[i].y < arr[0].y)
       Swap(arr[0], arr[i]);
     else if (arr[i].y == arr[0].y && arr[i].x < arr[0].x)
       Swap(arr[0], arr[i]);
   }
-
   std::vector<SPoint> point;
-
   int currP = 0;
   while (true) {
     point.push_back(arr[currP]);
-
     int id = -1;
     for (int i = 0; i < arr.size(); i++) {
       if (i != currP && (id == -1 || Cross(SVector(arr[currP], arr[i]),
@@ -96,6 +92,5 @@ std::vector<SPoint> DoJarvis(std::vector<SPoint> arr, int size) {
       currP = id;
     }
   }
-
   return point;
 }
