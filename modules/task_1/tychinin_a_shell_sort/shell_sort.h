@@ -5,7 +5,7 @@
 #include <vector>
 
 namespace task1 {
-    std::vector<double> shell_sort(const std::vector<double>& vec);
+    std::vector<double> shell_sort(std::vector<double> vec);
 
 }  // namespace task1
 

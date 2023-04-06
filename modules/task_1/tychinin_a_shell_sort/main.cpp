@@ -33,7 +33,7 @@ TEST(shell_sort, sort_sorted_vector) {
     EXPECT_EQ(task1::shell_sort(vec), vec);
 }
 
-TEST(shell_sort, sort_sort_ascending_vector) {
+TEST(shell_sort, sort_descending_vector) {
     std::vector<double> vec{12341, 994., 5., 4., 2., 1.};
     std::vector<double> shell_sorted = task1::shell_sort(vec);
     std::sort(vec.begin(), vec.end());
