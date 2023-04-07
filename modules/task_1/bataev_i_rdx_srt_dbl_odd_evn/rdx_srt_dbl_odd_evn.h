@@ -1,10 +1,13 @@
 // Copyright 2023 Bataev Ivan
-#ifndef MODULES_TASK_1_BATAEV_I_VECT_ALT_SIGNS_VECT_ALT_SIGNS_H_
-#define MODULES_TASK_1_BATAEV_I_VECT_ALT_SIGNS_VECT_ALT_SIGNS_H_
+#ifndef MODULES_TASK_1_BATAEV_I_RDX_SRT_DBL_ODD_EVN_RDX_SRT_DBL_ODD_EVN_H_
+#define MODULES_TASK_1_BATAEV_I_RDX_SRT_DBL_ODD_EVN_RDX_SRT_DBL_ODD_EVN_H_
 
 #include <vector>
+#include <string>
 
 void printVector(const std::vector<double>& v, const std::string& prefix = "");
-void seqRdxSrt(std::vector<double>& buf, const int size, const int parts);
+std::vector<double> getRandomVector(int size, double left, double right);
+void seqRdxSrt(std::vector<double>& buf, const int size, const int parts = 1);
+void oddEvnMerge(std::vector<double>& buf, std::vector<double>& tmpBuf, std::vector<double*> partsPtrs, std::vector<double*> tmpPartsPtrs, int numParts, int lSize);
 
-#endif  // MODULES_TASK_1_BATAEV_I_VECT_ALT_SIGNS_VECT_ALT_SIGNS_H_
+#endif  // MODULES_TASK_1_BATAEV_I_RDX_SRT_DBL_ODD_EVN_RDX_SRT_DBL_ODD_EVN_H_
