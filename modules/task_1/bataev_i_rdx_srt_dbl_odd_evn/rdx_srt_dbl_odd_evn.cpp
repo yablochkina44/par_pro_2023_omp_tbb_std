@@ -7,6 +7,7 @@
 #include <string>
 #include <limits>
 #include <random>
+#include <cstring>
 #include "../../../modules/task_1/bataev_i_rdx_srt_dbl_odd_evn/rdx_srt_dbl_odd_evn.h"
 
 using std::uint8_t;
@@ -107,7 +108,7 @@ void dblRdxSrt(uint8_t* inOutBuf, uint8_t* tmpBuf, const int sizeBuf) {
 
         for (int i = 0; i < sizeBuf; i+=dblBytes) {
             uint8_t rdxVal = inBuf[i + pass];
-            memcpy(outBuf + dblBytes*(offsets[rdxVal]++), inBuf + i, dblBytes);
+            std::memcpy(outBuf + dblBytes*(offsets[rdxVal]++), inBuf + i, dblBytes);
         }
 
         std::swap(inBuf, outBuf);  // swap ptrs
@@ -136,14 +137,14 @@ void dblRdxSrt(uint8_t* inOutBuf, uint8_t* tmpBuf, const int sizeBuf) {
     for (int i = 0; i < sizeBuf; i+=dblBytes) {
         uint8_t rdxVal = inBuf[i + pass];
         if (rdxVal < 128)
-            memcpy(outBuf + dblBytes*(offsets[rdxVal]++), inBuf + i, dblBytes);
+            std::memcpy(outBuf + dblBytes*(offsets[rdxVal]++), inBuf + i, dblBytes);
         else
-            memcpy(outBuf + dblBytes*(--offsets[rdxVal]), inBuf + i, dblBytes);
+            std::memcpy(outBuf + dblBytes*(--offsets[rdxVal]), inBuf + i, dblBytes);
     }
 
     // if result is in tmpBuf copy it to inOutBuf
     if (pass%2 == 0)
-        memcpy(inOutBuf, tmpBuf, sizeBuf);
+        std::memcpy(inOutBuf, tmpBuf, sizeBuf);
 }
 
 // pair of parts for compare-exchange
@@ -190,8 +191,8 @@ void mrgNets(const std::vector<int>& partsUp, const std::vector<int>& partsDown,
     mrgNets(partsUpEven, partsDownEven, comprtrs);
 
     std::vector<int> sumParts(sumSize);
-    memcpy(sumParts.data(), partsUp.data(), partsUp.size()*sizeof(int));
-    memcpy(sumParts.data() + partsUp.size(), partsDown.data(), partsDown.size()*sizeof(int));
+    std::memcpy(sumParts.data(), partsUp.data(), partsUp.size()*sizeof(int));
+    std::memcpy(sumParts.data() + partsUp.size(), partsDown.data(), partsDown.size()*sizeof(int));
 
     for (int i = 1; i + 1 < sumSize; i += 2)
         (*comprtrs).push_back({ sumParts[i], sumParts[i + 1] });
@@ -249,7 +250,7 @@ void oddEvnMerge(std::vector<double>* buf, std::vector<double>* tmpBuf,
     // if partPtr points to tmpBuf copy this part to buf
     for (int i = 0; i < numParts; i++)
         if (partsPtrs[i] != (*buf).data() + i*lSize)
-            memcpy((*buf).data() + i*lSize, (*tmpBuf).data() + i*lSize, lSize*sizeof(double));
+            std::memcpy((*buf).data() + i*lSize, (*tmpBuf).data() + i*lSize, lSize*sizeof(double));
 }
 
 void seqRdxSrt(std::vector<double>* buf, int size, const int numParts) {
