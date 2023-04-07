@@ -21,7 +21,7 @@ TEST(Sequential, Test_OddEvenMerge) {
     std::vector<double> v1 = { -33.5539, -16.0284, 0.0245546, 63.516,
                                     -3.70987, 1.50916, 9.31509, 48.857,
                                         -39.0917, 0.0, 1.59403, 16.7192 };
-    // all 3 parts are ordered and the same size 4
+    // all 3 parts are sorted and the same size 4
     std::vector<double> v2(v1);
     printVector(v1);
 
@@ -31,7 +31,7 @@ TEST(Sequential, Test_OddEvenMerge) {
     int numParts = 3;
     int lSize = 4;
     oddEvnMerge(&v1, &tmp, ptrs, tmpPtrs, numParts, lSize);
-    // merge network that was built and used: [(1, 2), (0, 1), (1, 2)]
+    // sorting network that was built and used: [(1, 2), (0, 1), (1, 2)]
     // (order of merging 3 parts of v1)
     printVector(v1);
 
@@ -45,7 +45,7 @@ TEST(Sequential, Test_RadixSort_OddEvenMerge_1) {
     std::vector<double> v2(v1);
 
     seqRdxSrt(&v1, size, 3);
-    // merge network that was built and used: [(1, 2), (0, 1), (1, 2)]
+    // sorting network that was built and used: [(1, 2), (0, 1), (1, 2)]
     // (order of merging 3 parts of v1)
 
     std::sort(v2.begin(), v2.end());
@@ -58,7 +58,7 @@ TEST(Sequential, Test_RadixSort_OddEvenMerge_2) {
     std::vector<double> v2(v1);
 
     seqRdxSrt(&v1, size, 6);  // 17 % 3 = 2 -> temp elem will be added
-    // merge network that was built and used:
+    // sorting network that was built and used:
     // [(1, 2), (0, 1), (1, 2), (4, 5), (3, 4), (4, 5),
     // (0, 3), (2, 5), (2, 3), (1, 4), (1, 2), (3, 4)]
     // (order of merging 6 parts of v1)

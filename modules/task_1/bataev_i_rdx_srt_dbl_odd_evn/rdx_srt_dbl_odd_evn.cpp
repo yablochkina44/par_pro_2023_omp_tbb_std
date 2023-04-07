@@ -183,7 +183,7 @@ void oddEvnMerge(std::vector<double>* buf, std::vector<double>* tmpBuf,
     for (int i = 0; i < numParts; i++)
         parts.push_back(i);
 
-    // build merge network for ordered parts of buffer
+    // build sotrting network for merging sorted parts of buffer
     bldNet(parts, &comprtrs);
 
     // printVector(comprtrs, "Comparators: ");
@@ -192,7 +192,7 @@ void oddEvnMerge(std::vector<double>* buf, std::vector<double>* tmpBuf,
     for (int i = 0; i < comprtrs.size(); ++i)
         compExch(&(partsPtrs[comprtrs[i].part1]), &(partsPtrs[comprtrs[i].part2]),
                     &(tmpPartsPtrs[comprtrs[i].part1]), &(tmpPartsPtrs[comprtrs[i].part2]), lSize);
-        // compare-exchange for each comparator from merge network
+        // compare-exchange for each comparator from sorting network
 
     // if partPtr points to tmpBuf copy this part to buf
     for (int i = 0; i < numParts; i++)
@@ -201,7 +201,7 @@ void oddEvnMerge(std::vector<double>* buf, std::vector<double>* tmpBuf,
 }
 
 void seqRdxSrt(std::vector<double>* buf, int size, const int numParts) {
-    // all ordered parts must be the same size for batcher merge
+    // all sorted parts must be the same size for Batcher's merge
     // add temp max elems to the end of buf if necessary
     while ((*buf).size()%numParts)
         (*buf).push_back(std::numeric_limits<double>::max());
@@ -225,7 +225,7 @@ void seqRdxSrt(std::vector<double>* buf, int size, const int numParts) {
 
     // merging parts together
     oddEvnMerge(buf, &tmpBuf, partsPtrs, tmpPartsPtrs, numParts, lSize);
-    // using "block sorting" based on odd-even Batcher sort with merge comparators
+    // using "block sorting" based on odd-even Batcher's sort with merging comparators
 
     // delete temp elems
     while ((*buf).size() - size)
