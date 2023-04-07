@@ -10,7 +10,7 @@ TEST(Sequential, Test_RadixSort) {
     std::vector<double> v2(v1);
     printVector(v1);
 
-    seqRdxSrt(v1, size);
+    seqRdxSrt(&v1, size);
     printVector(v1);
 
     std::sort(v2.begin(), v2.end());
@@ -30,7 +30,7 @@ TEST(Sequential, Test_OddEvenMerge) {
     std::vector<double*> tmpPtrs = {tmp.data(), tmp.data() + 4, tmp.data() + 8};
     int numParts = 3;
     int lSize = 4;
-    oddEvnMerge(v1, tmp, ptrs, tmpPtrs, numParts, lSize);
+    oddEvnMerge(&v1, &tmp, ptrs, tmpPtrs, numParts, lSize);
     // merge network that was built and used: [(1, 2), (0, 1), (1, 2)]
     // (order of merging 3 parts of v1)
     printVector(v1);
@@ -44,7 +44,7 @@ TEST(Sequential, Test_RadixSort_OddEvenMerge_1) {
     std::vector<double> v1 = { 7698721.0, -456412.0, 2342432.0, 333276.0, -11.0, 765.0, -2019.0, 0.0, 11113.0 };
     std::vector<double> v2(v1);
 
-    seqRdxSrt(v1, size, 3);
+    seqRdxSrt(&v1, size, 3);
     // merge network that was built and used: [(1, 2), (0, 1), (1, 2)]
     // (order of merging 3 parts of v1)
 
@@ -57,7 +57,7 @@ TEST(Sequential, Test_RadixSort_OddEvenMerge_2) {
     std::vector<double> v1 = getRandomVector(size, left, right);
     std::vector<double> v2(v1);
 
-    seqRdxSrt(v1, size, 6);  // 17 % 3 = 2 -> tmp elem will be added
+    seqRdxSrt(&v1, size, 6);  // 17 % 3 = 2 -> tmp elem will be added
     // merge network that was built and used:
     // [(1, 2), (0, 1), (1, 2), (4, 5), (3, 4), (4, 5),
     // (0, 3), (2, 5), (2, 3), (1, 4), (1, 2), (3, 4)]
@@ -72,7 +72,7 @@ TEST(Sequential, Test_RadixSort_OddEvenMerge_3) {
     std::vector<double> v1 = getRandomVector(size, left, right);
     std::vector<double> v2(v1);
 
-    seqRdxSrt(v1, size, 6);
+    seqRdxSrt(&v1, size, 6);
 
     std::sort(v2.begin(), v2.end());
     ASSERT_EQ(v1, v2);
@@ -83,7 +83,7 @@ TEST(Sequential, Test_RadixSort_OddEvenMerge_4) {
     std::vector<double> v1 = getRandomVector(size, left, right);
     std::vector<double> v2(v1);
 
-    seqRdxSrt(v1, size, 12);
+    seqRdxSrt(&v1, size, 12);
 
     std::sort(v2.begin(), v2.end());
     ASSERT_EQ(v1, v2);
