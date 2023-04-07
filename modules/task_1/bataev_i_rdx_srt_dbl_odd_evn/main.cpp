@@ -57,7 +57,7 @@ TEST(Sequential, Test_RadixSort_OddEvenMerge_2) {
     std::vector<double> v1 = getRandomVector(size, left, right);
     std::vector<double> v2(v1);
 
-    seqRdxSrt(&v1, size, 6);  // 17 % 3 = 2 -> tmp elem will be added
+    seqRdxSrt(&v1, size, 6);  // 17 % 3 = 2 -> temp elem will be added
     // merge network that was built and used:
     // [(1, 2), (0, 1), (1, 2), (4, 5), (3, 4), (4, 5),
     // (0, 3), (2, 5), (2, 3), (1, 4), (1, 2), (3, 4)]

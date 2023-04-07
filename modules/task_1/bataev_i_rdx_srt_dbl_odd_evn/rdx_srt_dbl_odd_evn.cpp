@@ -11,7 +11,6 @@
 #include "../../../modules/task_1/bataev_i_rdx_srt_dbl_odd_evn/rdx_srt_dbl_odd_evn.h"
 
 using std::uint8_t;
-using std::uint64_t;
 
 void printVector(const std::vector<double>& v, const std::string& prefix) {
     std::cout << prefix << "[";
@@ -29,64 +28,6 @@ std::vector<double> getRandomVector(int size, double left, double right) {
     return v;
 }
 
-void dblRdxSrt(uint64_t* inOutBuf, uint64_t* tmpBuf, const int size) {
-    uint64_t* inBuf = inOutBuf;
-    uint64_t* outBuf = tmpBuf;
-    int countBytes[256];
-    int offsets[256];
-
-    for (int pass = 0; pass < 7; pass++) {
-        // count number of each byte in input buffer
-        std::memset(countBytes, 0, 256*sizeof(int));
-        for (int i = 0; i < size; i++) {
-            uint8_t rdxVal = (inBuf[i] >> (pass << 3)) & 0xFF;
-            countBytes[rdxVal]++;
-        }
-
-        // calc index offsets in output buffer for each byte
-        offsets[0] = 0;
-        for (int i = 1; i < 256; i++)
-            offsets[i] = offsets[i - 1] + countBytes[i - 1];
-
-        for (int i = 0; i < size; i++) {
-            uint8_t rdxVal = (inBuf[i] >> (pass << 3)) & 0xFF;
-            outBuf[offsets[rdxVal]++] = inBuf[i];
-            // increment to keep correct order when identical byte
-        }
-
-        std::swap(inBuf, outBuf);  // swap ptrs
-    }
-
-    // the last pass = 7
-    std::memset(countBytes, 0, 256*sizeof(int));
-    for (int i = 0; i < size; i++) {
-        uint8_t rdxVal = (inBuf[i] >> 56) & 0xFF;
-        countBytes[rdxVal]++;
-    }
-
-    int countNegatives = 0;
-    for (int i = 128; i < 256; i++)
-        countNegatives += countBytes[i];
-    offsets[0] = countNegatives;
-    offsets[255] = 0;
-    for (int i = 1; i < 128; i++) {
-        offsets[i] = offsets[i - 1] + countBytes[i - 1];  // for positive numbers
-        offsets[255 - i] = offsets[256 - i] + countBytes[256 - i];  // for negative numbers
-    }
-    for (int i = 128; i < 256; i++)
-        offsets[i] += countBytes[i];
-    // for negative numbers to keep correct order when identical byte
-    // (+ prefix decrement below)
-
-    for (int i = 0; i < size; i++) {
-        uint8_t rdxVal = (inBuf[i] >> 56) & 0xFF;
-        if (rdxVal < 128)  // for positive numbers
-            outBuf[offsets[rdxVal]++] = inBuf[i];
-        else  // for negative numbers
-            outBuf[--offsets[rdxVal]] = inBuf[i];
-    }
-}
-
 void dblRdxSrt(uint8_t* inOutBuf, uint8_t* tmpBuf, const int sizeBuf) {
     uint8_t* inBuf = inOutBuf;
     uint8_t* outBuf = tmpBuf;
@@ -96,12 +37,14 @@ void dblRdxSrt(uint8_t* inOutBuf, uint8_t* tmpBuf, const int sizeBuf) {
 
     int pass;
     for (pass = 0; pass < dblBytes - 1; pass++) {
+        // count number of each byte in input buffer
         std::memset(countBytes, 0, 256*sizeof(int));
         for (int i = 0; i < sizeBuf; i+=dblBytes) {
             uint8_t rdxVal = inBuf[i + pass];
             countBytes[rdxVal]++;
         }
 
+        // calc index offsets in output buffer for each byte
         offsets[0] = 0;
         for (int i = 1; i < 256; i++)
             offsets[i] = offsets[i - 1] + countBytes[i - 1];
@@ -109,6 +52,7 @@ void dblRdxSrt(uint8_t* inOutBuf, uint8_t* tmpBuf, const int sizeBuf) {
         for (int i = 0; i < sizeBuf; i+=dblBytes) {
             uint8_t rdxVal = inBuf[i + pass];
             std::memcpy(outBuf + dblBytes*(offsets[rdxVal]++), inBuf + i, dblBytes);
+            // increment to keep correct order when identical byte
         }
 
         std::swap(inBuf, outBuf);  // swap ptrs
@@ -128,17 +72,19 @@ void dblRdxSrt(uint8_t* inOutBuf, uint8_t* tmpBuf, const int sizeBuf) {
     offsets[0] = countNegatives;
     offsets[255] = 0;
     for (int i = 1; i < 128; i++) {
-        offsets[i] = offsets[i - 1] + countBytes[i - 1];
-        offsets[255 - i] = offsets[256 - i] + countBytes[256 - i];
+        offsets[i] = offsets[i - 1] + countBytes[i - 1];  // for positive numbers
+        offsets[255 - i] = offsets[256 - i] + countBytes[256 - i];  // for negative numbers
     }
     for (int i = 128; i < 256; i++)
         offsets[i] += countBytes[i];
+    // for negative numbers to keep correct order when identical byte
+    // (+ prefix decrement below)
 
     for (int i = 0; i < sizeBuf; i+=dblBytes) {
         uint8_t rdxVal = inBuf[i + pass];
-        if (rdxVal < 128)
+        if (rdxVal < 128)  // for positive numbers
             std::memcpy(outBuf + dblBytes*(offsets[rdxVal]++), inBuf + i, dblBytes);
-        else
+        else  // for negative numbers
             std::memcpy(outBuf + dblBytes*(--offsets[rdxVal]), inBuf + i, dblBytes);
     }
 
@@ -239,13 +185,14 @@ void oddEvnMerge(std::vector<double>* buf, std::vector<double>* tmpBuf,
 
     // build merge network for ordered parts of buffer
     bldNet(parts, &comprtrs);
-    // printVector(comprtrs, "");
+
+    // printVector(comprtrs, "Comparators: ");
 
     // use the network to merge these parts
     for (int i = 0; i < comprtrs.size(); ++i)
         compExch(&(partsPtrs[comprtrs[i].part1]), &(partsPtrs[comprtrs[i].part2]),
                     &(tmpPartsPtrs[comprtrs[i].part1]), &(tmpPartsPtrs[comprtrs[i].part2]), lSize);
-    // compare-exchange for each comparator from merge network
+        // compare-exchange for each comparator from merge network
 
     // if partPtr points to tmpBuf copy this part to buf
     for (int i = 0; i < numParts; i++)
@@ -254,7 +201,8 @@ void oddEvnMerge(std::vector<double>* buf, std::vector<double>* tmpBuf,
 }
 
 void seqRdxSrt(std::vector<double>* buf, int size, const int numParts) {
-    // all parts must be the same size for batcher merge
+    // all ordered parts must be the same size for batcher merge
+    // add temp max elems to the end of buf if necessary
     while ((*buf).size()%numParts)
         (*buf).push_back(std::numeric_limits<double>::max());
 
@@ -268,19 +216,18 @@ void seqRdxSrt(std::vector<double>* buf, int size, const int numParts) {
         tmpPartsPtrs.push_back(tmpBuf.data() + shift);
     }
 
-    if (sizeof(double) == sizeof(uint64_t)) {
-        for (int i = 0; i < numParts; i++)
-            dblRdxSrt(reinterpret_cast<uint64_t*&>(partsPtrs[i]),
-                        reinterpret_cast<uint64_t*&>(tmpPartsPtrs[i]), lSize);
-    } else {  // C++ standard guarantees only a minimum size of double
-        for (int i = 0; i < numParts; i++)
-            dblRdxSrt(reinterpret_cast<uint8_t*&>(partsPtrs[i]),
-                        reinterpret_cast<uint8_t*&>(tmpPartsPtrs[i]), lSize*sizeof(double));
-    }
+    // sort each part separately
+    for (int i = 0; i < numParts; i++)
+        dblRdxSrt(reinterpret_cast<uint8_t*&>(partsPtrs[i]),
+                    reinterpret_cast<uint8_t*&>(tmpPartsPtrs[i]), lSize*sizeof(double));
+
     // printVector(buf);
 
+    // merging parts together
     oddEvnMerge(buf, &tmpBuf, partsPtrs, tmpPartsPtrs, numParts, lSize);
+    // using "block sorting" based on odd-even Batcher sort with merge comparators
 
+    // delete temp elems
     while ((*buf).size() - size)
         (*buf).pop_back();
 }
