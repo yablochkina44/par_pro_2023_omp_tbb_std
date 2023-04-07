@@ -157,6 +157,7 @@ void bldNet(const std::vector<int>& parts, std::vector<Comparator>* comprtrs) {
 }
 
 void compExch(double** bufUp, double** bufDown, double** tmpBufUp, double** tmpBufDown, int lSize) {
+    // in "up" put smaller elems, in "down" larger elems
     for (int i = 0, j = 0, k = 0; k < lSize; k++) {
         if ((*bufUp)[i] < (*bufDown)[j])
             (*tmpBufUp)[k] = (*bufUp)[i++];
