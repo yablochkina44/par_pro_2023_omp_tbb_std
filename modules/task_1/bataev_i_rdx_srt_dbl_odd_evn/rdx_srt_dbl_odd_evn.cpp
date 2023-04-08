@@ -28,7 +28,7 @@ std::vector<double> getRandomVector(int size, double left, double right) {
     return v;
 }
 
-void dblRdxSrt(uint8_t* inOutBuf, uint8_t* tmpBuf, const int sizeBuf) {
+void dblRdxSrt(uint8_t* inOutBuf, uint8_t* tmpBuf, const int bufSize) {
     uint8_t* inBuf = inOutBuf;
     uint8_t* outBuf = tmpBuf;
     const int dblBytes = sizeof(double);
@@ -39,7 +39,7 @@ void dblRdxSrt(uint8_t* inOutBuf, uint8_t* tmpBuf, const int sizeBuf) {
     for (pass = 0; pass < dblBytes - 1; pass++) {
         // count number of each byte in input buffer
         std::memset(countBytes, 0, 256*sizeof(int));
-        for (int i = 0; i < sizeBuf; i+=dblBytes) {
+        for (int i = 0; i < bufSize; i+=dblBytes) {
             uint8_t rdxVal = inBuf[i + pass];
             countBytes[rdxVal]++;
         }
@@ -49,7 +49,7 @@ void dblRdxSrt(uint8_t* inOutBuf, uint8_t* tmpBuf, const int sizeBuf) {
         for (int i = 1; i < 256; i++)
             offsets[i] = offsets[i - 1] + countBytes[i - 1];
 
-        for (int i = 0; i < sizeBuf; i+=dblBytes) {
+        for (int i = 0; i < bufSize; i+=dblBytes) {
             uint8_t rdxVal = inBuf[i + pass];
             std::memcpy(outBuf + dblBytes*(offsets[rdxVal]++), inBuf + i, dblBytes);
             // increment to keep correct order when identical byte
@@ -61,7 +61,7 @@ void dblRdxSrt(uint8_t* inOutBuf, uint8_t* tmpBuf, const int sizeBuf) {
     // the last pass
     pass = dblBytes - 1;
     std::memset(countBytes, 0, 256*sizeof(int));
-    for (int i = 0; i < sizeBuf; i+=dblBytes) {
+    for (int i = 0; i < bufSize; i+=dblBytes) {
         uint8_t rdxVal = inBuf[i + pass];
         countBytes[rdxVal]++;
     }
@@ -80,7 +80,7 @@ void dblRdxSrt(uint8_t* inOutBuf, uint8_t* tmpBuf, const int sizeBuf) {
     // for negative numbers to keep correct order when identical byte
     // (+ prefix decrement below)
 
-    for (int i = 0; i < sizeBuf; i+=dblBytes) {
+    for (int i = 0; i < bufSize; i+=dblBytes) {
         uint8_t rdxVal = inBuf[i + pass];
         if (rdxVal < 128)  // for positive numbers
             std::memcpy(outBuf + dblBytes*(offsets[rdxVal]++), inBuf + i, dblBytes);
@@ -90,101 +90,109 @@ void dblRdxSrt(uint8_t* inOutBuf, uint8_t* tmpBuf, const int sizeBuf) {
 
     // if result is in tmpBuf copy it to inOutBuf
     if (pass%2 == 0)
-        std::memcpy(inOutBuf, tmpBuf, sizeBuf);
+        std::memcpy(inOutBuf, tmpBuf, bufSize);
 }
 
-// pair of parts for compare-exchange
+// pair of buffer parts for compare-exchange
 struct Comparator {
     int part1;
     int part2;
 };
 
-void printVector(const std::vector<Comparator>& v, const std::string& prefix) {
-    if (v.size() == 0) { return; }
-    std::cout << prefix << "[";
-    for (int i = 0; i < v.size() - 1; i++)
-        std::cout << "(" << v[i].part1 << ", " << v[i].part2 << "), ";
-    std::cout << "(" << v[v.size() - 1].part1 << ", " << v[v.size() - 1].part2 << ")]\n";
-}
+// void printVector(const std::vector<Comparator>& v, const std::string& prefix) {
+//     if (v.size() == 0) { return; }
+//     std::cout << prefix << "[";
+//     for (int i = 0; i < v.size() - 1; i++)
+//         std::cout << "(" << v[i].part1 << ", " << v[i].part2 << "), ";
+//     std::cout << "(" << v[v.size() - 1].part1 << ", " << v[v.size() - 1].part2 << ")]\n";
+// }
 
-void mrgNets(const std::vector<int>& partsUp, const std::vector<int>& partsDown, std::vector<Comparator>* comprtrs) {
-    size_t sumSize = partsUp.size() + partsDown.size();  // n + m
+void mrgNets(const std::vector<int>& upParts, const std::vector<int>& downParts, std::vector<Comparator>* comprtrs) {
+    size_t sumSize = upParts.size() + downParts.size();  // n + m
     if (sumSize == 1) {  // network is empty
         return;
     } else if (sumSize == 2) {  // network contains only one comparator
-        (*comprtrs).push_back({ partsUp[0], partsDown[0] });
+        (*comprtrs).push_back({ upParts[0], downParts[0] });
         return;
     }
 
-    std::vector<int> partsUpOdd;
-    std::vector<int> partsUpEven;
-    for (int i = 0; i < partsUp.size(); i++) {
+    std::vector<int> upOddParts;
+    std::vector<int> upEvenParts;
+    for (int i = 0; i < upParts.size(); i++) {
         if (i % 2)
-            partsUpEven.push_back(partsUp[i]);
+            upEvenParts.push_back(upParts[i]);
         else
-            partsUpOdd.push_back(partsUp[i]);
+            upOddParts.push_back(upParts[i]);
     }
-    std::vector<int> partsDownOdd;
-    std::vector<int> partsDownEven;
-    for (int i = 0; i < partsDown.size(); i++) {
+    std::vector<int> downOddParts;
+    std::vector<int> downEvenParts;
+    for (int i = 0; i < downParts.size(); i++) {
         if (i % 2)
-            partsDownEven.push_back(partsDown[i]);
+            downEvenParts.push_back(downParts[i]);
         else
-            partsDownOdd.push_back(partsDown[i]);
+            downOddParts.push_back(downParts[i]);
     }
 
-    mrgNets(partsUpOdd, partsDownOdd, comprtrs);
-    mrgNets(partsUpEven, partsDownEven, comprtrs);
+    mrgNets(upOddParts, downOddParts, comprtrs);
+    mrgNets(upEvenParts, downEvenParts, comprtrs);
 
-    std::vector<int> sumParts(sumSize);
-    std::memcpy(sumParts.data(), partsUp.data(), partsUp.size()*sizeof(int));
-    std::memcpy(sumParts.data() + partsUp.size(), partsDown.data(), partsDown.size()*sizeof(int));
+    std::vector<int> unionParts(sumSize);
+    std::memcpy(unionParts.data(), upParts.data(), upParts.size()*sizeof(int));
+    std::memcpy(unionParts.data() + upParts.size(), downParts.data(), downParts.size()*sizeof(int));
 
     for (int i = 1; i + 1 < sumSize; i += 2)
-        (*comprtrs).push_back({ sumParts[i], sumParts[i + 1] });
+        (*comprtrs).push_back({ unionParts[i], unionParts[i + 1] });
 }
 
 void bldNet(const std::vector<int>& parts, std::vector<Comparator>* comprtrs) {
     if (parts.size() == 1)
         return;
 
-    std::vector<int> partsUp(parts.begin(), parts.begin() + parts.size() / 2);
-    std::vector<int> partsDown(parts.begin() + parts.size() / 2, parts.end());
+    std::vector<int> upParts(parts.begin(), parts.begin() + parts.size() / 2);
+    std::vector<int> downParts(parts.begin() + parts.size() / 2, parts.end());
 
-    bldNet(partsUp, comprtrs);
-    bldNet(partsDown, comprtrs);
-    mrgNets(partsUp, partsDown, comprtrs);
+    bldNet(upParts, comprtrs);
+    bldNet(downParts, comprtrs);
+    mrgNets(upParts, downParts, comprtrs);
 }
 
-void compExch(double** bufUp, double** bufDown, double** tmpBufUp, double** tmpBufDown, int lSize) {
+void compExch(double** upPart, double** downPart, double** upTmpPart, double** downTmpPart, int sizePart) {
     // in "up" put smaller elems, in "down" larger elems
-    for (int i = 0, j = 0, k = 0; k < lSize; k++) {
-        if ((*bufUp)[i] < (*bufDown)[j])
-            (*tmpBufUp)[k] = (*bufUp)[i++];
+    for (int i = 0, j = 0, k = 0; k < sizePart; k++) {
+        if ((*upPart)[i] < (*downPart)[j])
+            (*upTmpPart)[k] = (*upPart)[i++];
         else
-            (*tmpBufUp)[k] = (*bufDown)[j++];
+            (*upTmpPart)[k] = (*downPart)[j++];
     }
 
-    for (int i = lSize - 1, j = lSize - 1, k = lSize - 1; k >= 0; k--) {
-        if ((*bufDown)[i] > (*bufUp)[j])
-            (*tmpBufDown)[k] = (*bufDown)[i--];
+    for (int i = sizePart - 1, j = sizePart - 1, k = sizePart - 1; k >= 0; k--) {
+        if ((*downPart)[i] > (*upPart)[j])
+            (*downTmpPart)[k] = (*downPart)[i--];
         else
-            (*tmpBufDown)[k] = (*bufUp)[j--];
+            (*downTmpPart)[k] = (*upPart)[j--];
     }
 
     // swap ptrs
-    std::swap(*tmpBufUp, *bufUp);
-    std::swap(*tmpBufDown, *bufDown);
+    std::swap(*upTmpPart, *upPart);
+    std::swap(*downTmpPart, *downPart);
 }
 
-void oddEvnMerge(std::vector<double>* buf, std::vector<double>* tmpBuf,
-                    std::vector<double*> partsPtrs, std::vector<double*> tmpPartsPtrs, int numParts, int lSize) {
+// all parts must be sorted and the same size "sizePart"
+void oddEvnMerge(std::vector<double>* buf, std::vector<double>* tmpBuf, int numParts, int sizePart) {
+    if ((*buf).size() != numParts * sizePart)
+        return;
+    std::vector<double*> partsPtrs;
+    std::vector<double*> tmpPartsPtrs;
+    for (int shift = 0; shift < (*buf).size(); shift += sizePart) {
+        partsPtrs.push_back((*buf).data() + shift);
+        tmpPartsPtrs.push_back((*tmpBuf).data() + shift);
+    }
+
     std::vector<Comparator> comprtrs;
     std::vector<int> parts;
     for (int i = 0; i < numParts; i++)
         parts.push_back(i);
-
-    // build sotrting network for merging sorted parts of buffer
+    // build Batcher's sotrting network for parts of buffer
     bldNet(parts, &comprtrs);
 
     // printVector(comprtrs, "Comparators: ");
@@ -192,41 +200,33 @@ void oddEvnMerge(std::vector<double>* buf, std::vector<double>* tmpBuf,
     // use the network to merge these parts
     for (int i = 0; i < comprtrs.size(); ++i)
         compExch(&(partsPtrs[comprtrs[i].part1]), &(partsPtrs[comprtrs[i].part2]),
-                    &(tmpPartsPtrs[comprtrs[i].part1]), &(tmpPartsPtrs[comprtrs[i].part2]), lSize);
+                    &(tmpPartsPtrs[comprtrs[i].part1]), &(tmpPartsPtrs[comprtrs[i].part2]), sizePart);
         // compare-exchange for each comparator from sorting network
 
-    // if partPtr points to tmpBuf copy this part to buf
+    // if partPtr points to part of tmpBuf copy this part to buf
     for (int i = 0; i < numParts; i++)
-        if (partsPtrs[i] != (*buf).data() + i*lSize)
-            std::memcpy((*buf).data() + i*lSize, (*tmpBuf).data() + i*lSize, lSize*sizeof(double));
+        if (partsPtrs[i] != (*buf).data() + i*sizePart)
+            std::memcpy((*buf).data() + i*sizePart, (*tmpBuf).data() + i*sizePart, sizePart*sizeof(double));
 }
 
-void seqRdxSrt(std::vector<double>* buf, int size, const int numParts) {
+void seqRdxSrt(std::vector<double>* buf, const int size, const int numParts) {
     // all sorted parts must be the same size for Batcher's merge
-    // add temp max elems to the end of buf if necessary
+    // add temp max elems to the end of buf while it's not
     while ((*buf).size()%numParts)
         (*buf).push_back(std::numeric_limits<double>::max());
+        // will be added (numParts - (*buf).size()%numParts) tmp elems
 
     std::vector<double> tmpBuf((*buf).size());
-
-    int lSize = (*buf).size()/numParts;
-    std::vector<double*> partsPtrs;
-    std::vector<double*> tmpPartsPtrs;
-    for (int shift = 0; shift < (*buf).size(); shift += lSize) {
-        partsPtrs.push_back((*buf).data() + shift);
-        tmpPartsPtrs.push_back(tmpBuf.data() + shift);
-    }
+    int sizePart = (*buf).size()/numParts;
 
     // sort each part separately
-    for (int i = 0; i < numParts; i++)
-        dblRdxSrt(reinterpret_cast<uint8_t*&>(partsPtrs[i]),
-                    reinterpret_cast<uint8_t*&>(tmpPartsPtrs[i]), lSize*sizeof(double));
-
-    // printVector(buf);
+    for (int shift = 0; shift < (*buf).size(); shift += sizePart)
+        dblRdxSrt(reinterpret_cast<uint8_t*>((*buf).data() + shift),
+                    reinterpret_cast<uint8_t*>(tmpBuf.data() + shift), sizePart*sizeof(double));
+    // printVector(*buf);
 
     // merging parts together
-    oddEvnMerge(buf, &tmpBuf, partsPtrs, tmpPartsPtrs, numParts, lSize);
-    // using "block sorting" based on odd-even Batcher's sort with merging comparators
+    oddEvnMerge(buf, &tmpBuf, numParts, sizePart);
 
     // delete temp elems
     while ((*buf).size() - size)
