@@ -140,7 +140,7 @@ void mrgNets(const std::vector<int>& upParts, const std::vector<int>& downParts,
     std::memcpy(unionParts.data(), upParts.data(), upParts.size()*sizeof(int));
     std::memcpy(unionParts.data() + upParts.size(), downParts.data(), downParts.size()*sizeof(int));
 
-    for (int i = 1; i + 1 < sumSize; i += 2)
+    for (int i = 1; i < sumSize - 1; i += 2)
         (*comprtrs).push_back({ unionParts[i], unionParts[i + 1] });
 }
 
@@ -177,7 +177,7 @@ void compExch(double** upPart, double** downPart, double** upTmpPart, double** d
     std::swap(*downTmpPart, *downPart);
 }
 
-// all parts must be sorted and the same size "sizePart"
+// all "numParts" parts must be sorted and the same size "sizePart"
 void oddEvnMerge(std::vector<double>* buf, std::vector<double>* tmpBuf, int numParts, int sizePart) {
     if ((*buf).size() != numParts * sizePart)
         return;
@@ -219,7 +219,7 @@ void seqRdxSrt(std::vector<double>* buf, const int size, const int numParts) {
     std::vector<double> tmpBuf((*buf).size());
     int sizePart = (*buf).size()/numParts;
 
-    // sort each part separately
+    // sort each part separately with radix sort
     for (int shift = 0; shift < (*buf).size(); shift += sizePart)
         dblRdxSrt(reinterpret_cast<uint8_t*>((*buf).data() + shift),
                     reinterpret_cast<uint8_t*>(tmpBuf.data() + shift), sizePart*sizeof(double));

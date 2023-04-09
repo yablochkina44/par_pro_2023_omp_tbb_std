@@ -28,7 +28,7 @@ TEST(Sequential, Test_OddEvenMerge) {
     // (order of merging 3 parts of v1)
 
     std::vector<double> v2 = { -39.0917, -33.5539, -16.0284, -3.70987,
-                                    0, 0.0245546, 1.50916, 1.59403,
+                                    0.0, 0.0245546, 1.50916, 1.59403,
                                         9.31509, 16.7192, 48.857, 63.516 };
     ASSERT_EQ(v1, v2);
 }
@@ -82,7 +82,7 @@ TEST(Sequential, Test_AlreadySorted) {
 }
 
 TEST(Sequential, Test_AlreadySortedBack) {
-    const int size = 6; const double left = -10000.0; const double right = 10000.0;
+    const int size = 6;
     std::vector<double> v1 = { 7737.72, 6376.71, 2712.32, -1113.24, -2503.59, -7777.65 };
 
     seqRdxSrt(&v1, size, 2);
