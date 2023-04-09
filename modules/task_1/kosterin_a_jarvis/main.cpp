@@ -1,7 +1,7 @@
 // Copyright 2023 Kosterin Alexey
-#include "./jarvis.h"
-#include <vector>
 #include <gtest/gtest.h>
+#include <vector>
+#include "./jarvis.h"
 
 struct SPoint {
   SPoint(int _x = 0, int _y = 0) {
