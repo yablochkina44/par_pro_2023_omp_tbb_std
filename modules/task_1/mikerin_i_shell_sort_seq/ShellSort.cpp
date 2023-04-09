@@ -5,12 +5,8 @@
 int D[] = {1, 4, 10, 23, 57, 132, 301, 701, 1750};
 
 std::vector<double> getRandomVector(int  sz) {
-//    std::random_device dev;
-//    std::mt19937 gen(dev());
     std::vector<double> vec(sz);
-//    for (int  i = 0; i < sz; i++) { vec[i] = (gen() / gen.max()) * 100 - 50; }
-
-    srand(std::time(nullptr));
+    srand(time(nullptr));
     for (int  i = 0; i < sz; i++) { vec[i] = static_cast<double>(rand()) * 100 / RAND_MAX - 50; } //NOLINT
     return vec;
 }

@@ -5,7 +5,6 @@
 
 
 TEST(Sequential_Merge, Test_Merge_Sort) {
-
     std::vector<double> vec = {1, 4, 6, 3, 5, 2};
     std::vector<double> result = {1, 2, 3, 4, 5, 6};
 
@@ -15,7 +14,6 @@ TEST(Sequential_Merge, Test_Merge_Sort) {
 }
 
 TEST(Sequential_Merge, Test_Merge_Sort_rand) {
-
     std::vector<double> vec = getRandomVector(100);
     bool nice = true;
 
@@ -29,7 +27,6 @@ TEST(Sequential_Merge, Test_Merge_Sort_rand) {
 }
 
 TEST(Sequential_Shell, Test_Shell_Sort) {
-
     std::vector<double> vec = {1, 4, 6, 3, 5, 2};
     std::vector<double> result = {1, 2, 3, 4, 5, 6};
 
@@ -39,7 +36,6 @@ TEST(Sequential_Shell, Test_Shell_Sort) {
 }
 
 TEST(Sequential_Shell, Test_Shell_Sort_Empty) {
-
     std::vector<double> vec = {};
     std::vector<double> result = {};
 
@@ -49,7 +45,6 @@ TEST(Sequential_Shell, Test_Shell_Sort_Empty) {
 }
 
 TEST(Sequential_Shell, Test_Shell_Sort_rand) {
-
     bool nice = true;
 
     std::vector<double> vec = getRandomVector(100);
@@ -66,5 +61,4 @@ TEST(Sequential_Shell, Test_Shell_Sort_rand) {
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
-    
 }
