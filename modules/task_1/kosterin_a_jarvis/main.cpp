@@ -3,23 +3,7 @@
 #include <vector>
 #include "./jarvis.h"
 
-struct SPoint {
-  explicit SPoint(int _x = 0, int _y = 0) {
-    x = _x;
-    y = _y;
-  }
-  int x = 0;
-  int y = 0;
-};
 
-struct SVector {
-  int x, y;
-
-  explicit SVector(SPoint a, SPoint b) {
-    x = b.x - a.x;
-    y = b.y - a.y;
-  }
-};
 
 TEST(Sequential, Test_Can_Create_Small3_Arr_Points) {
   const int size = 3;
