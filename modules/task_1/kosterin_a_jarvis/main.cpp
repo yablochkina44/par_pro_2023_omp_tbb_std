@@ -15,7 +15,7 @@ struct SPoint {
 struct SVector {
   int x, y;
 
-  SVector(SPoint a, SPoint b) {
+  explicit SVector(SPoint a, SPoint b) {
     x = b.x - a.x;
     y = b.y - a.y;
   }
