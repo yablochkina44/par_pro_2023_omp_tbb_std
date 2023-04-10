@@ -60,13 +60,15 @@ std::vector<SPoint> DoJarvis(std::vector<SPoint> arr, int size) {
   }
   std::vector<SPoint> point;
   int currP = 0;
+  bool fl = true;
   while (true) {
     point.push_back(arr[currP]);
-    int id = -1;
+    int id = 0;
     for (int i = 0; i < arr.size(); i++) {
-      if (i != currP && (id == -1 || Cross(SVector(arr[currP], arr[i]),
+      if (i != currP && (fl == true || Cross(SVector(arr[currP], arr[i]),
                                            SVector(arr[currP], arr[id])) > 0)) {
         id = i;
+        fl = false;
       }
     }
     if (id == 0) {
