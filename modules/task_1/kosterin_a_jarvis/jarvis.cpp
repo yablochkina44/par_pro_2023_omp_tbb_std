@@ -1,27 +1,7 @@
 // Copyright 2023 Kosterin Alexey
-#include <algorithm>
-#include <cmath>
-#include <random>
-#include <vector>
-
 #include "../../../modules/task_1/kosterin_a_jarvis/jarvis.h"
-struct SPoint {
-  explicit SPoint(int _x = 0, int _y = 0) {
-    x = _x;
-    y = _y;
-  }
-  int x = 0;
-  int y = 0;
-};
 
-struct SVector {
-  int x, y;
 
-  explicit SVector(SPoint a, SPoint b) {
-    x = b.x - a.x;
-    y = b.y - a.y;
-  }
-};
 
 int Cross(SVector a, SVector b) { return a.x * b.y - b.x * a.y; }
 
