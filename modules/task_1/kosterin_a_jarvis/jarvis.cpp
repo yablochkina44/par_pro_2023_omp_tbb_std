@@ -1,8 +1,6 @@
 // Copyright 2023 Kosterin Alexey
 #include "../../../modules/task_1/kosterin_a_jarvis/jarvis.h"
 
-
-
 int Cross(SVector a, SVector b) { return a.x * b.y - b.x * a.y; }
 
 std::vector<SPoint> CreateArray(int size) {
