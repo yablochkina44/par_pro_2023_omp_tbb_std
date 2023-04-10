@@ -1,4 +1,9 @@
 // Copyright 2023 Kosterin Alexey
+#include <vector>
+#include <algorithm>
+#include <cmath>
+#include <random>
+
 #include "../../../modules/task_1/kosterin_a_jarvis/jarvis.h"
 
 int Cross(SVector a, SVector b) { return a.x * b.y - b.x * a.y; }
