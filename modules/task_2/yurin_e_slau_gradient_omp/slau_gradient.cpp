@@ -1,6 +1,6 @@
 // Copyright 2023 Yurin Evgeny
 
-#include "../../../modules/task_1/yurin_e_slau_gradient/slau_gradient.h"
+#include "../../../modules/task_2/yurin_e_slau_gradient/slau_gradient.h"
 
 dmat generateMatrix(int size, unsigned int seed) {
     dmat res = dmat(size, std::vector<double>(size));
@@ -61,7 +61,6 @@ dvec solve(const dmat &matrix, const dvec& vector) {
     int k = 0;
 
     while (k++ < matrix.size()) {
-        
         dvec r_prev;
         dvec mv = matrix_vec(matrix, p);
         r_prev = r;
@@ -87,7 +86,6 @@ dvec solve_parallel(const dmat &matrix, const dvec& vector) {
     int k = 0;
 
     while (k++ < matrix.size()) {
-        
         dvec r_prev;
         dvec mv = matrix_vec_parallel(matrix, p);
         r_prev = r;
