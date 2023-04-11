@@ -1,7 +1,7 @@
 // Copyright 2023 Yurin Evgeny
 
-#ifndef MODULES_TASK_2_YURIN_E_SLAU_GRADIENT_SLAU_GRADIENT_OMP_H_
-#define MODULES_TASK_2_YURIN_E_SLAU_GRADIENT_SLAU_GRADIENT_OMP_H_
+#ifndef MODULES_TASK_2_YURIN_E_SLAU_GRADIENT_OMP_SLAU_GRADIENT_H_
+#define MODULES_TASK_2_YURIN_E_SLAU_GRADIENT_OMP_SLAU_GRADIENT_H_
 
 #include <vector>
 #include <cmath>
@@ -30,4 +30,4 @@ dvec matrix_vec_parallel(const dmat &a, const dvec &b);
 
 dvec solve_parallel(const dmat &matrix, const dvec& vector);
 
-#endif  // MODULES_TASK_2_YURIN_E_SLAU_GRADIENT_SLAU_GRADIENT_OMP_H_
+#endif  // MODULES_TASK_2_YURIN_E_SLAU_GRADIENT_OMP_SLAU_GRADIENT_H_
