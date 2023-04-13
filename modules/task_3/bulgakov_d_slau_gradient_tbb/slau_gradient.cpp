@@ -78,7 +78,7 @@ class VecVecFunctor {
     const dvec a, b;
     double res;
  public:
-    explicit VecVecFunctor(dvec v1, dvec v2):
+    explicit VecVecFunctor(const dvec &v1, const dvec &v2):
     a(v1), b(v2), res(0) {}
     VecVecFunctor(const VecVecFunctor& f, tbb::split):
     a(f.a), b(f.b), res(0) {}
