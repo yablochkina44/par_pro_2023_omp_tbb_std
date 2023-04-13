@@ -2,10 +2,10 @@
 
 #include "../../../modules/task_3/bulgakov_d_slau_gradient_tbb/slau_gradient.h"
 
+#define NOMINMAX
 
 #include <time.h>
 #include <tbb/tbb.h>
-#include <omp.h>
 
 // #define DEBUG
 
@@ -65,7 +65,7 @@ dvec tbb_matrix_vec(const dmat &a, const dvec &b) {
 
     tbb::parallel_for(tbb::blocked_range<size_t>(0, a.size()),
     [&](const tbb::blocked_range<size_t>& r) {
-        for (int i = r.begin(); i < r.end(); i++) {
+        for (size_t i = r.begin(); i < r.end(); i++) {
             res[i] = vec_vec(a[i], b);
         }
     });
