@@ -7,6 +7,8 @@
 #include <tbb/tbb.h>
 #include <omp.h>
 
+// #define DEBUG
+
 //----------------------------- Test Data Generation --------------------------
 
 dmat generateMatrix(int size, unsigned int seed) {
@@ -61,9 +63,9 @@ double vec_norm(const dvec& a) {
 dvec tbb_matrix_vec(const dmat &a, const dvec &b) {
     dvec res(a.size());
 
-    tbb::parallel_for(tbb::blocked_range<int>(0, res.size()),
-    [&](tbb::blocked_range<int> r) {
-        for (int i = r.begin(); i < r.end(); ++i) {
+    tbb::parallel_for(tbb::blocked_range<size_t>(0, a.size()),
+    [&](const tbb::blocked_range<size_t>& r) {
+        for (int i = r.begin(); i < r.end(); i++) {
             res[i] = vec_vec(a[i], b);
         }
     });
@@ -71,32 +73,37 @@ dvec tbb_matrix_vec(const dmat &a, const dvec &b) {
     return res;
 }
 
-struct tbb_innet_porduct_struct {
-    dvec a;
-    dvec b;
-
+class VecVecFunctor {
+ private:
+    const dvec a, b;
     double res;
-
-    tbb_innet_porduct_struct(const dvec &a, const dvec &b)
-      : a(a), b(b), res(0) {}
-    tbb_innet_porduct_struct(tbb_innet_porduct_struct& t, tbb::split)
-      : a(t.a), b(t.b), res(0) {}
-
+ public:
+    explicit VecVecFunctor(dvec v1, dvec v2):
+    a(v1), b(v2), res(0) {}
+    VecVecFunctor(const VecVecFunctor& f, tbb::split):
+    a(f.a), b(f.b), res(0) {}
     void operator()(const tbb::blocked_range<size_t>& r) {
-        res += vec_vec(a, b);
+        size_t begin = r.begin();
+        size_t end = r.end();
+        res += std::inner_product((a.begin() + r.begin()),
+                                  (a.begin() + r.end()),
+                                  (b.begin() + r.begin()), 0.0);
     }
-
-    void join(const tbb_innet_porduct_struct& t) { res += t.res; }
+    void join(const VecVecFunctor& f) {
+        res += f.res;
+    }
+    double result() {
+        return res;
+    }
 };
 
-
 double tbb_vec_vec(const dvec &a, const dvec &b) {
-    tbb_innet_porduct_struct inner_struct(a, b);
+    double ans = 0;
 
-    tbb::parallel_reduce(tbb::blocked_range<size_t>(0, a.size()),
-                        inner_struct);
+    VecVecFunctor vf(a, b);
+    tbb::parallel_reduce(tbb::blocked_range<size_t>(0, a.size()), vf);
 
-    return inner_struct.res;
+    return vf.result();
 }
 
 //----------------------------- Conjugate Method Algorithm --------------------
@@ -108,7 +115,9 @@ dvec solve(const dmat &a, const dvec& b) {
     dvec r(b);
     dvec p(r);
 
-    double begin = omp_get_wtime();
+    #ifdef DEBUG
+    tbb::tick_count begin = tbb::tick_count::now();
+    #endif
 
     for (int i = 0; i < a.size(); i++) {
         dvec r_prev;
@@ -125,9 +134,10 @@ dvec solve(const dmat &a, const dvec& b) {
         p = vec_vec_comb(1.0, r, s, p);
     }
 
-    double end = omp_get_wtime();
-
-    std::cout << "SEQ TIME " << (end - begin) << std::endl;
+    #ifdef DEBUG
+    tbb::tick_count end = tbb::tick_count::now();
+    std::cout << "SEQ TIME " << (end - begin).seconds() << std::endl;
+    #endif
 
     return res;
 }
@@ -138,7 +148,9 @@ dvec tbb_solve(const dmat &a, const dvec& b) {
     dvec r(b);
     dvec p(r);
 
-    double begin = omp_get_wtime();
+    #ifdef DEBUG
+    tbb::tick_count begin = tbb::tick_count::now();
+    #endif
 
     for (int i = 0; i < a.size(); i++) {
         dvec r_prev;
@@ -160,9 +172,10 @@ dvec tbb_solve(const dmat &a, const dvec& b) {
         p = vec_vec_comb(1.0, r, s, p);
     }
 
-    double end = omp_get_wtime();
-
-    std::cout << "PARALLEL TIME " << (end - begin) << std::endl;
+    #ifdef DEBUG
+    tbb::tick_count end = tbb::tick_count::now();
+    std::cout << "PARALLEL TIME " << (end - begin).seconds() << std::endl;
+    #endif
 
     return res;
 }
