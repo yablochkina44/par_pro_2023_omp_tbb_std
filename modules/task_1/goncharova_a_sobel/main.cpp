@@ -7,6 +7,7 @@ TEST(seqSobelFilter, canCreateRandomMatrix) {
     ASSERT_NO_THROW(randImage(5, 5));
 }
 
+
 TEST(seqSobelFilter, randMatrixWithNullSize) {
     ASSERT_ANY_THROW(randImage(0, 0));
 }
