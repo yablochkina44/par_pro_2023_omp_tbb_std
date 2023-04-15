@@ -2,10 +2,10 @@
 #ifndef MODULES_TASK_2_POLYACKOV_L_SHELL_SORT_OMP_POLYACKOV_L_SHELL_SORT_OMP_H_
 #define MODULES_TASK_2_POLYACKOV_L_SHELL_SORT_OMP_POLYACKOV_L_SHELL_SORT_OMP_H_
 
+#include <omp.h>
 #include <random>
 #include <vector>
 #include <iostream>
-#include <omp.h>
 
 std::vector<int> get_random_vec(int size = 0, unsigned int seed = 0);
 

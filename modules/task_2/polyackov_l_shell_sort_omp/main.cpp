@@ -1,7 +1,7 @@
   // Copyright 2023 Polyackov Lev
 #include <gtest/gtest.h>
 #include <vector>
-#include <chrono>
+  // #include <chrono>
 #include <algorithm>
 #include "../../modules/task_2/polyackov_l_shell_sort_omp/polyackov_l_shell_sort_omp.h"
 
@@ -83,7 +83,6 @@ int main(int argc, char **argv) {
 
   std::cout << "duration_seq: " << duration1.count() << '\n';
   std::cout << "duration_omp: " << duration2.count() << '\n';*/
-  
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 }
