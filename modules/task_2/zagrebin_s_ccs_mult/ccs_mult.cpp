@@ -102,8 +102,7 @@ inline Comp mult(it i, it a, it j, it b) {
 CCS mult(const CCS& _l, const CCS& r) {
     CCS res(_l.shape[0], r.shape[1]);
     CCS l(_l.T());
-    const size_t col_num = res.shape[1];
-    std::list<CCS::elem> tmp[col_num];
+    std::vector<std::list<CCS::elem>> tmp(res.shape[1]);
 
     res.offset[0] = 0;
     #pragma omp parallel for
@@ -127,7 +126,7 @@ CCS mult(const CCS& _l, const CCS& r) {
     res.data.reserve(offset);
 
     for (size_t i = 0; i < res.shape[1]; ++i)
-        for (CCS::elem &x : tmp[i]) {
+        for (const auto &x : tmp[i]) {
             res.data.push_back(x);
         }
 
