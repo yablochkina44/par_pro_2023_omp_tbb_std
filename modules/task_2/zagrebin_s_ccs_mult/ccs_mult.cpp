@@ -106,7 +106,7 @@ CCS mult(const CCS& _l, const CCS& r) {
 
     res.offset[0] = 0;
     #pragma omp parallel for
-    for (size_t i = 0; i < res.shape[1]; ++i) {  //  col from right
+    for (int i = 0; i < res.shape[1]; ++i) {  //  col from right
         //  #pragma omp parallel for
         for (size_t j = 0; j < res.shape[0]; ++j) {  //  row from left
             Comp x = mult(l.data.cbegin()+l.offset[j],
