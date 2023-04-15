@@ -1,7 +1,7 @@
 // Copyright 2023 Zagrebin S.
 
-#ifndef MODULES_TASK_1_ZAGREBIN_S_CCS_MULT_CCS_MULT_H_
-#define MODULES_TASK_1_ZAGREBIN_S_CCS_MULT_CCS_MULT_H_
+#ifndef MODULES_TASK_2_ZAGREBIN_S_CCS_MULT_CCS_MULT_H_
+#define MODULES_TASK_2_ZAGREBIN_S_CCS_MULT_CCS_MULT_H_
 
 #include <iostream>
 #include <complex>
@@ -33,4 +33,4 @@ inline Comp mult(it i, it a, it j, it b);
 
 CCS mult(const CCS& _l, const CCS& r);
 
-#endif  // MODULES_TASK_1_ZAGREBIN_S_CCS_MULT_CCS_MULT_H_
+#endif  // MODULES_TASK_2_ZAGREBIN_S_CCS_MULT_CCS_MULT_H_

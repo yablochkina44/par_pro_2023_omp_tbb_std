@@ -1,7 +1,7 @@
 // Copyright 2023 Zagrebin S.
 
-#include <list>
 #include <omp.h>
+#include <list>
 #include <random>
 #include "../../../modules/task_2/zagrebin_s_ccs_mult/ccs_mult.h"
 
@@ -77,7 +77,7 @@ void fill(CCS* m, double p, std::default_random_engine* eng) {
         size_t n = 0;
         for (size_t j = 0; j < m->shape[0]; ++j)
             if (coin(*eng) < p) {
-                Comp x{static_cast<double>(cube(*eng)), 
+                Comp x{static_cast<double>(cube(*eng)),
                        static_cast<double>(cube(*eng))};
                 m->data.push_back({j, x});
                 ++n;
@@ -114,7 +114,7 @@ CCS mult(const CCS& _l, const CCS& r) {
                           r.data.cbegin()+r.offset[i],
                           r.data.cbegin()+r.offset[i+1]);
             if (std::abs(x) > 0.0001) {
-                #pragma omp critical 
+                #pragma omp critical
                 tmp[i].push_back(CCS::elem{j, x});
             }
         }
