@@ -142,11 +142,6 @@ void batcherMergeParallel(int* vec, int partSize, int partsCount) {
             batcherMergeOdd(partVecStart, partSize);
         else
             batcherMergeEven(partVecStart, partSize);
-
-        // Comparison of neighboring elements to make partVec fully sorted
-        /* for (int k = 1; k <= biggerPartSize - 1; k++)
-            if (partVecStart[k] > partVecStart[k + 1])
-                std::swap(partVecStart[k], partVecStart[k + 1]); */
     }
 
     # pragma omp parallel for
