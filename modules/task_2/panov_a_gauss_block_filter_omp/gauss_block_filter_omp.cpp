@@ -1,5 +1,6 @@
 // Copyright 2023 Panov Alexey
 #include <omp.h>
+#include <algorithm>
 #include "../../../modules/task_2/panov_a_gauss_block_filter_omp/gauss_block_filter_omp.h"
 
 
@@ -62,7 +63,7 @@ Image processImage(const Image& source) {
     for (int blockX = 0; blockX < source.size(); blockX += kernel.size()) {
         for (int blockY = 0; blockY < source[0].size(); blockY += kernel[0].size()) {
             processBlock(blockX, blockY, source, &result, kernel);
-//#pragma omp critical
+//  #pragma omp critical
 //            {
 //                std::cout << "blockX: " << blockX << ", blockY: " << blockY << ", threadId: "
 //                    << omp_get_thread_num() << '\n';
