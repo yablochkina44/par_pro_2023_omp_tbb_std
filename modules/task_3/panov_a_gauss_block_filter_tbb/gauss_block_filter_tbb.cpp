@@ -4,6 +4,10 @@
 #include "../../../modules/task_3/panov_a_gauss_block_filter_tbb/gauss_block_filter_tbb.h"
 
 
+int my_min(int a, int b) {
+    return (a <= b) ? a : b;
+}
+
 using Matrix = std::vector<std::vector<double>>;
 
 Matrix getGaussKernel() {
@@ -42,8 +46,8 @@ Color processPixel(int x, int y, const Image& source, const Matrix& kernel) {
 
 void processBlock(int blockX, int blockY, const Image& source, Image* _result, const Matrix& kernel) {
     Image& result = *_result;
-    const int xBound = std::min(blockX + kernel.size(), source.size());
-    const int yBound = std::min(blockY + kernel[0].size(), source[0].size());
+    const int xBound = my_min(blockX + kernel.size(), source.size());
+    const int yBound = my_min(blockY + kernel[0].size(), source[0].size());
     for (int x = blockX; x < xBound; x++) {
         for (int y = blockY; y < yBound; y++) {
             result[x][y] = processPixel(x, y, source, kernel);
