@@ -1,7 +1,7 @@
   // Copyright 2023 Polyackov Lev
 #include <gtest/gtest.h>
 #include <vector>
-  #include <chrono>
+  // #include <chrono>
 #include <algorithm>
 #include "../../modules/task_3/polyackov_l_shell_sort_tbb/polyackov_l_shell_sort_tbb.h"
 
