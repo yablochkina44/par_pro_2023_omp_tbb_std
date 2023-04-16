@@ -42,8 +42,8 @@ Color processPixel(int x, int y, const Image& source, const Matrix& kernel) {
 
 void processBlock(int blockX, int blockY, const Image& source, Image* _result, const Matrix& kernel) {
     Image& result = *_result;
-    const int xBound = min(blockX + kernel.size(), source.size());
-    const int yBound = min(blockY + kernel[0].size(), source[0].size());
+    const int xBound = std::min(blockX + kernel.size(), source.size());
+    const int yBound = std::min(blockY + kernel[0].size(), source[0].size());
     for (int x = blockX; x < xBound; x++) {
         for (int y = blockY; y < yBound; y++) {
             result[x][y] = processPixel(x, y, source, kernel);
