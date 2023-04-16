@@ -60,8 +60,8 @@ Image processImage(const Image& source) {
     Image result = Image(source);
 
 #pragma omp parallel for collapse(2)
-    for (int blockX = 0; blockX < source.size(); blockX += kernel.size()) {
-        for (int blockY = 0; blockY < source[0].size(); blockY += kernel[0].size()) {
+    for (int blockX = 0; blockX < source.size(); blockX = blockX + kernel.size()) {
+        for (int blockY = 0; blockY < source[0].size(); blockY = blockY + kernel[0].size()) {
             processBlock(blockX, blockY, source, &result, kernel);
 //  #pragma omp critical
 //            {
