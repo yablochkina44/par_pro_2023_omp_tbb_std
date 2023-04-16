@@ -109,7 +109,6 @@ std::vector<int> shell_sort_with_simple_merge_std(const std::vector<int>& vec, i
       tmp_res[i] = shell_sort_seq(tmp_res[i]);
     });
   }
-  
   for (auto& thread : threads) {
     thread.join();
   }
