@@ -2,13 +2,13 @@
 #include <gtest/gtest.h>
 #include "./graham_con_hull_tbb.h"
 
-TEST(ConvexHullOMP, EmptyVector) {
+TEST(ConvexHullTBB, EmptyVector) {
     std::vector<Point> points;
     auto hull = constructConvexHull(points);
     EXPECT_TRUE(hull.empty());
 }
 
-TEST(ConvexHullOMP, ThreePoints) {
+TEST(ConvexHullTBB, ThreePoints) {
     std::vector<Point> points{ {0, 0}, {1, 1}, {0, 1} };
     auto hull = constructConvexHull(points);
     EXPECT_EQ(hull.size(), 3);
@@ -17,7 +17,7 @@ TEST(ConvexHullOMP, ThreePoints) {
     EXPECT_EQ(hull[2], Point(0, 1));
 }
 
-TEST(ConvexHullOMP, FourPoints) {
+TEST(ConvexHullTBB, FourPoints) {
     std::vector<Point> points{ {0, 0}, {1, 1}, {0, 1}, {1, 0} };
     auto hull = constructConvexHull(points);
     EXPECT_EQ(hull.size(), 4);
@@ -27,7 +27,7 @@ TEST(ConvexHullOMP, FourPoints) {
     EXPECT_EQ(hull[3], Point(0, 1));
 }
 
-TEST(ConvexHullOMP, TenPoints) {
+TEST(ConvexHullTBB, TenPoints) {
     std::vector<Point> points{
         {0, 0}, {10, 10}, {0, 10}, {10, 0}, {11, 11},
         {5, 5}, {3, 1}, {2, 4}, {7, 3}, {11, 11}
@@ -40,7 +40,7 @@ TEST(ConvexHullOMP, TenPoints) {
     EXPECT_EQ(hull[3], Point(0, 10));
 }
 
-TEST(ConvexHullOMP, PointsInALine) {
+TEST(ConvexHullTBB, PointsInALine) {
     std::vector<Point> points{ {0, 0}, {1, 0}, {2, 0}, {3, 0} };
     auto hull = constructConvexHull(points);
     EXPECT_EQ(hull.size(), 2);

@@ -59,7 +59,7 @@ struct ConvexHullTbbMediator {
     mutable std::vector<Point> stack;
 
     ConvexHullTbbMediator() = default;
-    ConvexHullTbbMediator(ConvexHullTbbMediator& s, tbb::split) {}
+    ConvexHullTbbMediator(const ConvexHullTbbMediator& s, tbb::split) {}
 
     void operator()(const tbb::blocked_range<std::vector<Point>::iterator>& points) {
         for (const Point& point : points) {
@@ -88,12 +88,11 @@ std::vector<Point> constructConvexHull(const std::vector<Point>& points) {
         });
 
     if (points.size() < 3) return pointsCopy;
-    
+
     ConvexHullTbbMediator mediator;
     tbb::parallel_reduce(
         tbb::blocked_range<std::vector<Point>::iterator>(pointsCopy.begin(), pointsCopy.end()),
-        mediator
-    );
-    
+        mediator);
+
     return constructConvexHullSeq(mediator.stack);
 }
