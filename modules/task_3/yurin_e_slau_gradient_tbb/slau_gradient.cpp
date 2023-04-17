@@ -1,6 +1,6 @@
 // Copyright 2023 Yurin Evgeny
 
-#include "../../../modules/task_2/yurin_e_slau_gradient_omp/slau_gradient.h"
+#include "../../../modules/task_3/yurin_e_slau_gradient_tbb/slau_gradient.h"
 
 dmat generateMatrix(int size, unsigned int seed) {
     dmat res = dmat(size, std::vector<double>(size));

@@ -2,7 +2,7 @@
 
 #include <gtest/gtest.h>
 
-#include "../../../modules/task_2/yurin_e_slau_gradient_omp/slau_gradient.h"
+#include "../../../modules/task_3/yurin_e_slau_gradient_tbb/slau_gradient.h"
 
 void GoogleAssertNear(dvec a, dvec b, double eps) {
     for (int i = 0; i < a.size(); i++) {
