@@ -1,7 +1,7 @@
 // Copyright 2023 Yurin Evgeny
 
-#ifndef MODULES_TASK_1_YURIN_E_SLAU_GRADIENT_SLAU_GRADIENT_H_
-#define MODULES_TASK_1_YURIN_E_SLAU_GRADIENT_SLAU_GRADIENT_H_
+#ifndef MODULES_TASK_2_YURIN_E_SLAU_GRADIENT_OMP_SLAU_GRADIENT_H_
+#define MODULES_TASK_2_YURIN_E_SLAU_GRADIENT_OMP_SLAU_GRADIENT_H_
 
 #include <vector>
 #include <cmath>
@@ -26,4 +26,8 @@ dvec vec_vec_comb(double firstScalar, const dvec& firstVector, double secondScal
 
 dvec solve(const dmat &matrix, const dvec& vector);
 
-#endif  // MODULES_TASK_1_YURIN_E_SLAU_GRADIENT_SLAU_GRADIENT_H_
+dvec matrix_vec_parallel(const dmat &a, const dvec &b);
+
+dvec solve_parallel(const dmat &matrix, const dvec& vector);
+
+#endif  // MODULES_TASK_2_YURIN_E_SLAU_GRADIENT_OMP_SLAU_GRADIENT_H_

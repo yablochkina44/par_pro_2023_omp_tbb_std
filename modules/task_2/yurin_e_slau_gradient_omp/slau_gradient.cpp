@@ -1,6 +1,6 @@
 // Copyright 2023 Yurin Evgeny
 
-#include "../../../modules/task_1/yurin_e_slau_gradient/slau_gradient.h"
+#include "../../../modules/task_2/yurin_e_slau_gradient_omp/slau_gradient.h"
 
 dmat generateMatrix(int size, unsigned int seed) {
     dmat res = dmat(size, std::vector<double>(size));
@@ -43,6 +43,14 @@ dvec vec_vec_comb(double firstScalar, const dvec& firstVector, double secondScal
     return res;
 }
 
+dvec matrix_vec_parallel(const dmat &a, const dvec &b) {
+    dvec res(a.size());
+    #pragma omp parallel for
+    for (int i = 0; i < a.size(); i++) {
+        res[i] =  scalarProduct(a[i], b);
+    }
+    return res;
+}
 
 dvec solve(const dmat &matrix, const dvec& vector) {
     dvec res(matrix.size(), 0.0);
@@ -61,6 +69,39 @@ dvec solve(const dmat &matrix, const dvec& vector) {
         res = vec_vec_comb(1.0, res, d, p);
         r = vec_vec_comb(1.0, r, -d, mv);
 
+        if (sqrt(scalarProduct(r, r)) < EPS) break;
+
+        double s = scalarProduct(r, r) / std::max(scalarProduct(r_prev, r_prev), EPS);
+        p = vec_vec_comb(1.0, r, s, p);
+    }
+    return res;
+}
+
+dvec solve_parallel(const dmat &matrix, const dvec& vector) {
+    dvec res(matrix.size(), 0.0);
+
+    dvec r(vector);
+    dvec p(r);
+
+    int k = 0;
+
+    while (k++ < matrix.size()) {
+        dvec r_prev;
+        dvec mv = matrix_vec_parallel(matrix, p);
+        r_prev = r;
+
+        double d = scalarProduct(r, r) / std::max(scalarProduct(p, mv), EPS);
+        #pragma omp parallel sections
+        {
+            #pragma omp section
+            {
+                 res = vec_vec_comb(1.0, res, d, p);
+            }
+            #pragma omp section
+            {
+                r = vec_vec_comb(1.0, r, -d, mv);
+            }
+        }
         if (sqrt(scalarProduct(r, r)) < EPS) break;
 
         double s = scalarProduct(r, r) / std::max(scalarProduct(r_prev, r_prev), EPS);
