@@ -4,9 +4,9 @@
 
 #pragma region HelperClasses
 
+#include <ostream>
 #include <random>
 #include <vector>
-#include <ostream>
 
 //=============================================================================
 // Class   : Matrix
