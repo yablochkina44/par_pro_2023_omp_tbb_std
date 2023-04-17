@@ -114,7 +114,6 @@ CCS mult(const CCS& _l, const CCS& r) {
                           r.data.cbegin()+r.offset[i],
                           r.data.cbegin()+r.offset[i+1]);
             if (std::abs(x) > 0.0001) {
-                #pragma omp critical
                 tmp[i].push_back(CCS::elem{j, x});
             }
         }
