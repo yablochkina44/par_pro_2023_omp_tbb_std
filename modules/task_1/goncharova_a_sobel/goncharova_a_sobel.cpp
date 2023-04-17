@@ -1,47 +1,83 @@
 // Copyright 2023 Goncharova Anna
-
+#include <algorithm>
 #include <random>
-#include <ctime>
 #include <vector>
+#include <ctime>
+#include <iostream>
 #include "../../../modules/task_1/goncharova_a_sobel/goncharova_a_sobel.h"
 
-const image<char> KERNEL_X({1, 0, -1, 2, 0, -2, 1, 0, -1}, 3, 3);
-const image<char> KERNEL_Y({1, 2, 1, 0, 0, 0, -1, -2, -1}, 3, 3);
-
-image<uint8_t> randImage(size_t columns, size_t rows) {
-    if (rows == 0 || columns == 0) {
-        throw -1;
-    }
-    std::vector<uint8_t> matrix(columns * rows);
-    std::mt19937 gen;
-    gen.seed(static_cast<unsigned int>(time(0)));
-    for (size_t i = 0; i < rows; i++)
-        for (size_t j = 0; j < columns; j++)
-            matrix[i * rows + j] = static_cast<uint8_t>(gen() % 256);
-    return image<uint8_t>(matrix, columns, rows);
+image::image(int _width, int _height, std::vector<int>_matrix) {
+  if ((_width <= 0) || (_height <= 0))
+    throw "Uncorrect size";
+  width = _width;
+  height = _height;
+  matrix.resize(_width * _height);
+  for (int i = 0; i < _width * _height; i++)
+    matrix[i] = _matrix[i];
 }
 
-image<uint8_t> sobelSequence(image<uint8_t> inImage) {
-    if (inImage._rows == 0 || inImage._columns == 0
-        || inImage._matrix.empty()) {
-        throw -1;
-    }
-    image<uint8_t> result(inImage._columns, inImage._rows);
-    for (size_t i = 1; i < inImage._rows - 1; ++i)
-        for (size_t j = 1; j < inImage._columns - 1; ++j) {
-            int index = i * inImage._columns + j;
-            int resX = 0, resY = 0;
-            int indexKernel = 0;
-            for (int ki = -1; ki <= 1; ki++)
-                for (int kj = -1; kj <= 1; kj++) {
-                    resX += KERNEL_X._matrix[indexKernel]
-                        * inImage._matrix[(i + ki) * inImage._columns + j + kj];
-                    resY += KERNEL_Y._matrix[indexKernel]
-                        * inImage._matrix[(i + ki) * inImage._columns + j + kj];
-                    indexKernel++;
-                }
-            result._matrix[index] = sqrt(resX * resX + resY * resY) >
-                255 ? 255 : sqrt(resX * resX + resY * resY);
+image::image(int _width, int _height) {
+  if ((_width <= 0) || (_height <= 0))
+    throw "Uncorrect size";
+  width = _width;
+  height = _height;
+  matrix.resize(_width * _height, 0);
+}
+
+std::vector<int> image::GetMatrix()const {
+  return matrix;
+}
+
+void image::GetRandom() {
+  std::mt19937 gen;
+  gen.seed(static_cast<unsigned int>(time(0)));
+  for (int i = 0; i < this->width * this->height; i++)
+    this->matrix[i] = gen() % 256;
+}
+
+image& image::operator=(const image& Example) {
+  if (this != &Example) {
+    width = Example.width;
+    height = Example.height;
+    for (int i = 0; i < height*width; i++)
+      matrix[i] = Example.matrix[i];
+  }
+  return *this;
+}
+
+
+image image::SeqSobel() {
+  std::vector<int> Gx, Gy;
+  Gx.resize(9);
+  Gy.resize(9);
+  Gx = { -1, 0, 1, -2, 0, 2, -1, 0, 1 };
+  Gy = { -1, -2, -1, 0, 0, 0, 1, 2, 1 };
+  image result(this->width-2, this->height-2);
+  int i = 0;
+  while (i <= this->width-3) {
+    int j = 0;
+    while (j <= this->height-3) {
+      int ind = i * (this->height-2) + j;
+      int X = 0, Y = 0, Ind_G = 0;
+      int a = 0;
+      while (a < 3) {
+        int b = 0;
+        while (b < 3) {
+          X = Gx[Ind_G] * matrix[(i + a) * height + j + b] + X;
+          Y = Gy[Ind_G] * matrix[(i + a) * height + j + b] + Y;
+          Ind_G++;
+          b++;
         }
-    return result;
+        a++;
+      }
+      if (sqrt(X * X + Y * Y) > 255)
+        result.matrix[ind] = 255;
+      else
+        result.matrix[ind] = sqrt(X * X + Y * Y);
+      j++;
+    }
+    i++;
+  }
+  return result;
 }
+

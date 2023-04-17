@@ -17,7 +17,6 @@ if ( USE_SEQ )
 
     enable_testing()
     add_test(NAME ${ProjectId} COMMAND ${ProjectId})
-
 else( USE_SEQ )
     message( STATUS "-- ${ProjectId} - NOT BUILD!"  )
 endif( USE_SEQ )
