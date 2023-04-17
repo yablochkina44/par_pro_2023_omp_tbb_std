@@ -2,7 +2,6 @@
 #include <omp.h>
 #include <vector>
 #include <string>
-#include <chrono>
 #include <random>
 #include <iostream>
 #include "../../../modules/task_2/yunin_d_radix_sort/yunin_d_radix_sort.h"
@@ -46,8 +45,7 @@ std::vector<double> merge(const std::vector<double>& arr1,
         if (arr1[indexFirst] > arr2[indexSecond]) {
             out[i] = arr2[indexSecond];
             indexSecond++;
-        }
-        else if (arr1[indexFirst] <= arr2[indexSecond]) {
+        } else if (arr1[indexFirst] <= arr2[indexSecond]) {
             out[i] = arr1[indexFirst];
             indexFirst++;
         }
@@ -105,8 +103,7 @@ bool countSortFinalStep(double* in, double* out, int len) {
             out[i] = in[j];
             if (flag) {
                 j++;
-            }
-            else {
+            } else {
                 j--;
             }
             if (j == firstNegativeIndex - 1 && !flag) {
@@ -115,8 +112,7 @@ bool countSortFinalStep(double* in, double* out, int len) {
             }
         }
         return true;
-    }
-    else if (!positiveFlag) {
+    } else if (!positiveFlag) {
         for (int i = len - 1, j = 0; i >= 0; i--, j++) {
             out[j] = in[i];
         }
@@ -170,19 +166,18 @@ std::vector<double> radixSortParallOmp(const std::vector<double>& data, int numP
     std::vector<std::vector<double>> vectorsForParallel = splitVector(data, numParts);
     std::vector<double> finalResult;
     omp_set_num_threads(vectorsForParallel.size());
-    //auto start1 = std::chrono::high_resolution_clock::now();
+    // auto start1 = std::chrono::high_resolution_clock::now();
 #pragma omp parallel for
-    //std::cout << "Количество потоков - " << omp_get_thread_num() << std::endl;
     for (int i = 0; i < vectorsForParallel.size(); ++i) {
         vectorsForParallel[i] = radixSortSeq(vectorsForParallel[i]);
     }
 
-    //auto stop1 = std::chrono::high_resolution_clock::now();
-    //auto duration1 = std::chrono::duration_cast<std::chrono::microseconds>(stop1 - start1);
-    //std::cout << "duration_omp: " << duration1.count() << '\n';
+    // auto stop1 = std::chrono::high_resolution_clock::now();
+    // auto duration1 = std::chrono::duration_cast<std::chrono::microseconds>(stop1 - start1);
+    // std::cout << "duration_omp: " << duration1.count() << '\n';
     for (int i = 0; i < vectorsForParallel.size(); i++) {
         finalResult = merge(finalResult, vectorsForParallel[i]);
     }
-    //printVector(finalResult);
+    // printVector(finalResult);
     return finalResult;
 }

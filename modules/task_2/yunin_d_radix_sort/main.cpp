@@ -1,7 +1,6 @@
 // Copyright 2023 Yunin Daniil
 #include <gtest/gtest.h>
 #include <vector>
-#include <chrono>
 #include <iostream>
 #include <algorithm>
 #include "../../../modules/task_2/yunin_d_radix_sort/yunin_d_radix_sort.h"
@@ -16,8 +15,8 @@ TEST(ParallelOpenMP, Test_Sort_With_1000000_Random_Elements) {
 
     result = radixSortParallOmp(firstPart, numParts);
     std::sort(vec1.begin(), vec1.end());
-     //printVector(vec1);
-     //printVector(result);
+     // printVector(vec1);
+     // printVector(result);
     for (int i = 0; i < vec1.size(); i++) {
         ASSERT_EQ(vec1[i], result[i]);
     }
@@ -76,11 +75,12 @@ TEST(ParallelOpenMP, Test_Sort_With_1000000_Elements_But_Vector_Already_Sorted) 
     }
 }
 
-//auto start2 = std::chrono::high_resolution_clock::now();
-//result1 = radixSortSeq(secondPart);
-//auto stop2 = std::chrono::high_resolution_clock::now();
-//auto duration2 = std::chrono::duration_cast<std::chrono::microseconds>(stop2 - start2);
-//std::cout << "duration_seq: " << duration2.count() << '\n';
+// #include <chrono>
+// auto start2 = std::chrono::high_resolution_clock::now();
+// result1 = radixSortSeq(secondPart);
+// auto stop2 = std::chrono::high_resolution_clock::now();
+// auto duration2 = std::chrono::duration_cast<std::chrono::microseconds>(stop2 - start2);
+// std::cout << "duration_seq: " << duration2.count() << '\n';
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
