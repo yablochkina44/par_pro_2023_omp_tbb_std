@@ -1,9 +1,8 @@
 // Copyright 2023 Raschetnov Alexei
 
+#include "../../../modules/task_2/raschetnov_a_ccs_double_matrix/ccs_double_matrix.h"
 #include <omp.h>
 #include <utility>
-#include <unistd.h>
-#include "../../../modules/task_2/raschetnov_a_ccs_double_matrix/ccs_double_matrix.h"
 
 SparseMatrix SparseMatrix::multiply(const SparseMatrix& matrix) {
     SparseMatrix result(row, matrix.col);
