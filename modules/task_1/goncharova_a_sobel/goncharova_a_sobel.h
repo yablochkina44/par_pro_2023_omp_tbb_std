@@ -6,6 +6,7 @@
 #include <vector>
 #include <iostream>
 
+
 class image {
  private:
   int width = 0, height = 0;
