@@ -44,7 +44,6 @@ SparseMatrix SparseMatrix::multiply(const SparseMatrix& matrix) {
             }
         });
         result.pointer.push_back(result.pointer.back() + counter);
-        // test comm.
     }
     result.transpose();
     return result;
