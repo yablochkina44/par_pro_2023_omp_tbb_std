@@ -140,5 +140,5 @@ double ScalarMultiple(const vector<MatrixValue> &v1,
 }
 
 bool MatrixValue::Equal(const MatrixValue &other) {
-    return abs(value - other.value) < eps && col_number == other.col_number;
+    return fabs(value - other.value) < eps && col_number == other.col_number;
 }
