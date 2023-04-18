@@ -12,6 +12,7 @@ TEST(Mult_rare_matrix_parallel, Test_1_2x2_and_2x2) {
     MatrixCRS res = matr.Multiple(matr2);
     MatrixCRS resPar = matr.MultipleParallel(matr2);
 
+
     EXPECT_EQ(res.Equal(resPar), true);
 }
 
