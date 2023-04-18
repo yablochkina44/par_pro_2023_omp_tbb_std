@@ -1,5 +1,5 @@
 // Copyright 2023 Grachev Valentin
-#include "../../../modules/task_1/grachev_v_mult_rare_matrix/mult_rare_matrix.h"
+#include "../../../modules/task_2/grachev_v_mult_rare_matrix/mult_rare_matrix.h"
 
 MatrixCRS::MatrixCRS(int strs, int cols)
     : strQuant(strs), colQuant(cols),
