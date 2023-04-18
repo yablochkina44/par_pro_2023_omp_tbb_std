@@ -4,6 +4,7 @@
 
 #pragma region HelperClasses
 
+#include <ostream>
 #include <random>
 #include <vector>
 
@@ -67,6 +68,16 @@ class Matrix {
   size_t GetRowCount() const { return m_rowCount; }
 
   size_t GetColCount() const { return m_colCount; }
+
+  friend std::ostream& operator<<(std::ostream& os, const Matrix& matrix) {
+    for (size_t i = 0; i < matrix.m_rowCount; ++i) {
+      for (size_t j = 0; j < matrix.m_colCount; ++j) {
+        os << matrix[i][j] << ' ';
+      }
+      os << '\n';
+    }
+    return os;
+  }
 };
 
 //=============================================================================
