@@ -1,4 +1,5 @@
 // Copyright 2023 Makarov Danila
+#include <omp.h>
 #include <iomanip>
 #include <iostream>
 
@@ -49,7 +50,7 @@ Matrix SobelOMP(const Matrix& input) {
         }
       }
       double k = sqrt(x * x + y * y);
-      result[i][j] = clamp(0, 255, k);
+      result[i][j] = k > 255 ? 255 : k < 0 ? 0 : k;
     }
   }
   return result;
