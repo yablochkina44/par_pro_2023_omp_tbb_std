@@ -18,7 +18,7 @@ Matrix SobelSeq(const Matrix& input) {
   Matrix result = input;
   size_t width = input.size() - 1, height = input[0].size() - 1;
   tbb::parallel_for(
-      tbb::blocked_range<int>(1, input.size() * input[0].size() - 1),
+      tbb::blocked_range<int>(1, (input.size() * input[0].size()) - 1),
       [&](const tbb::blocked_range<int>& range) {
         for (size_t i = 1; i < width; i++) {
           for (size_t j = 1; j < height; j++) {
