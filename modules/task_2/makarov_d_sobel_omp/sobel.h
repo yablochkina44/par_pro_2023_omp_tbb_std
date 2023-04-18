@@ -1,6 +1,6 @@
 // Copyright 2023 Makarov Danila
-#ifndef MODULES_TASK_1_MAKAROV_D_SOBEL_SOBEL_H_
-#define MODULES_TASK_1_MAKAROV_D_SOBEL_SOBEL_H_
+#ifndef MODULES_TASK_2_MAKAROV_D_SOBEL_OMP_SOBEL_H_
+#define MODULES_TASK_2_MAKAROV_D_SOBEL_OMP_SOBEL_H_
 
 #include <omp.h>
 #include <vector>
@@ -17,4 +17,4 @@ Matrix SobelOMP(const Matrix& input);
 double clamp(double min, double max, double value);
 void printMatrix(const Matrix& m);
 
-#endif  // MODULES_TASK_1_MAKAROV_D_SOBEL_SOBEL_H_
+#endif  // MODULES_TASK_2_MAKAROV_D_SOBEL_OMP_SOBEL_H_

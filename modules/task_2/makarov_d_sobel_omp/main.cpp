@@ -39,7 +39,7 @@ TEST(SEQ, SOBEL_MATRIX_6x6_1) {
   Matrix result = SobelSeq(createMatrix(6, 6, 1));
   Matrix resultOMP = SobelOMP(createMatrix(6, 6, 1));
   ASSERT_EQ(resultOMP, result);
-  //ASSERT_EQ(expected, result);
+  // ASSERT_EQ(expected, result);
   /*std::cout << "Result:" << std::endl;
   printMatrix(result);
   std::cout << "Result OMP:" <<std::endl;
