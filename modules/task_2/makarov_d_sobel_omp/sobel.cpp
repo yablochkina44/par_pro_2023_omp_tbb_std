@@ -38,13 +38,13 @@ Matrix SobelOMP(const Matrix& input) {
   if (input.size() <= 0 || input[0].size() <= 0) throw("Size is not correct");
 
   Matrix result = input;
-  size_t width = input.size() - 1, height = input[0].size() - 1;
+  int width = input.size() - 1, height = input[0].size() - 1;
   #pragma omp parallel for
-  for (size_t i = 1; i < width; i++) {
-    for (size_t j = 1; j < height; j++) {
+  for (int i = 1; i < width; i++) {
+    for (int j = 1; j < height; j++) {
       double x = 0, y = 0;
-      for (size_t w = 0; w < 3; w++) {
-        for (size_t h = 0; h < 3; h++) {
+      for (int w = 0; w < 3; w++) {
+        for (int h = 0; h < 3; h++) {
           x += input[i + w - 1][j + h - 1] * Kernel_x[w][h];
           y += input[i + w - 1][j + h - 1] * Kernel_y[w][h];
         }
