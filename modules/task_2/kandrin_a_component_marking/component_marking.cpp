@@ -207,7 +207,10 @@ void FixNumeration<ExecutionPolicy::Parallel>(Label* arr, size_t size) {
   assert(arr != nullptr);
   if (arr == nullptr) return;
 
-  std::vector<bool> isLabelExist(maxLabelCount, false);
+  std::vector<char> isLabelExist(
+      maxLabelCount, false);  // "bool" can not be used here
+                              // due to to the presence of an inappropriate (in
+                              // this case) specialization std::vector<bool>
 #pragma omp parallel for
   for (int i = 0; i < size; ++i) {
     assert(arr[i] <
