@@ -43,32 +43,6 @@ SparseMatrix SparseMatrix::multiply(const SparseMatrix& matrix) {
                 }
             }
         });
-
-        // for (int j = 1; j < matrix.pointer.size(); j++) {
-        //     std::vector<double> values_b(matrix.values.begin() + matrix.pointer[j - 1],
-        //                                  matrix.values.begin() + matrix.pointer[j]);
-        //     std::vector<double> row_b(matrix.rows.begin() + matrix.pointer[j - 1],
-        //                               matrix.rows.begin() + matrix.pointer[j]);
-        //     int k = 0;
-        //     int s = 0;
-        //     double sum = 0;
-        //     while (k < values_a.size() && s < values_b.size()) {
-        //         if (row_a[k] == row_b[s]) {
-        //             sum += values_a[k] * values_b[s];
-        //             k++;
-        //             s++;
-        //         } else if (row_a[k] > row_b[s]) {
-        //             s++;
-        //         } else {
-        //             k++;
-        //         }
-        //     }
-        //     if (sum) {
-        //         result.values.push_back(sum);
-        //         counter++;
-        //         result.rows.push_back(j - 1);
-        //     }
-        // }
         result.pointer.push_back(result.pointer.back() + counter);
     }
     result.transpose();
