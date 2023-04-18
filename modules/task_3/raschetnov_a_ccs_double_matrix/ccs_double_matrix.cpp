@@ -34,16 +34,17 @@ SparseMatrix SparseMatrix::multiply(const SparseMatrix& matrix) {
                         k++;
                     }
                 }
+                tbb::queuing_mutex::scoped_lock lock(mutex);
                 if (sum) {
-                    tbb::queuing_mutex::scoped_lock lock(mutex);
                     result.values.push_back(sum);
                     counter++;
                     result.rows.push_back(j - 1);
-                    lock.release();
                 }
+                lock.release();
             }
         });
         result.pointer.push_back(result.pointer.back() + counter);
+        // test comm.
     }
     result.transpose();
     return result;
