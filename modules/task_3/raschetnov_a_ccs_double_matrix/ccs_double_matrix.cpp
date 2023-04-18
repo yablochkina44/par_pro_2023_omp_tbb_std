@@ -14,7 +14,8 @@ SparseMatrix SparseMatrix::multiply(const SparseMatrix& matrix) {
         std::vector<double> row_a(rows.begin() + pointer[i - 1], rows.begin() + pointer[i]);
         tbb::global_control gc(tbb::global_control::max_allowed_parallelism, matrix.pointer.size());
         tbb::queuing_mutex mutex;
-        tbb::parallel_for(tbb::blocked_range<int>(0, matrix.pointer.size()), [&](const tbb::blocked_range<int>& it) {
+        int size = matrix.pointer.size();
+        tbb::parallel_for(tbb::blocked_range<int>(0, size), [&](const tbb::blocked_range<int>& it) {
             for (int j = it.begin(); j < it.end(); j++) {
                 std::vector<double> values_b(matrix.values.begin() + matrix.pointer[j - 1],
                                             matrix.values.begin() + matrix.pointer[j]);
