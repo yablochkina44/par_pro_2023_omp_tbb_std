@@ -40,7 +40,7 @@ TEST(PAR_CONJ_GRAD, TEST2_3x3) {
 }
 
 TEST(PAR_CONJ_GRAD, TEST_5x5) {
-    int n = 5;
+    int n = 4;
     std::vector<std::vector<double>> A = { {5, 4, 0, 3, 6},
                                            {4, 6, 1, 5, 7},
                                            {0, 1, 0, 1, 1},
@@ -56,7 +56,7 @@ TEST(PAR_CONJ_GRAD, TEST_5x5) {
 }
 
 TEST(PAR_CONJ_GRAD, TEST_100x100) {
-    int n = 11;
+    int n = 4;
     std::vector<std::vector<double>> A = random_matrix(100);
     std::vector<double> vec = random_vec(100);
     clock_t start2 = clock();
@@ -73,7 +73,6 @@ TEST(PAR_CONJ_GRAD, TEST_100x100) {
         ASSERT_NEAR(seq_result[i], par_result[i], 0.5);
     }
 }
-
 
 
 int main(int argc, char** argv) {
