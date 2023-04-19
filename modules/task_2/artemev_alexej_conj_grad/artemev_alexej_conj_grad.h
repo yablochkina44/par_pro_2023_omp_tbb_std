@@ -18,8 +18,8 @@ const std::vector<double>& betta);
 std::vector<double> random_vec(int size);
 std::vector<std::vector<double>> random_matrix(int size);
 std::vector<double> par_mult_matrix_by_vec(const std::vector<std::vector<double>>& M,
-	const std::vector<double>& vec, int n);
+const std::vector<double>& vec, int n);
 std::vector<double> par_conj_grad_method(const std::vector<std::vector<double>>& M,
-	const std::vector<double>& vec, int n);
+const std::vector<double>& vec, int n);
 
 #endif  // MODULES_TASK_2_ARTEMEV_ALEXEJ_CONJ_GRAD_ARTEMEV_ALEXEJ_CONJ_GRAD_H_
