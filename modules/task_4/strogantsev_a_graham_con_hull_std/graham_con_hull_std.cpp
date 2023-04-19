@@ -1,10 +1,7 @@
 // Copyright 2023 Strogantsev Anton
-#include <thread>
-#include <iostream>
 #include <algorithm>
-#include <future>
 #include <iterator>
-#include <iostream>
+#include "../../../3rdparty/unapproved/unapproved.h"
 #include "../../../modules/task_4/strogantsev_a_graham_con_hull_std/graham_con_hull_std.h"
 
 
