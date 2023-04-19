@@ -3,12 +3,10 @@
 #include "../../../modules/task_3/raschetnov_a_ccs_double_matrix/ccs_double_matrix.h"
 #include <tbb/tbb.h>
 #include <tbb/queuing_mutex.h>
-#include <tbb/spin_mutex.h>
 #include <tbb/global_control.h>
 #include <utility>
 
-// tbb::queuing_mutex mutex;
-tbb::spin_mutex mutex;
+tbb::queuing_mutex mutex;
 
 SparseMatrix SparseMatrix::multiply(const SparseMatrix& matrix) {
     SparseMatrix result(row, matrix.col);
@@ -19,7 +17,8 @@ SparseMatrix SparseMatrix::multiply(const SparseMatrix& matrix) {
         std::vector<double> row_a(rows.begin() + pointer[i - 1], rows.begin() + pointer[i]);
         tbb::global_control gc(tbb::global_control::max_allowed_parallelism, matrix.pointer.size());
         int size = matrix.pointer.size();
-        tbb::parallel_for(tbb::blocked_range<int>(0, size), [&](const tbb::blocked_range<int>& it) {
+        tbb::parallel_for(tbb::blocked_range<int>(1, size), [&](const tbb::blocked_range<int>& it) {
+            tbb::queuing_mutex::scoped_lock lock;
             for (int j = it.begin(); j < it.end(); j++) {
                 std::vector<double> values_b(matrix.values.begin() + matrix.pointer[j - 1],
                                             matrix.values.begin() + matrix.pointer[j]);
@@ -39,15 +38,13 @@ SparseMatrix SparseMatrix::multiply(const SparseMatrix& matrix) {
                         k++;
                     }
                 }
-                tbb::spin_mutex::scoped_lock lock;
-                // tbb::queuing_mutex::scoped_lock lock(mutex);
-                lock.acquire(mutex);
                 if (sum) {
+                    lock.acquire(mutex);
                     result.values.push_back(sum);
                     counter++;
                     result.rows.push_back(j - 1);
+                    lock.release();
                 }
-                lock.release();
             }
         });
         result.pointer.push_back(result.pointer.back() + counter);
