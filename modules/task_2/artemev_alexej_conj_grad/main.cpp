@@ -14,7 +14,7 @@ TEST(Conjugate_gradient, TEST_random_matrix1) {
     ASSERT_NE(emp, A);
 }
 
-TEST(Conjugate_gradient, TEST_random_matrix1) {
+TEST(Conjugate_gradient, TEST_random_matrix3) {
     std::vector<std::vector<double>> A = random_matrix(6);
     std::vector<std::vector<double>> emp;
     ASSERT_NE(emp, A);
