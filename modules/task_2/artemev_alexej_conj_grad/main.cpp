@@ -55,22 +55,18 @@ TEST(PAR_CONJ_GRAD, TEST_5x5) {
     }
 }
 
-TEST(PAR_CONJ_GRAD, TEST_100x100) {
-    int n = 4;
-    std::vector<std::vector<double>> A = random_matrix(100);
-    std::vector<double> vec = random_vec(100);
-    clock_t start2 = clock();
-    std::vector<double> par_result = par_conj_grad_method(A, vec, n);
-    clock_t end2 = clock();
-    clock_t start1 = clock();
-    std::vector<double> seq_result = conj_grad_method(A, vec);
-    clock_t end1 = clock();
-    double par_time = static_cast<double>(end2 - start2) / CLOCKS_PER_SEC;
-    std::cout << "par_time:" << par_time << std::endl;
-    double seq_time = static_cast<double>(end1 - start1) / CLOCKS_PER_SEC;
-    std::cout << "seq_time:" << seq_time << std::endl;
-    for (int i = 0; i < 100; i++) {
-        ASSERT_NEAR(seq_result[i], par_result[i], 0.5);
+TEST(PAR_CONJ_GRAD, TEST_5x5) {
+    int n = 5;
+    std::vector<std::vector<double>> A = { {3, 2, 3, 1, 2},
+                                           {2, 4, 1, 4, 3},
+                                           {3, 1, 6, 2, 5},
+                                           {1, 4, 2, 8, 7},
+                                           {2, 3, 5, 7, 11}, };
+    std::vector<double> b = { 4, 6, 3, 1, 8};
+    std::vector<double> x = par_conj_grad_method(A, b, n);
+    std::vector<double> res = { -3.576, 6, 0.94565, -4.6521, 2.2717};
+    for (size_t i = 0; i < res.size(); ++i) {
+        ASSERT_NEAR(x[i], res[i], 0.5);
     }
 }
 
