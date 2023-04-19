@@ -5,6 +5,9 @@
 #include <tbb/queuing_mutex.h>
 #include <tbb/global_control.h>
 #include <utility>
+
+tbb::queuing_mutex mutex;
+
 SparseMatrix SparseMatrix::multiply(const SparseMatrix& matrix) {
     SparseMatrix result(row, matrix.col);
     result.pointer.push_back(0);
@@ -13,7 +16,6 @@ SparseMatrix SparseMatrix::multiply(const SparseMatrix& matrix) {
         std::vector<double> values_a(values.begin() + pointer[i - 1], values.begin() + pointer[i]);
         std::vector<double> row_a(rows.begin() + pointer[i - 1], rows.begin() + pointer[i]);
         tbb::global_control gc(tbb::global_control::max_allowed_parallelism, matrix.pointer.size());
-        tbb::queuing_mutex mutex;
         int size = matrix.pointer.size();
         tbb::parallel_for(tbb::blocked_range<int>(0, size), [&](const tbb::blocked_range<int>& it) {
             for (int j = it.begin(); j < it.end(); j++) {
