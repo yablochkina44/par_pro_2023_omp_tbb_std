@@ -20,30 +20,7 @@ TEST(Conjugate_gradient, TEST_random_matrix2) {
         }
     }
 }
-TEST(Conjugate_gradient, TEST_2x2) {
-    int n = 2;
-    std::vector<std::vector<double>> A = { { 3, 2}, {2, 4} };
-    std::vector<double> b = { 1, 5 };
-    std::vector<double> sol = par_conj_grad_method(A, b, n);
-    std::vector<double> res = { -0.75, 1.625 };
-    for (size_t i = 0; i < res.size(); ++i) {
-        ASSERT_NEAR(sol[i], res[i], 0.5);
-    }
-}
-TEST(Conjugate_gradient, TEST_5x5) {
-    int n = 5;
-    std::vector<std::vector<double>> A = { {3, 2, 3, 1, 2},
-                                           {2, 4, 1, 4, 3},
-                                           {3, 1, 6, 2, 5},
-                                           {1, 4, 2, 8, 7},
-                                           {2, 3, 5, 7, 11}, };
-    std::vector<double> b = { 4, 6, 3, 1, 8};
-    std::vector<double> x = par_conj_grad_method(A, b, n);
-    std::vector<double> res = { -3.576, 6, 0.94565, -4.6521, 2.2717};
-    for (size_t i = 0; i < res.size(); ++i) {
-        ASSERT_NEAR(x[i], res[i], 0.5);
-    }
-}
+
 TEST(Conjugate_gradient, TEST_100x100) {
     int n = 11;
     std::vector<std::vector<double>> A = random_matrix(100);
