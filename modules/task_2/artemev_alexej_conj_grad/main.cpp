@@ -55,7 +55,7 @@ TEST(PAR_CONJ_GRAD, TEST_5x5) {
     }
 }
 
-TEST(PAR_CONJ_GRAD, TEST_5x5) {
+TEST(PAR_CONJ_GRAD, TEST2_5x5) {
     int n = 5;
     std::vector<std::vector<double>> A = { {3, 2, 3, 1, 2},
                                            {2, 4, 1, 4, 3},
