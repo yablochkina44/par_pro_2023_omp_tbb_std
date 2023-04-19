@@ -84,8 +84,7 @@ std::vector<std::vector<double>> random_matrix(int size) {
         for (int j = 0; j < size; j++) {
             if (j < i) {
                 result[i][j] = result[j][i];
-            }
-            else {
+            } else {
                 result[i][j] = std::rand() % 100;
             }
         }
