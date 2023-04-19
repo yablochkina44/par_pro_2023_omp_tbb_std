@@ -7,11 +7,19 @@ TEST(Conjugate_gradient, TEST_random_vec) {
     std::vector<double> emp;
     ASSERT_NE(emp, a);
 }
+
 TEST(Conjugate_gradient, TEST_random_matrix1) {
     std::vector<std::vector<double>> A = random_matrix(5);
     std::vector<std::vector<double>> emp;
     ASSERT_NE(emp, A);
 }
+
+TEST(Conjugate_gradient, TEST_random_matrix1) {
+    std::vector<std::vector<double>> A = random_matrix(6);
+    std::vector<std::vector<double>> emp;
+    ASSERT_NE(emp, A);
+}
+
 TEST(Conjugate_gradient, TEST_random_matrix2) {
     std::vector<std::vector<double>> A = random_matrix(5);
     for (int i = 0; i < 5; i++) {
