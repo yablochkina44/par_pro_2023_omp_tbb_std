@@ -3,10 +3,12 @@
 #include "../../../modules/task_3/raschetnov_a_ccs_double_matrix/ccs_double_matrix.h"
 #include <tbb/tbb.h>
 #include <tbb/queuing_mutex.h>
+#include <tbb/spin_mutex.h>
 #include <tbb/global_control.h>
 #include <utility>
 
-tbb::queuing_mutex mutex;
+// tbb::queuing_mutex mutex;
+tbb::spin_mutex mutex;
 
 SparseMatrix SparseMatrix::multiply(const SparseMatrix& matrix) {
     SparseMatrix result(row, matrix.col);
@@ -37,7 +39,9 @@ SparseMatrix SparseMatrix::multiply(const SparseMatrix& matrix) {
                         k++;
                     }
                 }
-                tbb::queuing_mutex::scoped_lock lock(mutex);
+                tbb::spin_mutex::scoped_lock lock;
+                // tbb::queuing_mutex::scoped_lock lock(mutex);
+                lock.acquire(mutex);
                 if (sum) {
                     result.values.push_back(sum);
                     counter++;
