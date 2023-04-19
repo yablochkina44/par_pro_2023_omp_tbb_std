@@ -8,6 +8,18 @@ TEST(Conjugate_gradient, TEST_random_vec) {
     ASSERT_NE(emp, a);
 }
 
+TEST(Conjugate_gradient, TEST_100x100) {
+    int n = 4;
+    std::vector<std::vector<double>> A = random_matrix(100);
+    std::vector<double> b = random_vec(100);
+    std::vector<double> ResPar = par_conj_grad_method(A, b, n);
+    std::vector<double> ResSec = conj_grad_method(A, b);
+
+    for (int i = 0; i < 100; i++) {
+        ASSERT_NEAR(ResSec[i], ResPar[i], 0.5);
+    }
+}
+
 TEST(Conjugate_gradient, TEST_random_matrix1) {
     std::vector<std::vector<double>> A = random_matrix(5);
     std::vector<std::vector<double>> emp;
