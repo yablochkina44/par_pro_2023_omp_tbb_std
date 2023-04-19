@@ -5,13 +5,12 @@
 
 TEST(PAR_CONJ_GRAD, TEST_2x2) {
     int n = 2;
-    std::vector<std::vector<double>> A = { { 1, 3}, {3, 8} };
-    std::vector<double> betta = { 4, 5 };
-    std::vector<double> result = { -17, 7 };
-    std::vector<double> decision = par_conj_grad_method(A, betta, n);
-
-    for (size_t i = 0; i < result.size(); ++i) {
-        ASSERT_NEAR(decision[i], result[i], 0.5);
+    std::vector<std::vector<double>> A = { { 3, 2}, {2, 4} };
+    std::vector<double> b = { 1, 5 };
+    std::vector<double> sol = par_conj_grad_method(A, b, n);
+    std::vector<double> res = { -0.75, 1.625 };
+    for (size_t i = 0; i < res.size(); ++i) {
+        ASSERT_NEAR(sol[i], res[i], 0.5);
     }
 }
 
