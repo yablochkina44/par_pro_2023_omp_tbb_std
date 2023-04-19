@@ -93,7 +93,7 @@ std::vector<std::vector<double>> random_matrix(int size) {
 }
 
 std::vector<double> par_conj_grad_method(const std::vector<std::vector<double>>& M,
-    const std::vector<double>& vec, int n) {
+const std::vector<double>& vec, int n) {
     size_t size = vec.size();
     std::vector<double> x(size);
     std::vector<double> r(size);
@@ -115,10 +115,10 @@ std::vector<double> par_conj_grad_method(const std::vector<std::vector<double>>&
 }
 
 std::vector<double> par_mult_matrix_by_vec(const std::vector<std::vector<double>>& M,
-    const std::vector<double>& vec, int n) {
+const std::vector<double>& vec, int n) {
     int size = M.size();
     std::vector<double> result(size);
-    #pragma omp parallel  for num_threads(n)
+#pragma omp parallel  for num_threads(n)
     for (int i = 0; i < size; i++) {
         result[i] = vecs_mult(M[i], vec);
     }
