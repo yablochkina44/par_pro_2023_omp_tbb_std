@@ -197,6 +197,7 @@ void parallel_for(size_t size, Functor&& functor) {
   size_t sumPartWork = partWorkForMainThread;
   for (size_t workerIndex = 1; workerIndex < workerCount; ++workerIndex) {
     size_t partWorkForCurrentThread = workSplitter.GetPartWork(workerIndex);
+    if (partWorkForCurrentThread == 0) continue;
     workerThreads.push_back(std::thread(
         functor, sumPartWork, sumPartWork + partWorkForCurrentThread));
     sumPartWork += partWorkForCurrentThread;
