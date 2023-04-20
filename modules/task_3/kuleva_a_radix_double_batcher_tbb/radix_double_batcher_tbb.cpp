@@ -88,7 +88,7 @@ std::vector<double> batcherMerge(const std::vector<double>& left, const std::vec
 struct TbbBatcherReductor {
     std::vector<double> result;
     TbbBatcherReductor() = default;
-    TbbBatcherReductor(TbbBatcherReductor& o, tbb::split) {}
+    TbbBatcherReductor(const TbbBatcherReductor& o, tbb::split) {}
 
     void operator()(const tbb::blocked_range<std::vector<double>::iterator>& r) {
         result = std::vector<double>(r.begin(), r.end());
@@ -106,8 +106,7 @@ std::vector<double> radixBatcherSort(const std::vector<double>& base) {
     TbbBatcherReductor reductor;
     tbb::parallel_reduce(
         tbb::blocked_range<std::vector<double>::iterator>(tmp.begin(), tmp.end()),
-        reductor
-    );
+        reductor);
 
     return reductor.result;
 }
