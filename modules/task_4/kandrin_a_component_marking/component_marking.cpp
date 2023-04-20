@@ -386,3 +386,6 @@ LabelImage GetComponentMarkingImp<ExecutionPolicy::Parallel>(
 
   return result;
 }
+
+// Get the maximum number of threads
+size_t GetMaxThreads() { return std::thread::hardware_concurrency(); }

@@ -6,8 +6,9 @@
 
 #include <ostream>
 #include <random>
-#include <thread>
 #include <vector>
+
+#include "../../../3rdparty/unapproved/unapproved.h"
 
 //=============================================================================
 // Class   : Matrix
@@ -161,6 +162,9 @@ LabelImage GetComponentMarking(const BinaryImage& sourceImage) {
   return GetComponentMarkingImp<executionPolicy>(sourceImage);
 }
 
+// Get the maximum number of threads
+size_t GetMaxThreads();
+
 // Parallel execution of functions
 template <class Functor>
 void parallel_invoke(Functor&& functor) {
@@ -183,7 +187,7 @@ void parallel_invoke(Functor&& functor, Functors... functors) {
 // The functor takes two arguments (the index of the start and end of the range)
 template <class Functor>
 void parallel_for(size_t size, Functor&& functor) {
-  size_t workerCount = std::thread::hardware_concurrency();
+  size_t workerCount = GetMaxThreads();
   WorkSplitter workSplitter(size, workerCount);
 
   std::vector<std::thread> workerThreads;
@@ -212,7 +216,7 @@ void parallel_for(size_t size, Functor&& functor) {
 template <class Functor, class T, class ReduceFunctor>
 T parallel_reduce(size_t size, T initialValue, Functor&& functor,
                   ReduceFunctor&& reduceFunctor) {
-  size_t workerCount = std::thread::hardware_concurrency();
+  size_t workerCount = GetMaxThreads();
   WorkSplitter workSplitter(size, workerCount);
   std::vector<T> results(workerCount);
 
