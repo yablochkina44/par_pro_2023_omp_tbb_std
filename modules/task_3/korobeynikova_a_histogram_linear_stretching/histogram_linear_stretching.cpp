@@ -60,7 +60,6 @@ void parallelLinearHistogramStretching(Image* image_ptr) {
     tbb::parallel_for(
         tbb::blocked_range<size_t>(0, image.size()),
         [&image, min_max](tbb::blocked_range<size_t> range) {
-          std::cout << tbb::detail::d1::current_thread_index() << std::endl;
           for (auto i = range.begin(); i < range.end(); ++i) {
             image[i] = (image[i] - min_max.first) * (RANGEMAX - RANGEMIN) /
                        (min_max.second - min_max.first);
