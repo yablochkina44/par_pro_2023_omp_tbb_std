@@ -36,8 +36,7 @@ class OddEvenMerge {
             if (vec1[count_vec1] < vec2[count_vec2]) {
                 even_part.push_back(vec1[count_vec1]);
                 count_vec1 += 2;
-            }
-            else {
+            } else {
                 even_part.push_back(vec2[count_vec2]);
                 count_vec2 += 2;
             }
@@ -61,8 +60,7 @@ class OddEvenMerge {
             if (vec1[count_vec1] < vec2[count_vec2]) {
                 odd_part.push_back(vec1[count_vec1]);
                 count_vec1 += 2;
-            }
-            else {
+            } else {
                 odd_part.push_back(vec2[count_vec2]);
                 count_vec2 += 2;
             }
@@ -75,7 +73,7 @@ class OddEvenMerge {
         return odd_part;
     }
 
-public:
+    public:
     std::vector<int> odd_even_merge(const std::vector<int>& vec1,
         const std::vector<int>& vec2) {
         std::vector<int> even_vec = get_even_part(vec1, vec2);
@@ -92,8 +90,7 @@ public:
             if (even_vec[count_vec1] < odd_vec[count_vec2]) {
                 result.push_back(even_vec[count_vec1]);
                 result.push_back(odd_vec[count_vec2]);
-            }
-            else {
+            } else {
                 result.push_back(odd_vec[count_vec2]);
                 result.push_back(even_vec[count_vec1]);
             }
