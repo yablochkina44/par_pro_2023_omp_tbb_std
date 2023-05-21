@@ -73,7 +73,7 @@ class OddEvenMerge {
         return odd_part;
     }
 
-    public:
+     public:
      std::vector<int> odd_even_merge(const std::vector<int>& vec1,
         const std::vector<int>& vec2) {
         std::vector<int> even_vec = get_even_part(vec1, vec2);
