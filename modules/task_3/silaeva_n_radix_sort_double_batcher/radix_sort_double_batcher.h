@@ -73,9 +73,9 @@ class OddEvenMerge {
         return odd_part;
     }
 
-    public:
+public:
     std::vector<int> odd_even_merge(const std::vector<int>& vec1,
-        const std::vector<int>& vec2) {
+                                    const std::vector<int>& vec2) {
         std::vector<int> even_vec = get_even_part(vec1, vec2);
         std::vector<int> odd_vec = get_odd_part(vec1, vec2);
         std::vector<int> result;
@@ -98,11 +98,12 @@ class OddEvenMerge {
             count_vec2++;
         }
         std::vector<int> end_vector = complete_to_end(even_vec, odd_vec,
-            count_vec1, count_vec2);
+                                                      count_vec1, count_vec2);
         result.insert(result.end(), end_vector.begin(), end_vector.end());
         return result;
     }
 };
+
 
 std::vector<std::vector<int>> get_vector_part_tbb(const std::vector<int>& vec,
     unsigned int part);
